@@ -21,9 +21,6 @@ driver.maximize_window()
 for j in range(0, 3):
   # ３冊以上無料→２冊丸ごと無料、1冊まるごと無料の順番で回る
   driver.get(f'https://piccoma.com/web/more/product/list/T/F/{j}/K')
-  # # 一番下までスクロール
-  # for scroll in range(0, 10):
-  #   driver.execute_script("window.scrollBy(1000, 0);")
   # 件数を取得
   number = driver.find_element_by_xpath('//*[@id="js_headerNav"]/h1/span[2]').text
   # 「）」「（」を取り除いく
@@ -38,8 +35,11 @@ for j in range(0, 3):
       imgurl = ele.get_attribute('src')
       # 期間限定、無料枠などの情報取得
       note = driver.find_element_by_xpath(f'//*[@id="ajax_infScroll"]/li[{i}]/a/div/div/p/span').text
+      # 取得できているか確認のためのprint
       print(i, title, note, imgurl)
+      # スクレイピングでBANされないためのsleep
       time.sleep(0.5)
+      # スクロールしないと全てのliが表示されないためのスクロール
       driver.execute_script("window.scrollBy(0, 200);")
     else:
       print()
