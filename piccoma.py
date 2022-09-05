@@ -23,8 +23,8 @@ for j in range(0, 3):
   driver.get(f'https://piccoma.com/web/more/product/list/T/F/{j}/K')
   # 件数を取得
   number = driver.find_element_by_xpath('//*[@id="js_headerNav"]/h1/span[2]').text
-  # 「）」「（」を取り除いく
-  page = number.strip('（').strip('）')
+  # 「）」「（」「,」を取り除く
+  page = number.strip('（）').replace(',', '')
   # pageの文字列を数値に変換
   for i in range(1, int(page)+1):
     if driver.find_elements_by_xpath(f'//*[@id="ajax_infScroll"]/li[{i}]'):
@@ -38,7 +38,7 @@ for j in range(0, 3):
       # 取得できているか確認のためのprint
       print(i, title, note, imgurl)
       # スクレイピングでBANされないためのsleep
-      time.sleep(0.5)
+      time.sleep(0.8)
       # スクロールしないと全てのliが表示されないためのスクロール
       driver.execute_script("window.scrollBy(0, 200);")
     else:
