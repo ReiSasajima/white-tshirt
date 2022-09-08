@@ -17,13 +17,12 @@ def index():
         # name = "keyword"を取得
         keyword = request.form["keyword"]
         # kyewordと一致する作品をデータベースより見つける
-        title = db.execute("SELECT title FROM magapoke WHERE title LIKE '%?%' OR auther LIKE '%?%'", keyword, keyword)
-        auther = db.execute("SELECT auther FROM magapoke WHERE title LIKE '%?%' OR auther LIKE '%?%'", keyword, keyword)
-        img = db.execute("SELECT  img FROM magapoke WHERE title LIKE '%?%' OR auther LIKE '%?%'", keyword, keyword)
+        book_db = db.execute(
+            "SELECT title, auther, img FROM magapoke WHERE title LIKE '%?%' OR auther LIKE '%?%'", keyword, keyword)
         # 作品が見つからなければNot foundを表示
-        if title == None and auther == None and img == None:
+        if book_db == None:
             poster = 'Not Found'
             return render_template("test.html", poster=poster)
         # 作品があれば表示
-        return render_template("test.html", title=title, auther=auther, img=img)
+        return render_template("test.html", database=book_db)
 
