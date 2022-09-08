@@ -15,9 +15,9 @@ def index():
         # name = "keyword"を取得
         keyword = request.form["keyword"]
         # kyewordと一致する作品をデータベースより見つける
-        title = db.execute("SELECT title FROM magapoke WHERE title = keyword OR auther = keyword")
-        auther = db.execute("SELECT auther FROM magapoke WHERE title = keyword OR auther = keyword")
-        img = db.execute("SELECT  img FROM magapoke WHERE title = keyword OR auther = keyword")
+        title = db.execute("SELECT title FROM magapoke WHERE title LIKE %keyword% OR auther LIKE %keyword%")
+        auther = db.execute("SELECT auther FROM magapoke WHERE title LIKE %keyword% OR auther LIKE %keyword%")
+        img = db.execute("SELECT  img FROM magapoke WHERE titleLIKE %keyword% OR auther LIKE %keyword%")
         # 作品が見つからなければNot foundを表示
         if title == None and auther == None and img == None:
             poster = 'Not Found'
