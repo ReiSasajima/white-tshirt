@@ -13,8 +13,10 @@
         <input type="submit" value="検索">
     </form>
     <h2>{{ poster }}</h2>
-    <h3>{{ title }}</h3>
-    <h3>{{ auther }}</h3>
-    <h3>{{ img }}</h3>
+    {% for row in database %}
+    <td>{{ row["title"] }}</td>
+    <td>{{ row["auther"] }}</td>
+    <td>{{ row["img"] }}</td>
+    {% endfor %}
 </body>
 </html>
