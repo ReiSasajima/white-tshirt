@@ -1,4 +1,8 @@
 from flask import Flask, render_template, request
+import sqlite3
+
+# マガポケのデータベースに接続
+conn = sqlite3.connect('magapoke.db')
 
 app = Flask(__name__)
 
