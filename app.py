@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 import sqlite3
-
+from cs50 import SQL
 # マガポケのデータベースに接続
 conn = sqlite3.connect('magapoke.db')
-
+db = SQL("sqlite:///magapoke.db")
 conn.close()
 
 app = Flask(__name__)
