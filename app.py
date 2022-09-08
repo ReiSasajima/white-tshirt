@@ -3,8 +3,7 @@ import sqlite3
 from cs50 import SQL
 
 # マガポケのデータベースに接続
-conn = sqlite3.connect('magapoke.db')
-db = SQL("sqlite:///magapoke.db")
+db = SQL("sqlite:///manga.db")
 
 app = Flask(__name__)
 
@@ -16,16 +15,21 @@ def index():
     elif request.method == 'POST':
         # name = "keyword"を取得
         keyword = request.form["keyword"]
-        # kyewordと一致する作品をデータベースより見つける
-        #book_db = db.execute(
-        #    "SELECT title, auther, img FROM magapoke WHERE title LIKE '%?%' OR auther LIKE '%?%'", keyword, keyword)
-
+        # kyewordと一致する作品名、著者名、写真をデータベースより見つける
+        title = db.execute("SELECT title FROM magapoke WHERE title  = ? OR author = ?", keyword, keyword)
+        author = db.execute("SELECT author FROM magapoke WHERE title = ? OR author = ?", keyword, keyword)
+        img = db.execute("SELECT img FROM magapoke WHERE title = ? OR author = ?", keyword, keyword)
+        # kyewordと一致する作品または著者のを数える
+        book_db = db.execute(
+            "SELECT title, author, img FROM magapoke WHERE title = ? OR author = ?", keyword, keyword)
         # 作品が見つからなければNot foundを表示
-        title = db.execute("SELECT title FROM magapoke WHERE title = ?", keyword)
-        if title == None:
+        if title == []:
             poster = 'Not Found'
             return render_template("test.html", poster=poster)
-        # 作品があれば表示
-        return render_template("test.html", title=title)
+        elif author == []:
+            poster = 'Not Found'
+            return render_template("test.html", poster=poster)
 
-conn.close()
+        # 作品があれば表示
+        book_list ="ヒットした本一覧"
+        return render_template("test.html", book_list=book_list, database=book_db)
