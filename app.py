@@ -3,6 +3,7 @@ import sqlite3
 
 # マガポケのデータベースに接続
 conn = sqlite3.connect('magapoke.db')
+db = SQL("sqlite:///magapoke.db")
 
 app = Flask(__name__)
 
