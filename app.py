@@ -25,5 +25,5 @@ def index():
             poster = 'Not Found'
             return render_template("test.html", poster=poster)
         # 作品があれば表示
-        return render_template("test.html", database=book_db)
+        return render_template("test.html", title=title)
 
