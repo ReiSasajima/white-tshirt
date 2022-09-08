@@ -11,8 +11,8 @@ def index():
         # name = "keyword"を取得
         keyword = request.form["keyword"]
         # kyewordと一致する作品をデータベースより見つける
-        title = db.execute("SELECT title FROM manga WHERE id = ?", id)
-        auther = db.execute("SELECT auther FROM manga WHERE id = ?", id)
-        img = db.execute("SELECT  FROM posts WHERE id = ?", id)
+        title = db.execute("SELECT title FROM magapoke WHERE id = ?", id)
+        auther = db.execute("SELECT auther FROM magapoke WHERE id = ?", id)
+        img = db.execute("SELECT  FROM magapoke WHERE  = ?", id)
         return render_template("test.html", keyword=keyword)
 
