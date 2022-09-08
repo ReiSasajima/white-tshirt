@@ -21,7 +21,7 @@ def index():
         #    "SELECT title, auther, img FROM magapoke WHERE title LIKE '%?%' OR auther LIKE '%?%'", keyword, keyword)
 
         # 作品が見つからなければNot foundを表示
-        title = db.execute("SELECT title FROM magapoke WHERE title LIKE '%?%'", keyword)
+        title = db.execute("SELECT title FROM magapoke WHERE title = ?", keyword)
         if title == None:
             poster = 'Not Found'
             return render_template("test.html", poster=poster)
