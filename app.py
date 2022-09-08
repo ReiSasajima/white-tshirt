@@ -15,9 +15,12 @@ def index():
     elif request.method == 'POST':
         # name = "keyword"を取得
         keyword = request.form["keyword"]
-        # kyewordと一致する作品名、著者名、写真をデータベースより見つける
+        # kyewordと一致する作品名、著者名、写真をデータベースより見つける(完全一致のみ)
+        #book_db = db.execute(
+         #   "SELECT title, author, img FROM magapoke WHERE title = ? OR author = ?", keyword, keyword)
+        # kyewordと一致する作品名、著者名、写真をデータベースより見つける(部分一致対応)
         book_db = db.execute(
-            "SELECT title, author, img FROM magapoke WHERE title = ? OR author = ?", keyword, keyword)
+            "SELECT title, author, img FROM magapoke WHERE title LIKE ? OR author LIKE ?", ('%'+keyword+'%',), ('%'+keyword+'%',))
         # 作品が見つからなければNot foundを表示
         if book_db == []:
             poster = 'Not Found'
