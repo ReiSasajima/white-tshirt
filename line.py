@@ -23,8 +23,20 @@ while driver.find_elements_by_xpath(f'/html/body/div[1]/div/div[2]/div/section/d
   title = driver.find_element_by_xpath(f'/html/body/div[1]/div/div[2]/div/section/div/ol/li[{list}]/a/span[2]').text
   imgurl = driver.find_element_by_xpath(f'/html/body/div[1]/div/div[2]/div/section/div/ol/li[{list}]/a/div/img').get_attribute('src')
   print(list, title, imgurl)
+  # 詳細ページへ
+  detail = driver.find_element_by_xpath(f'/html/body/div[1]/div/div[2]/div/section/div/ol/li[{list}]/a')
+  driver.execute_script('arguments[0].click();', detail)
+  author = driver.find_element_by_xpath('/html/body/div[1]/div/div[2]/div/article/section[1]/div/div[2]/dl/dd[2]/a').text
+  
+  summary = driver.find_element_by_xpath('/html/body/div[1]/div/div[2]/div/article/section[1]/div/div[2]/div[2]/p[1]').text
+  print(author, summary)
+
+  driver.back()
+
   list += 1
   # スクロールしないと全てのliが表示されないためのスクロール
-  driver.execute_script("window.scrollBy(0, 200);")
+  # driver.execute_script("window.scrollBy(0, 200);")
+  driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
   time.sleep(1)
 

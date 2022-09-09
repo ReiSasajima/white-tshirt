@@ -31,6 +31,23 @@ for page in range(1, 118):
       if "無料" in note:
         print(page, list, title)
         print(imgurl)
+        # 詳細ページへ
+        detail = driver.find_element_by_xpath(f'//*[@id="wrapper"]/div[4]/div[1]/div/div/div/div[3]/div[1]/ul/li[{list}]/div/a')
+        driver.execute_script('arguments[0].click();', detail)
+
+        driver.implicitly_wait(5)
+        # 作者
+        author = driver.find_element_by_xpath('//*[@id="wrapper"]/div[4]/div[1]/div/div[1]/div/div[1]/div[3]/p[1]/a').text
+        print(author)
+
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        driver.implicitly_wait(5)
+        # あらすじ
+        # summary = driver.find_element_by_class_name('overview__summary').text
+        # print(summary)
+        # ブラウザバック
+        driver.back()
+
         time.sleep(1)
       else:
         time.sleep(1)

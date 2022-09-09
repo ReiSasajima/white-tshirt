@@ -33,8 +33,9 @@ for list in range(1, num+1):
   driver.execute_script('arguments[0].click();', detailPage)
   author = driver.find_element_by_class_name('title__detailSubTitle').text
   summary  = driver.find_element_by_class_name('title__explanation').text
+  
   print(author)
   print(summary)
   driver.back()
-  
+
   time.sleep(1)

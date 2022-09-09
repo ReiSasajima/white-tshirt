@@ -27,9 +27,25 @@ driver.get('https://shonenjumpplus.com/series')
 for day in range(1, 9):
   for list in range(1, 40):
     if driver.find_elements_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]'):
+      # タイトル
       title  = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a/h2').text
+      # 著者
+      author = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a/h3').text
+      # 表紙
       imgurl = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a/div/img').get_attribute('src')
-      print(day, list, title, imgurl)
+      print(day, list, title, author, imgurl)
+
+      detail = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a')
+      driver.execute_script('arguments[0].click();', detail)
+      if driver.find_elements_by_class_name('series-header-description'):
+        # あらすじ
+        summary = driver.find_element_by_class_name('series-header-description').text
+        print(summary)
+      else:
+        None
+
+      driver.back()
+
       time.sleep(1)
     else:
       break

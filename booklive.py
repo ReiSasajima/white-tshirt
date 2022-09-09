@@ -21,10 +21,24 @@ driver.implicitly_wait(10)
 for page in range(1, 110):
   for list in range(1, 85):
     driver.get(f'https://booklive.jp/index/no-charge/category_id/U/page_no/{page}/exadult/1')
+    # 表紙
     ele = driver.find_element_by_xpath(f'//*[@id="main_content"]/section/div[2]/div/div/section/div[2]/div/ul/li[{list}]/div/div[1]/div/a/img')
     imgurl = 'https:' + ele.get_attribute('data-src')
+    # タイトル
     title = driver.find_element_by_xpath(f'//*[@id="main_content"]/section/div[2]/div/div/section/div[2]/div/ul/li[{list}]/div/p/a').text
-    print(list, title, imgurl)
+    # 著者
+    author = driver.find_element_by_xpath(f'//*[@id="main_content"]/section/div[2]/div/div/section/div[2]/div/ul/li[{list}]/div/div[2]').text
+
+    print(list, title, author, imgurl)
+    # 詳細ページ
+    detail = driver.find_element_by_xpath(f'//*[@id="main_content"]/section/div[2]/div/div/section/div[2]/div/ul/li[{list}]/div/div[1]/div/a')
+    driver.execute_script('arguments[0].click();', detail)
+    # あらすじ
+    summary = driver.find_element_by_class_name('product_text').text
+    print(summary)
+
+    driver.back()
+
     time.sleep(1)
 
 
