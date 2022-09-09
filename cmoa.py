@@ -26,11 +26,11 @@ time.sleep(3)
 
 
 id = driver.find_element_by_xpath('//*[@id="email"]')
-id.send_keys('メールアドレス')
+id.send_keys('sasajimarei@gmail.com')
 time.sleep(3)
 
 password = driver.find_element_by_xpath('//*[@id="password"]')
-password.send_keys('パスワード')
+password.send_keys('ssjm01Irvine')
 
 time.sleep(3)
 
@@ -57,8 +57,13 @@ for page in range(1, 726):
         title = driver.find_element_by_xpath(f'//*[@id="freeTitle"]/div[2]/ul[{column}]/li[{row}]/div[3]/div[2]/a').text
         ele = driver.find_element_by_xpath(f'//*[@id="freeTitle"]/div[2]/ul[{column}]/li[{row}]/div[2]/a/img')
         imgurl = ele.get_attribute('src')
-        print(title, imgurl)
-        time.sleep(1)
+        note = driver.find_element_by_xpath(f'//*[@id="freeTitle"]/div[2]/ul[{column}]/li[{row}]/div[3]/div[1]/a').text
+        
+        if note != "立読み増量":
+          print(title, imgurl)
+          time.sleep(1)
+        else:
+          None
       else:
         break
 
