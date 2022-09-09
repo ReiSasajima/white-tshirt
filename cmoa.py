@@ -13,8 +13,8 @@ options = Options()
 options.add_argument('--headless')
 
 # chromeoption=optionsでブラウザ非表示を適用
-# driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
-driver = webdriver.Chrome(ChromeDriverManager().install())
+driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
+# driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.implicitly_wait(10)
 # コミックシーモアの無料ページへ
 driver.get('https://www.cmoa.jp/?_ga=2.75982876.88208316.1662363585-1869714350.1662363585')
@@ -26,11 +26,11 @@ time.sleep(3)
 
 
 id = driver.find_element_by_xpath('//*[@id="email"]')
-id.send_keys('メールアドレス')
+id.send_keys('sasajimarei@gmail.com')
 time.sleep(3)
 
 password = driver.find_element_by_xpath('//*[@id="password"]')
-password.send_keys('パスワード')
+password.send_keys('ssjm01Irvine')
 
 time.sleep(3)
 
@@ -54,13 +54,30 @@ for page in range(1, 726):
     for row in range(1, 6):
       # 漫画が存在するかのif文
       if driver.find_elements_by_xpath(f'//*[@id="freeTitle"]/div[2]/ul[{column}]/li[{row}]'):
+        # タイトル
         title = driver.find_element_by_xpath(f'//*[@id="freeTitle"]/div[2]/ul[{column}]/li[{row}]/div[3]/div[2]/a').text
+        # 表紙
         ele = driver.find_element_by_xpath(f'//*[@id="freeTitle"]/div[2]/ul[{column}]/li[{row}]/div[2]/a/img')
+        # 作者
+        author = driver.find_element_by_xpath(f'//*[@id="freeTitle"]/div[2]/ul[{column}]/li[{row}]/div[3]/div[3]/a[1]').text
         imgurl = ele.get_attribute('src')
+        # オプション文言
         note = driver.find_element_by_xpath(f'//*[@id="freeTitle"]/div[2]/ul[{column}]/li[{row}]/div[3]/div[1]/a').text
         
         if note != "立読み増量":
-          print(title, imgurl)
+          print(title, author)
+          print(note)
+          print(imgurl)
+          
+          # 詳細ページ
+          detail = driver.find_element_by_xpath(f'//*[@id="freeTitle"]/div[2]/ul[{column}]/li[{row}]/div[2]/a')
+          driver.execute_script('arguments[0].click();', detail)
+          driver.implicitly_wait(5)
+          # あらすじ
+          summary = driver.find_element_by_id('comic_description').text
+          print("あらすじ", summary)
+          print()
+          driver.back()
           time.sleep(1)
         else:
           None
