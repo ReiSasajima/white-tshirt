@@ -17,11 +17,24 @@ driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=option
 # driver = webdriver.Chrome(ChromeDriverManager().install())
 driver.implicitly_wait(10)
 # やんじゃん！無料キャンペーンサイト
-driver.get('https://ynjn.jp/titles/feature/?d=193')
+driver.get('https://ynjn.jp/')
+detailBtn = driver.find_element_by_xpath('//*[@id="layout"]/div/section[4]/div/div/div[2]/button')
+driver.execute_script('arguments[0].click();', detailBtn)
+
 num = driver.find_element_by_xpath('//*[@id="layout"]/div/section/div/div[2]/div/div').text
 num = int(num.strip('件'))
 for list in range(1, num+1):
   title = driver.find_element_by_xpath(f'//*[@id="layout"]/div/section/div/div[2]/div/ul/li[{list}]/div/a/div/div[2]').text
+  note = driver.find_element_by_xpath(f'//*[@id="layout"]/div/section/div/div[2]/div/ul/li[{list}]/div/a/div/div[3]').text
   imgurl = driver.find_element_by_xpath(f'//*[@id="layout"]/div/section/div/div[2]/div/ul/li[{list}]/div/a/div/div[1]/img').get_attribute('src')
-  print(title, imgurl)
+  print(title, note, imgurl)
+
+  detailPage = driver.find_element_by_xpath(f'//*[@id="layout"]/div/section/div/div[2]/div/ul/li[{list}]/div/a')
+  driver.execute_script('arguments[0].click();', detailPage)
+  author = driver.find_element_by_class_name('title__detailSubTitle').text
+  summary  = driver.find_element_by_class_name('title__explanation').text
+  print(author)
+  print(summary)
+  driver.back()
+  
   time.sleep(1)
