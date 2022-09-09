@@ -27,9 +27,15 @@ for page in range(1, 118):
       imgurl = ele.get_attribute('data-src')
       # タイトル
       title = driver.find_element_by_xpath(f'//*[@id="wrapper"]/div[4]/div[1]/div/div/div/div[3]/div[1]/ul/li[{list}]/div/a/div[2]/p').text
-      print(page, list, title)
-      print(imgurl)
-      time.sleep(1)
+      note  = driver.find_element_by_xpath(f'//*[@id="wrapper"]/div[4]/div[1]/div/div/div/div[3]/div[1]/ul/li[{list}]/div/div/a').text
+      if "無料" in note:
+        print(page, list, title)
+        print(imgurl)
+        time.sleep(1)
+      else:
+        time.sleep(1)
+        None
+
     else:
       print()
       break
