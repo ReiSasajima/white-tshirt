@@ -3,6 +3,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import os, signal
 import sqlite3
+import time
 # データベースの接続
 conn = sqlite3.connect('manga.db')
 cur = conn.cursor()
@@ -32,8 +33,22 @@ for day in days:
       print('タイトル:', title.text)
       print("著者:", author.text)
       print("表紙:", imgurl)
-      cur.execute("INSERT INTO magapoke (title, author, img) VALUES(?, ?, ?);", (title.text, author.text, imgurl))
-      conn.commit()
+      # 詳細ページへ
+      detail = driver.find_element_by_xpath(f'//*[@id="{day}"]/ul/li[{i}]/a')
+      driver.execute_script('arguments[0].click();', detail)
+      
+      driver.implicitly_wait(10)
+
+      if driver.find_elements_by_class_name('series-header-description'):
+        summary = driver.find_element_by_class_name('series-header-description').text
+        print("あらすじ:",summary)
+      else:
+        None
+      driver.back()
+
+      
+      # cur.execute("INSERT INTO magapoke (title, author, img) VALUES(?, ?, ?);", (title.text, author.text, imgurl))
+      # conn.commit()
     else:
       print()
       break
