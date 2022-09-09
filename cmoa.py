@@ -26,11 +26,11 @@ time.sleep(3)
 
 
 id = driver.find_element_by_xpath('//*[@id="email"]')
-id.send_keys('sasajimarei@gmail.com')
+id.send_keys('メールアドレス')
 time.sleep(3)
 
 password = driver.find_element_by_xpath('//*[@id="password"]')
-password.send_keys('ssjm01Irvine')
+password.send_keys('パスワード')
 
 time.sleep(3)
 
