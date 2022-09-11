@@ -8,75 +8,47 @@ import sqlite3
 # from selenium.webdriver.common.by import By
 # from selenium.webdriver.support.ui import WebDriverWait
 # from selenium.webdriver.support import expected_conditions as EC
+def jumpplus():
+  # データベースの接続
+  conn = sqlite3.connect('manga.db')
+  cur = conn.cursor()
 
-# データベースの接続
-conn = sqlite3.connect('manga.db')
-cur = conn.cursor()
+  # option addargumentでブラウザ非表示でselenium実行
+  options = Options()
+  options.add_argument('--headless')
 
-# option addargumentでブラウザ非表示でselenium実行
-options = Options()
-options.add_argument('--headless')
+  # chromeoption=optionsでブラウザ非表示を適用
+  driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
+  # driver = webdriver.Chrome(ChromeDriverManager().install())
+  driver.implicitly_wait(10)
+  # ジャンプ+連載一覧へ
+  driver.get('https://shonenjumpplus.com/series')
+  # ulが曜日、liがマンガごと
+  for day in range(1, 9):
+    for list in range(1, 40):
+      if driver.find_elements_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]'):
+        # タイトル
+        title  = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a/h2').text
+        # 著者
+        author = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a/h3').text
+        # 表紙
+        imgurl = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a/div/img').get_attribute('src')
+        print(day, list, title, author, imgurl)
 
-# chromeoption=optionsでブラウザ非表示を適用
-driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
-# driver = webdriver.Chrome(ChromeDriverManager().install())
-driver.implicitly_wait(10)
-# ジャンプ+連載一覧へ
-driver.get('https://shonenjumpplus.com/series')
-# ulが曜日、liがマンガごと
-for day in range(1, 9):
-  for list in range(1, 40):
-    if driver.find_elements_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]'):
-      # タイトル
-      title  = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a/h2').text
-      # 著者
-      author = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a/h3').text
-      # 表紙
-      imgurl = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a/div/img').get_attribute('src')
-      print(day, list, title, author, imgurl)
+        detail = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a')
+        driver.execute_script('arguments[0].click();', detail)
+        if driver.find_elements_by_class_name('series-header-description'):
+          # あらすじ
+          summary = driver.find_element_by_class_name('series-header-description').text
+          print(summary)
+        else:
+          None
 
-      detail = driver.find_element_by_xpath(f'//*[@id="page-jumpPlus-series-list"]/article/ul[{day}]/li[{list}]/a')
-      driver.execute_script('arguments[0].click();', detail)
-      if driver.find_elements_by_class_name('series-header-description'):
-        # あらすじ
-        summary = driver.find_element_by_class_name('series-header-description').text
-        print(summary)
+        driver.back()
+
+        time.sleep(1)
       else:
-        None
-
-      driver.back()
-
-      time.sleep(1)
-    else:
-      break
-
-
-
-
-# もっと見るボタンの確認と押下
-# if driver.find_elements_by_xpath('//*[@id="page-viewer"]/section[5]/div[2]/div[2]/section/button'):
-#     moreBtn = driver.find_element_by_xpath('//*[@id="page-viewer"]/section[5]/div[2]/div[2]/section/button')
-#     driver.execute_script('arguments[0].click();', moreBtn)
-# else:
-#   None
-# # 漫画のliがあるか
-# if driver.find_elements_by_xpath('//*[@id="page-viewer"]/section[5]/div[2]/div[2]/div[2]/ul/li[1]'):
-#   # メモ書きがあるか
-#   if driver.find_element_by_xpath('//*[@id="page-viewer"]/section[5]/div[2]/div[2]/div[2]/ul/li[1]/a/div[2]/span[2]'):
-#     # メモ書きがあれば、文言が無料かどうか
-#     note = driver.find_element_by_xpath('//*[@id="page-viewer"]/section[5]/div[2]/div[2]/div[2]/ul/li[1]/a/div[2]/span[2]').text
-#     if note == '無料':
-#       # タイトルの取得
-#       title = driver.find_element_by_xpath('//*[@id="page-viewer"]/section[5]/div[2]/div[2]/div[2]/ul/li[1]/a/div[2]/h4')
-#       # 表紙の獲得
-#       imgurl = driver.find_element_by_xpath('//*[@id="page-viewer"]/section[5]/div[1]/div[1]/img').get_attribute('src')
-#       print(title, imgurl)
-#     else:
-#       None
-#   else:
-#     None
-# else:
-#   None
+        break
 
 
 
