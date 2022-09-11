@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
-import sqlite3
+from flask import Flask, redirect, render_template, request, session
+from werkzeug.security import check_password_hash, generate_password_hash
+# cs50のライブラリでSQLを操作している。
 from cs50 import SQL
 
 # マガポケのデータベースに接続
@@ -7,13 +8,16 @@ db = SQL("sqlite:///manga.db")
 
 app = Flask(__name__)
 
-
+# 初期ページ
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    # ユーザー識別
+    # user_id = session["user_id"]
+
     if request.method == 'GET':
-        return render_template("test.html")
+        return render_template("sample.html")
     elif request.method == 'POST':
-        # name = "keyword"を取得
+        # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
         # kyewordと一致する作品名、著者名、写真をデータベースより見つける(完全一致のみ)
         #book_db = db.execute(
@@ -24,8 +28,91 @@ def index():
         # 作品が見つからなければNot foundを表示
         if book_db == []:
             poster = 'Not Found'
-            return render_template("test.html", poster=poster)
+            return render_template("sample.html", poster=poster)
 
         # 作品があれば表示
         book_list ="ヒットした本一覧"
-        return render_template("test.html", book_list=book_list, database=book_db)
+        return render_template("sample.html", book_list=book_list, database=book_db)
+
+
+
+
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "GET":
+        return render_template("register.html")
+    elif request.method == 'POST':
+        # ユーザー名、パスワード2回分を取得
+        username = request.form.get("username")
+        password = request.form.get("password")
+        confirmation = request.form.get("confirmation")
+
+        # ユーザ名、パスワードが入力されているか確認
+        if not username:
+            poster = "ユーザ名を入力してください"
+            return render_template("register.html", poster1=poster)
+        if not password:
+            poster = "パスワードを入力してください"
+            return render_template("register.html", poster2=poster)
+        if not confirmation:
+            poster = "確認用パスワードを入力してください"
+            return render_template("register.html", poster3=poster)
+        if password != confirmation:
+            poster = "パスワードと再確認用パスワードが一致しません"
+            return render_template("register.html", poster3=poster)
+        # パスワードのハッシュ化
+        hash = generate_password_hash(password)
+
+        # ユーザ名、ハッシュ化されたパスワードをuserに格納
+        try:
+            db.execute("INSERT INTO users(username, hash) VALUES (?, ?)", username, hash)
+        # すでに登録済みであればposterで返す
+        except:
+            poster = "このユーザー名は既に使用されています"
+            return render_template("register.html", poster=poster)
+
+        # session登録
+        #session["user_id"] = new_user
+
+        poster = "登録成功"
+        return render_template("sample.html", poster=poster)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "GET":
+        return render_template("login.html")
+    elif request.method == "POST":
+        # ユーザ名、パスワードを取得
+        username = request.form.get("username")
+        password = request.form.get("password")
+
+        if not username:
+            poster = "ユーザー名を入力してください"
+            return render_template("login.html", poster1=poster)
+        if not password:
+            poster = "パスワードを入力してください"
+            return render_template("login.html", poster2=poster)
+
+        # ユーザ名と一致する（ユーザー名、ハッシュ化されたパスワード)を取得
+        user = db.execute("SELECT * FROM users WHERE username = ?", username)
+        hash_password = db.execute("SELECT hash FROM users WHERE username = ?", username)
+
+        # ユーザー名、ハッシュ化されたパスワードがあっているか判定
+        if not check_password_hash(hash_password, password):
+            poster = "パスワードが違います"
+            return render_template("login.html", poster1=poster)
+        elif user == None:
+            poster = "ユーザ名が違います"
+            return render_template("login.html", poster2=poster)
+
+
+        # session更新
+        #session["user_id"] = rows[0]["id"]
+
+        return render_template("mypage.html")
+
+
+
+

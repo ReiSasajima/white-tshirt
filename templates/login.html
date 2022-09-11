@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ログインサンプル</title>
+</head>
+<body>
+    <h1>ログイン</h1>
+    <!-- 登録が失敗すればその詳細をposterで表示 -->
+    <h2>{{ poster }}</h2>
+    <h2>{{ poster1 }}</h2>
+    <h2>{{ poster2 }}</h2>
+
+    <form action="/login" method="post">
+        <input type="text" name="username" value="ユーザー名">
+        <input type="text" name="password" value="パスワード">
+        <input type="submit" value="ログイン">
+    </form>
+</body>
+</html>
