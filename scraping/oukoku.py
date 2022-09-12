@@ -7,7 +7,7 @@ import sqlite3
 
 def oukoku():
   # データベースの接続
-  conn = sqlite3.connect('manga.db')
+  conn = sqlite3.connect('../manga.db')
   cur = conn.cursor()
 
   # option addargumentでブラウザ非表示でselenium実行

@@ -5,8 +5,25 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>サンプル</title>
+  <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
+
+    <div class="header">
+      <nav>
+        <ul>
+          <li><h2>Free Manga</h2></li>
+          <li><a href="#">ログイン</a></li>
+        </ul>
+      </nav>
+      <form action="/" method="post">
+        <input type="text" name="keyword" placeholder="タイトル名/著者名">
+        <input type="submit" value="検索">
+     </form>
+    </div>
+
+    <!-- <h2>{{ poster }}</h2>
+    <h2>{{ book_list }}</h2> -->
     <!-- 検索ボタン -->
     <h1>検索</h1>
     <form action="/" method="post">
@@ -17,10 +34,18 @@
     <h2>{{ poster }}</h2>
     <!-- ヒットすれば以下のコードを実行 -->
     <h2>{{ book_list }}</h2>
+
     {% for row in database %}
-    <td>{{ row["title"] }}</td>
-    <td>{{ row["author"] }}</td>
-    <img src= "{{row.img}}">
+    <div class="container">
+      <div class="container-image">
+        <img src="{{row.img}}" />
+      </div>
+      <div class="container-txt">
+        <a href="#"><h3>{{ row["title"] }}</h3></a>
+        <p>{{ row["author"] }}</p>
+        <p>あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ</p>
+      </div>
+    </div>
     {% endfor %}
 </body>
 </html>
