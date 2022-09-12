@@ -1,5 +1,10 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys as keys
+from werkzeug.security import check_password_hash, generate_password_hash
 
-driver = webdriver.Chrome(executable_path="C:\scrapping\chromedriver.exe")
-driver.get('https://google.com')
+password = "rin"
+hash = generate_password_hash(password)
+reslut = check_password_hash(hash, password)
+
+if not reslut:
+    print("パスワード不一致")
+else:
+    print("パスワード一致")
