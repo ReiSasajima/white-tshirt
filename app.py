@@ -1,4 +1,5 @@
 from flask import Flask, redirect, render_template, request, session
+from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 # cs50のライブラリでSQLを操作している。
 from cs50 import SQL
@@ -33,6 +34,28 @@ def index():
         # 作品があれば表示
         book_list ="ヒットした本一覧"
         return render_template("sample.html", book_list=book_list, database=book_db)
+
+@app.route("/mypage", methods=["GET", "POST"])
+def mypage():
+    if request.method == 'GET':
+        return render_template("mypage.html")
+    elif request.method == 'POST':
+        # ユーザーの入力 = "keyword"を取得
+        keyword = request.form["keyword"]
+        # kyewordと一致する作品名、著者名、写真をデータベースより見つける(完全一致のみ)
+        #book_db = db.execute(
+         #   "SELECT title, author, img FROM magapoke WHERE title = ? OR author = ?", keyword, keyword)
+        # kyewordと一致する作品名、著者名、写真をデータベースより見つける(部分一致対応)
+        book_db = db.execute(
+            "SELECT title, author, img FROM magapoke WHERE title LIKE ? OR author LIKE ?", ('%'+keyword+'%',), ('%'+keyword+'%',))
+        # 作品が見つからなければNot foundを表示
+        if book_db == []:
+            poster = 'Not Found'
+            return render_template("mypage.html", poster=poster)
+
+        # 作品があれば表示
+        book_list ="ヒットした本一覧"
+        return render_template("mypage.html", book_list=book_list, database=book_db)
 
 
 
@@ -97,22 +120,29 @@ def login():
 
         # ユーザ名と一致する（ユーザー名、ハッシュ化されたパスワード)を取得
         user = db.execute("SELECT * FROM users WHERE username = ?", username)
-        hash_password = db.execute("SELECT hash FROM users WHERE username = ?", username)
+        #check_password = db.execute("SELECT hash FROM users WHERE username = ?", username)
 
         # ユーザー名、ハッシュ化されたパスワードがあっているか判定
-        if not check_password_hash(hash_password, password):
-            poster = "パスワードが違います"
-            return render_template("login.html", poster1=poster)
-        elif user == None:
-            poster = "ユーザ名が違います"
-            return render_template("login.html", poster2=poster)
 
+        if user == [] or not check_password_hash(user[0]["hash"], password):
+            poster = "ユーザー名またはパスワードが違います"
+            # エラー確認用
+            if user == []:
+                poster1 = "ユーザ名が違います"
+            if not check_password_hash(user[0]["hash"], password):
+                poster2 = "パスワードが違います"
+            return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
 
         # session更新
-        #session["user_id"] = rows[0]["id"]
+        # session["user_id"] = hash[0]["id"]
 
-        return render_template("mypage.html")
+        name = username + "さんこんにちは"
 
+        return render_template("mypage.html", name=name)
+
+@app.route("/logout")
+def logout():
+    return redirect("/")
 
 
 
