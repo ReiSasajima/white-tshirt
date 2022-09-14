@@ -5,7 +5,7 @@ import os, signal
 import time
 import sqlite3
 
-def oukoku():
+def scraping():
   # データベースの接続
   conn = sqlite3.connect('../manga.db')
   cur = conn.cursor()
@@ -26,21 +26,24 @@ def oukoku():
     for i in range(1, 51):
       if driver.find_elements_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]'):
         # タイトル
-        title = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/h2')
+        title = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/h2').text
+        print("タイトル:", title)
         # 表紙
         ele = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/img')
-        imgurl = ele.get_attribute('src')
+        img_url = ele.get_attribute('src')
+        print("表紙URL:", img_url)
         
-        # 何冊無料か
+        #備考欄1
         if driver.find_elements_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/div/aside[1]'):
           note1 = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/div/aside[1]').text
         else:
           note1 = ("")
-        # 条件(期限など)
+        #備考欄2
         if driver.find_elements_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/div/aside[2]'):
           note2 = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/div/aside[2]').text
         else:
           note2 = ("")
+        # 備考欄3
         if driver.find_elements_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/div/aside[3]'):
           note3 = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/div/aside[3]').text
         else:
@@ -48,17 +51,28 @@ def oukoku():
         
         # 備考欄をまとめる
         note = (note1 + note2 + note3)
-        print(title.text, note)
-        print(imgurl)
+        print(note)
         # 詳細ページへ
         detail = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a')
         driver.execute_script('arguments[0].click();', detail)
+
+        # 詳細URLの取得
+        cur_url = driver.current_url
+        print(cur_url)
         # 作者
         author = driver.find_element_by_xpath('//*[@id="contents"]/div[2]/section[1]/div[1]/div[2]/dl/dd[1]/a').text
+        print("作者:", author)
         # あらすじ
         summary = driver.find_element_by_xpath('//*[@id="contents"]/div[2]/section[1]/div[6]/p').text
-        
-        print(author, summary)
+        print("あらすじ:", summary)
+        service_name = 'manga-oukoku'
+
+        is_free = 1
+        print("is_free?", is_free)
+
+        cur.execute("INSERT INTO origin_oukoku(title, author, img_url, note, summary, is_free, service_name, cur_url) VALUES(?, ?, ?, ?, ?, ?, ?, ?);", (title, author, img_url, note, summary, is_free, service_name, cur_url))
+        conn.commit()
+
         # 前のページに戻る
         driver.back()
 

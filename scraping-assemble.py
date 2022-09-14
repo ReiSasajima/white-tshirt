@@ -30,11 +30,20 @@ driver.implicitly_wait(10)
 
 def main():
   ynjn() #やんじゃんのスクレイピング関数
+  cur.execute("VACUUM;")
   oukoku() #まんが王国のスクレイピング関数
+  cur.execute("VACUUM;")
   jumpplus() #ジャンププラスのスクレイピング関数
+  cur.execute("VACUUM;")
   cmoa() #コミックシーモアのスクレイピング関数
+  cur.execute("VACUUM;")
   piccoma() #ピッコマのスクレイピング関数
+  cur.execute("VACUUM;")
   booklive() #bookliveのスクレイピング関数
+  cur.execute("VACUUM;")
   line() #liveマンガのスクレイピング関数
+  cur.execute("VACUUM;")
   # magapoke() #マガポケのスクレイピング関数
+  # cur.execute("VACUUM;")
   scraping() #マガポケのスクレイピング関数
+  cur.execute("VACUUM;")
