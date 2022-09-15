@@ -35,6 +35,8 @@ def index():
 
 @app.route("/mypage", methods=["GET", "POST"])
 def mypage():
+    # sessionを通してログインしているユーザーを確認
+    name = db.execute("SELECT username FROM u)
     if request.method == 'GET':
         return render_template("mypage.html")
     elif request.method == 'POST':
@@ -46,10 +48,10 @@ def mypage():
         # 作品が見つからなければNot foundを表示
         if book_db == []:
             poster = 'Not Found'
-            return render_template("mypage.html", poster=poster)
+            return render_template("mypage.html", name=name, poster=poster)
         # 作品があれば表示
         book_list ="ヒットした本一覧"
-        return render_template("mypage.html", book_list=book_list, database=book_db)
+        return render_template("mypage.html", name=name, book_list=book_list, database=book_db)
 
 
 
@@ -91,7 +93,7 @@ def register():
 
         # session user_id 登録
         user_id = user_id = db.execute("SELECT id FROM users WHERE username = ?", username)[0]
-        session["user_id"] = user_id
+        session["user_id"] = user_id["id"]
 
         poster = "登録成功"
         return render_template("sample.html", poster=poster)
@@ -129,7 +131,8 @@ def login():
             return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
 
         # session更新
-        session["user_id"] = 
+        user_id = db.execute("SELECT id FROM users WHERE username = ?", username)[0]
+        session["user_id"] = user_id["id"]
 
         name = username + "さんこんにちは"
 
