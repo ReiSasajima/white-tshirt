@@ -90,7 +90,7 @@ def register():
             return render_template("register.html", poster=poster)
 
         # session user_id 登録
-        user_id = 0
+        user_id = 
         session["user_id"] = user_id
 
         poster = "登録成功"
@@ -137,6 +137,8 @@ def login():
 
 @app.route("/logout")
 def logout():
+    # sessionのクリア
+    session.clear()
     return redirect("/")
 
 
