@@ -129,7 +129,7 @@ def login():
             return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
 
         # session更新
-        # session["user_id"] = hash[0]["id"]
+        session["user_id"] = 
 
         name = username + "さんこんにちは"
 
