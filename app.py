@@ -90,7 +90,7 @@ def register():
             return render_template("register.html", poster=poster)
 
         # session user_id 登録
-        user_id = 
+        user_id = user_id = db.execute("SELECT id FROM users WHERE username = ?", username)[0]
         session["user_id"] = user_id
 
         poster = "登録成功"
