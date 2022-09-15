@@ -36,7 +36,8 @@ def index():
 @app.route("/mypage", methods=["GET", "POST"])
 def mypage():
     # sessionを通してログインしているユーザーを確認
-    name = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])
+    usrsname = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]
+    name = usrsname["username"] + "さんこんにちは"
     if request.method == 'GET':
         return render_template("mypage.html")
     elif request.method == 'POST':
