@@ -147,4 +147,12 @@ def logout():
     return redirect("/")
 
 
+# お気に入り登録
+def add_favorite():
+    # favorite tableに追加
+    # db.execute("INSERT INTO favorite(user_id, title, like) VALUES (?, ?, ?)", session["user_id"], title, 1)
+    return render_template("index.html")
 
+# お気に入り解除
+def delete_favorite(title):
+    db.execute("DELETE favorite WHERE user_id = ? AND title = ?", session["user_id"], title)

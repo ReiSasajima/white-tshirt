@@ -30,6 +30,8 @@
     <td>{{ row["title"] }}</td>
     <td>{{ row["author"] }}</td>
     <img src= "{{row.img_url}}">
+    <button type="button" onclick="add_favorite()">お気に入り</button>
+    <button type="button" onclick="delete_favorite()">お気に入り解除</button>
     {% endfor %}
 </body>
 </html>
