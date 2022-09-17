@@ -29,7 +29,7 @@ def booklive():
       title = driver.find_element_by_xpath(f'//*[@id="main_content"]/section/div[2]/div/div/section/div[2]/div/ul/li[{list}]/div/p/a').text
       # 著者
       author = driver.find_element_by_xpath(f'//*[@id="main_content"]/section/div[2]/div/div/section/div[2]/div/ul/li[{list}]/div/div[2]').text
-
+      
       print(list, title, author, imgurl)
       # 詳細ページ
       detail = driver.find_element_by_xpath(f'//*[@id="main_content"]/section/div[2]/div/div/section/div[2]/div/ul/li[{list}]/div/div[1]/div/a')

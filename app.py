@@ -1,5 +1,5 @@
 from flask import Flask, redirect, render_template, request, session
-from flask_session import Session
+from datetime import timedelta
 from werkzeug.security import check_password_hash, generate_password_hash
 # cs50のライブラリでSQLを操作している。
 from cs50 import SQL
@@ -9,53 +9,55 @@ db = SQL("sqlite:///manga.db")
 
 app = Flask(__name__)
 
+# サービスの数を宣言
+SERVICE_NUM = 3
+# 各サービスのテーブル名を含むタプル(プログラム内で変更不可)
+serviece = {"origin_magapoke", "origin_line", "origin_oukoku"}
+
+# sessionの暗号化
+app.secret_key = 'abcdefghijklmn'
+# session継続時間は60分
+app.permanent_session_lifetime = timedelta(minutes=60)
+
 # 初期ページ
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    # ユーザー識別
-    # user_id = session["user_id"]
-
     if request.method == 'GET':
         return render_template("sample.html")
     elif request.method == 'POST':
         # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
-        # kyewordと一致する作品名、著者名、写真をデータベースより見つける(完全一致のみ)
-        #book_db = db.execute(
-         #   "SELECT title, author, img FROM magapoke WHERE title = ? OR author = ?", keyword, keyword)
         # kyewordと一致する作品名、著者名、写真をデータベースより見つける(部分一致対応)
         book_db = db.execute(
-            "SELECT title, author, img FROM magapoke WHERE title LIKE ? OR author LIKE ?", ('%'+keyword+'%',), ('%'+keyword+'%',))
+            "SELECT title, author, img_url FROM origin_magapoke WHERE title LIKE ? OR author LIKE ?", ('%'+keyword+'%',), ('%'+keyword+'%',))
         # 作品が見つからなければNot foundを表示
         if book_db == []:
             poster = 'Not Found'
             return render_template("sample.html", poster=poster)
-
         # 作品があれば表示
         book_list ="ヒットした本一覧"
         return render_template("sample.html", book_list=book_list, database=book_db)
 
 @app.route("/mypage", methods=["GET", "POST"])
 def mypage():
+    # sessionを通してログインしているユーザーを確認
+    usrsname = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]
+    name = usrsname["username"] + "さんこんにちは"
     if request.method == 'GET':
         return render_template("mypage.html")
     elif request.method == 'POST':
         # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
-        # kyewordと一致する作品名、著者名、写真をデータベースより見つける(完全一致のみ)
-        #book_db = db.execute(
-         #   "SELECT title, author, img FROM magapoke WHERE title = ? OR author = ?", keyword, keyword)
         # kyewordと一致する作品名、著者名、写真をデータベースより見つける(部分一致対応)
         book_db = db.execute(
-            "SELECT title, author, img FROM magapoke WHERE title LIKE ? OR author LIKE ?", ('%'+keyword+'%',), ('%'+keyword+'%',))
+            "SELECT title, author, img_url FROM origin_magapoke WHERE title LIKE ? OR author LIKE ?", ('%'+keyword+'%',), ('%'+keyword+'%',))
         # 作品が見つからなければNot foundを表示
         if book_db == []:
             poster = 'Not Found'
-            return render_template("mypage.html", poster=poster)
-
+            return render_template("mypage.html", name=name, poster=poster)
         # 作品があれば表示
         book_list ="ヒットした本一覧"
-        return render_template("mypage.html", book_list=book_list, database=book_db)
+        return render_template("mypage.html", name=name, book_list=book_list, database=book_db)
 
 
 
@@ -95,8 +97,9 @@ def register():
             poster = "このユーザー名は既に使用されています"
             return render_template("register.html", poster=poster)
 
-        # session登録
-        #session["user_id"] = new_user
+        # session user_id 登録
+        user_id = user_id = db.execute("SELECT id FROM users WHERE username = ?", username)[0]
+        session["user_id"] = user_id["id"]
 
         poster = "登録成功"
         return render_template("sample.html", poster=poster)
@@ -127,14 +130,16 @@ def login():
         if user == [] or not check_password_hash(user[0]["hash"], password):
             poster = "ユーザー名またはパスワードが違います"
             # エラー確認用
-            if user == []:
-                poster1 = "ユーザ名が違います"
-            if not check_password_hash(user[0]["hash"], password):
-                poster2 = "パスワードが違います"
-            return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
+            #if user == []:
+            #    poster1 = "ユーザ名が違います"
+            #if not check_password_hash(user[0]["hash"], password):
+            #    poster2 = "パスワードが違います"
+            #return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
+            return render_template("login.html", poster=poster)
 
         # session更新
-        # session["user_id"] = hash[0]["id"]
+        user_id = db.execute("SELECT id FROM users WHERE username = ?", username)[0]
+        session["user_id"] = user_id["id"]
 
         name = username + "さんこんにちは"
 
@@ -142,7 +147,19 @@ def login():
 
 @app.route("/logout")
 def logout():
+    # sessionのクリア
+    session.clear()
     return redirect("/")
 
+@app.route("/add_favorite", methods=["POST"])
+def add_favorite(title):
+    # favorite tableに追加
+    db.execute("INSERT INTO favorite(user_id, title, like) VALUES (?, ?, ?)", session["user_id"], title, 1)
 
+@app.route("/delete_favorite/<title>", methods=["POST"])
+def delete_favorite(title):
+    db.execute("DELETE favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
 
+@app.route("/sample", methods=["POST"])
+def sample():
+    return render_template("index.html")
