@@ -12,11 +12,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="../assets/css/sanitize.css">
-    <link rel="stylesheet" href="../assets/css/style2.css">
+    <link rel="stylesheet" href="../static/css/sanitize.css">
+    <link rel="stylesheet" href="../static/css/style2.css">
 </head>
 <body>
-    
+
     <!-- ヘッダー部分 -->
     <header class="header">
         <nav class="nav">
@@ -33,9 +33,9 @@
     <!-- タイトルと検索窓 -->
     <div class="area_top_view">
         <h1 class="view">COMICS FOR FREE.</h1>
-        <img src="../assets/images/lincoln-yoon-4T0T3LGrCyA-unsplash.jpg" alt="image" class="image"> 
+        <img src="../assets/images/lincoln-yoon-4T0T3LGrCyA-unsplash.jpg" alt="image" class="image">
         <p class="button">
-            <form action="/" class="search_container" method="post"> 
+            <form action="/" class="search_container" method="post">
                 <input type="text" placeholder="タイトル/著者を入力" name="keyword">
                 <input type="submit" value="&#xf002">
             </form>
@@ -79,14 +79,14 @@
                     </button>
                     <label for="checkbox1" class="mylist">マイリストに追加する</label>
                 </div>
-            
+
                 <!-- JSでクリック時にボタンを変更する -->
                 <script>
                     var img_src = new Array("../assets/images/5APT0ioL996laER1663352236_1663352281.png","../assets/images/w9JWnjmBCTaducu1663352389_1663352425.png");
                     var i = 0;
-                
+
                     function henkou() {
-                
+
                         if (i == 1) {
                         i = 0;
                         } else {
@@ -94,17 +94,17 @@
                         }
                         document.getElementById("image_file").src = img_src[i];
                     }
-                
+
                 </script>
-                
+
                 </figcaption>
             </figure>
-            
+
             {% endfor %}
     </section>
-        
+
     </main>
-    
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 </body>
