@@ -1,0 +1,57 @@
+form {
+    text-align:center;
+    width:400px;
+    padding: 40px 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color:black;
+    border-radius:25px;
+
+
+
+}
+
+form h1 {
+    color:white;
+    font-weight:500;
+
+}
+
+.register-form {
+    padding: 10px 0;
+    margin:10px 0;
+}
+
+
+
+
+
+input {
+    background:none;
+    display:block;
+    margin:20px auto;
+    border: 2px solid #f0f8ff;
+    padding:15px 10px;
+    width:200px;
+    outline:none;
+    color:white;
+    border-radius:25px;
+    transition: all 0.25s;
+    text-align:center;
+    cursor:pointer;
+}
+
+.register-form input:hover {
+
+    opacity: 0.6;
+
+}
+
+
+
+.register-submit input:hover {
+    background-color:#ff69b4;
+    border: 2px solid #ff69b4;
+}
