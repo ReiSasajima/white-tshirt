@@ -1,35 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>サンプル</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMICS FOR FREE | トップページ</title>
+    <meta name="description" content="sample text">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/sanitize.css">
+    <link rel="stylesheet" href="../assets/css/style2.css">
 </head>
 <body>
-    <!-- 各機能に飛ぶ -->
-    <nav>
-        <ul>
-            <li>
-                <a href="/register">登録</a>
-                <a href="/login">ログイン</a>
-            </li>
-        </ul>
-    </nav>
-    <!-- 検索ボタン -->
-    <h1>検索</h1>
-    <form action="/" method="post">
-        <input type="text" name="keyword" value="タイトル名/著者名">
-        <input type="submit" value="検索">
-    </form>
-    <!-- ヒットしなければ以下のコードを実行 -->
-    <h2>{{ poster }}</h2>
-    <!-- ヒットすれば以下のコードを実行 -->
-    <h2>{{ book_list }}</h2>
-    {% for row in database %}
-    <td>{{ row["title"] }}</td>
-    <td>{{ row["author"] }}</td>
-    <img src= "{{row.img}}">
-    {% endfor %}
+    
+    <!-- ヘッダー部分 -->
+    <header class="header">
+        <nav class="nav">
+            <ul class="menu-group">
+                <li class="menu-item"><a href="#area-1" class="btn2">このサイトについて</a></li>
+                <li class="menu-item"><a href="/register" class="btn2">会員登録</a></li>
+                <li class="menu-item"><a href="/login" class="btn2">ログイン</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+    <!-- タイトルと検索窓 -->
+    <div class="area_top_view">
+        <h1 class="view">COMICS FOR FREE.</h1>
+        <img src="../assets/images/lincoln-yoon-4T0T3LGrCyA-unsplash.jpg" alt="image" class="image"> 
+        <p class="button">
+            <form action="/" class="search_container" method="post"> 
+                <input type="text" placeholder="タイトル/著者を入力" name="keyword">
+                <input type="submit" value="&#xf002">
+            </form>
+        </p>
+    </div>
+
+    <!-- このサイトについて -->
+    <section class="area_home_about" id="area-1">
+        <div class="container">
+            <div class="head_home">
+                <h2 class="ttl">このサイトについて</h2>
+            </div>
+            <div class="body_home">
+                <figure class="body_home_about">
+                    <img src="../assets/images/s-tsuchiya--NUgOnopsvI-unsplash.jpg" class="about_image">
+                    <figcaption class="about_text">
+                        <h2 class="about-title">COMICS FOR FREE.とは</h2>
+                        <p class="about-description">
+                            さまざまな漫画サイトの無料で読める漫画を検索できるサイトです。<br>
+                        例えば、こんな漫画が揃っています！あとで詳しい説明書きを書く
+                        </p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+        <br>
+        <br>
+        {% for row in database %}
+        <figure class="about">
+            <img class="about-image" src="{{row.img}}" alt="漫画の表紙">
+            <figcaption class="about-caption">
+                <h2 class="about-title">{{ row["title"] }}</h2>
+                <h3 class="about-author">{{ row["author"] }}</h3>
+                <p class="about-description">
+                    あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ<br/>
+                    あらすじあらすじあらすじあらすじあらすじあらすじ
+                </p>
+                <div class="checkbox">
+                    <button  class="add_button">
+                        <img id="image_file" src="../assets/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
+                    </button>
+                    <label for="checkbox1" class="mylist">マイリストに追加する</label>
+                </div>
+            
+                <!-- JSでクリック時にボタンを変更する -->
+                <script>
+                    var img_src = new Array("../assets/images/5APT0ioL996laER1663352236_1663352281.png","../assets/images/w9JWnjmBCTaducu1663352389_1663352425.png");
+                    var i = 0;
+                
+                    function henkou() {
+                
+                        if (i == 1) {
+                        i = 0;
+                        } else {
+                        i ++;
+                        }
+                        document.getElementById("image_file").src = img_src[i];
+                    }
+                
+                </script>
+                
+                </figcaption>
+            </figure>
+            
+            {% endfor %}
+    </section>
+        
+    </main>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
 </body>
 </html>
