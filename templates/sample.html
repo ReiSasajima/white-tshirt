@@ -66,7 +66,7 @@
         <br>
         {% for row in database %}
         <figure class="about">
-            <img class="about-image" src="{{row.img}}" alt="漫画の表紙">
+            <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
             <figcaption class="about-caption">
                 <h2 class="about-title">{{ row["title"] }}</h2>
                 <h3 class="about-author">{{ row["author"] }}</h3>
