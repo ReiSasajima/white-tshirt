@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>サンプル</title>
+</head>
+<body>
+    <!-- 各機能に飛ぶ -->
+    <nav>
+        <ul>
+            <li>
+                <a href="/register">登録</a>
+                <a href="/login">ログイン</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- 検索ボタン -->
+    <h1>検索</h1>
+    <form action="/" method="post">
+        <input type="text" name="keyword" value="タイトル名/著者名">
+        <input type="submit" value="検索">
+    </form>
+    <!-- ヒットしなければ以下のコードを実行 -->
+    <h2>{{ poster }}</h2>
+    <!-- ヒットすれば以下のコードを実行 -->
+    <h2>{{ book_list }}</h2>
+    {% for row in database %}
+    <td>{{ row["title"] }}</td>
+    <td>{{ row["author"] }}</td>
+    <td>{{ row["summary"] }}</td>
+    <img src= "{{row.img_url}}">
+    <form action="/sample" method="post">
+        <button>テスト</button>
+    </form>
+    <form action="/add_favorite" method="post">
+        <button>お気に入り</button>
+    </form>
+    <form action="/delete_favorite" method="post">
+        <button>お気に入り解除</button>
+    </form>
+    {% endfor %}
+</body>
+</html>
