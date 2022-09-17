@@ -9,6 +9,11 @@ db = SQL("sqlite:///manga.db")
 
 app = Flask(__name__)
 
+# サービスの数を宣言
+SERVICE_NUM = 3
+# 各サービスのテーブル名を含むタプル(プログラム内で変更不可)
+serviece = {"origin_magapoke", "origin_line", "origin_oukoku"}
+
 # sessionの暗号化
 app.secret_key = 'abcdefghijklmn'
 # session継続時間は60分
@@ -146,13 +151,15 @@ def logout():
     session.clear()
     return redirect("/")
 
-
-# お気に入り登録
-def add_favorite():
+@app.route("/add_favorite", methods=["POST"])
+def add_favorite(title):
     # favorite tableに追加
-    # db.execute("INSERT INTO favorite(user_id, title, like) VALUES (?, ?, ?)", session["user_id"], title, 1)
-    return render_template("index.html")
+    db.execute("INSERT INTO favorite(user_id, title, like) VALUES (?, ?, ?)", session["user_id"], title, 1)
 
-# お気に入り解除
+@app.route("/delete_favorite/<title>", methods=["POST"])
 def delete_favorite(title):
     db.execute("DELETE favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
+
+@app.route("/sample", methods=["POST"])
+def sample():
+    return render_template("index.html")
