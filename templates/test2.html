@@ -16,15 +16,15 @@
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-    
+
     <!-- ヘッダー部分 -->
     <header class="header">
-        <a class="title" href="./test3.html">COMICS FOR FREE.</a>
+        <a class="title" href="/">COMICS FOR FREE.</a>
         <nav class="nav">
             <ul class="menu-group">
                 <li class="menu-item">
-                    <form method="get" action="./test2.html" class="search_container">
-                        <input type="text" placeholder="タイトル/著者を入力">
+                    <form action="/" class="search_container" method="post">
+                        <input type="text" placeholder="タイトル/著者を入力" name="keyword">
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
@@ -74,14 +74,14 @@
                     </button>
                     <label for="checkbox1" class="mylist">マイリストに追加する</label>
                 </div>
-            
+
                 <!-- JSでクリック時にボタンを変更する -->
                 <script>
                     var img_src = new Array("../assets/images/5APT0ioL996laER1663352236_1663352281.png","../assets/images/w9JWnjmBCTaducu1663352389_1663352425.png");
                     var i = 0;
-                
+
                     function henkou() {
-                
+
                         if (i == 1) {
                         i = 0;
                         } else {
@@ -89,9 +89,9 @@
                         }
                         document.getElementById("image_file").src = img_src[i];
                     }
-                
+
                 </script>
-                
+
                 </figcaption>
             </figcaption>
         </figure>
@@ -111,14 +111,14 @@
                     </button>
                     <label for="checkbox1" class="mylist">マイリストに追加する</label>
                 </div>
-            
+
                 <!-- JSでクリック時にボタンを変更する -->
                 <script>
                     var img_src = new Array("../assets/images/5APT0ioL996laER1663352236_1663352281.png","../assets/images/w9JWnjmBCTaducu1663352389_1663352425.png");
                     var i = 0;
-                
+
                     function henkou() {
-                
+
                         if (i == 1) {
                         i = 0;
                         } else {
@@ -126,11 +126,11 @@
                         }
                         document.getElementById("image_file").src = img_src[i];
                     }
-                
+
                 </script>
             </figcaption>
         </figure>
-        
+
         <figure class="about">
             <!-- <img src= "{{row.img}}" > -->
             <img class="about-image" src="https://dummyimage.com/600x400/000/fff" alt="漫画の表紙">
@@ -147,14 +147,14 @@
                     </button>
                     <label for="checkbox1" class="mylist">マイリストに追加する</label>
                 </div>
-            
+
                 <!-- JSでクリック時にボタンを変更する -->
                 <script>
                     var img_src = new Array("../assets/images/5APT0ioL996laER1663352236_1663352281.png","../assets/images/w9JWnjmBCTaducu1663352389_1663352425.png");
                     var i = 0;
-                
+
                     function henkou() {
-                
+
                         if (i == 1) {
                         i = 0;
                         } else {
@@ -162,7 +162,7 @@
                         }
                         document.getElementById("image_file").src = img_src[i];
                     }
-                
+
                 </script>
             </figcaption>
         </figure>
