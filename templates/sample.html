@@ -98,8 +98,8 @@
             let tmp = document.getElementsByClassName("image_file");
 
             for(let i=0;i<=tmp.length-1;i++){
-                // tmp[i]にclass属性"mangaIDi"を追加している
-                tmp[i].setAttribute("class",manga+i);
+                // tmp[i]にid属性"mangaIDi"を追加している
+                tmp[i].setAttribute("id",manga+i);
             }
             let img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
             let i = 0;
@@ -110,7 +110,7 @@
                 } else {
                     i ++;
                 }
-                document.getElementByClassName("mangaID"+x).src = img_src[i];
+                document.getElementById("mangaID"+x).src = img_src[i];
             }
         </script>
     </section>
