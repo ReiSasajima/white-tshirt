@@ -12,6 +12,7 @@ body{
     background-size: cover;               /* 全画面 */
     background-attachment: fixed;         /* 固定 */
     background-position: center center;   /* 縦横中央 */
+    overflow: auto;
 }
 
 html { scroll-behavior: smooth;}
@@ -162,6 +163,7 @@ section
 }
 .about-title{
   margin: 0 0 20px;
+  width:400px;
 }
 .about-author{}
 .about-description{
