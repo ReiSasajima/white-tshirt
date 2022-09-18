@@ -178,19 +178,18 @@ area_topview
 .body_home > .body_home_about{
   display: flex;
 }
-.about_image{
+.body_about_image{
   width: 600px;
   height: 400px;
 }
-.about_text{
+.body_about_text{
   padding-left: 40px;
   padding-top: 20px;
 }
-.about_title{
+.body_about_title{
   margin: 0 0 20px;
 }
-.about_author{}
-.about_description{
+.body_about_description{
   padding-right: 20px;
 }
 
