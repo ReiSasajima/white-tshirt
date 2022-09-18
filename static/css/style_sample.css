@@ -256,9 +256,10 @@ button {
 }
 .service_iciran{
   margin: 1em auto 0 0;
-  background: #AAFFFF; /* 背景色 */
-  border-left: double 6px #0000FF; /* 左線の色 */
-  border-right: double 6px #0000FF; /* 右線の色 */
-  width: 130px;
+  background: white; /* 背景色 */
+  border-left: double 6px black; /* 左線の色 */
+  border-right: double 6px black; /* 右線の色 */
+  text-align: center;
+  width: 110px;
   color:black;
 }
