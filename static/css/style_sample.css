@@ -181,21 +181,6 @@ header
 .body_home > .body_home_about{
   display: flex;
 }
-
-/*
-section
-*/
-.about{
-  display: flex;
-  background-color: #efefef;
-  margin-bottom: 5em;
-  margin-left: 160px;
-  width: 75%;
-}
-.title_button{
-  display: flex;
-  justify-content:space-around;
-}
 .about_image{
   width: 600px;
   height: 400px;
@@ -230,6 +215,7 @@ button {
   border: none;
 }
 
+
 /*
 section
 */
@@ -241,6 +227,10 @@ section
   margin-left: 160px;
   width: 75%;
 }
+.title_button{
+  display: flex;
+  justify-content:space-around;
+}
 .about-image{
   width:400px;
   height:300px;
@@ -248,7 +238,6 @@ section
 .about-caption{
   padding-left: 40px;
   padding-top: 20px;
-  color: black;
 }
 .about-title{
   margin: 0 0 20px;
