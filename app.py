@@ -33,10 +33,10 @@ def index():
         # 作品が見つからなければNot foundを表示
         if book_db == []:
             poster = 'Not Found'
-            return render_template("sample.html", poster=poster)
+            return render_template("mypage.html", poster=poster)
         # 作品があれば表示
         book_list ="ヒットした本一覧"
-        return render_template("sample.html", book_list=book_list, database=book_db)
+        return render_template("mypage.html", book_list=book_list, database=book_db)
 
 @app.route("/mypage", methods=["GET", "POST"])
 def mypage():
