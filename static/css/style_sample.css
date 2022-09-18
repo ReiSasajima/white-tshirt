@@ -252,7 +252,8 @@ button {
 }
 /* サービス一覧を表示 */
 .service{
-  display:flex; /* 横並びに配置 */
+  display:flex;
+  margin-bottom:2em; /* サービスの下に空白を作っておく */
 }
 .service_iciran{
   margin: 1em auto 0 0;
