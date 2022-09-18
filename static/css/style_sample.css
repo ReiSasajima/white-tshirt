@@ -255,10 +255,10 @@ button {
   display:flex; /* 横並びに配置 */
 }
 .service_iciran{
-  margin: 1em auto;
+  margin: 1em auto 0 0;
   background: #AAFFFF; /* 背景色 */
   border-left: double 6px #0000FF; /* 左線の色 */
   border-right: double 6px #0000FF; /* 右線の色 */
-  width: 95%;
+  width: 130px;
   color:black;
 }
