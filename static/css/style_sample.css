@@ -250,7 +250,14 @@ button {
   height:30px;
   border: none;
 }
+/* サービス一覧を表示 */
 .service{
   display:flex;
-  
+}
+.service_iciran{
+  margin: 1em auto;
+  background: black; /* 背景色 */
+  border-left: double 6px #ffc06e; /* 左線の色 */
+  border-right: double 6px #ffc06e; /* 右線の色 */
+  width: 95%;
 }
