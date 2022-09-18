@@ -197,13 +197,13 @@ area_topview
 /*
 section
 */
-/* .section{} */
 .about{
   display: flex;
   background-color: #efefef;
   margin-bottom: 5em;
   margin-left: 160px;
   width: 75%;
+  color: black;
 }
 .title_button{
   display: flex;
