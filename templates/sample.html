@@ -88,29 +88,30 @@
                 <div class="service">
                     <div class="service_iciran">サービス一覧</div>
                 </div>
-                <!-- JSでクリック時にボタンを変更する -->
-                <script>
-                    let manga = "mangaID"
-                    let tmp = document.getElementsByClassName("image_file");
 
-                    for(let i=0;i<=tmp.length-1;i++){
-                        tmp[i].setAttribute("id",manga+i);
-                    }
-                    let img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
-                    let i = 0;
-
-                    function henkou() {
-                        if (i == 1) {
-                            i = 0;
-                        } else {
-                            i ++;
-                        }
-                        document.getElementById("image_file").src = img_src[i];
-                    }
-                </script>
             </figcaption>
         </figure>
         {% endfor %}
+        <!-- JSでクリック時にボタンを変更する -->
+        <script>
+            let manga = "mangaID"
+            let tmp = document.getElementsByClassName("image_file");
+
+            for(let i=0;i<=tmp.length-1;i++){
+                tmp[i].setAttribute("id",manga+i);
+            }
+            let img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
+            let i = 0;
+
+            function henkou() {
+                if (i == 1) {
+                    i = 0;
+                } else {
+                    i ++;
+                }
+                document.getElementById("image_file").src = img_src[i];
+            }
+        </script>
     </section>
 
     </main>
