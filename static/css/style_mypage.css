@@ -183,3 +183,17 @@ button {
   height:30px;
   border: none;
 }
+/* サービス一覧を表示 */
+.service{
+  display:flex;
+  margin-bottom:2em; /* サービスの下に空白を作っておく */
+}
+.service_iciran{
+  margin: 1em auto 0 0;
+  background: white; /* 背景色 */
+  border-left: double 6px black; /* 左線の色 */
+  border-right: double 6px black; /* 右線の色 */
+  text-align: center;
+  width: 110px;
+  color:black;
+}
