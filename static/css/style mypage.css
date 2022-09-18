@@ -22,7 +22,7 @@ header
 .mypage_name {
   color: #efefef;
   margin-bottom: auto;
-  margin-left: auto;
+  margin-left: 300px;
 }
 .header {
     display: flex;
