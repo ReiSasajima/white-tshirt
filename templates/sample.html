@@ -75,7 +75,7 @@
                     <h2 class="about-title">{{ row["title"] }}</h2>
                     <div class="checkbox">
                         <button  class="add_button">
-                            <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
+                            <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou({{ loop.index }})">
                         </button>
                         <label for="checkbox1" class="mylist">マイリストに追加する</label>
                     </div>
@@ -104,13 +104,13 @@
             let img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
             let i = 0;
 
-            function henkou() {
+            function henkou(x) {
                 if (i == 1) {
                     i = 0;
                 } else {
                     i ++;
                 }
-                document.getElementById("image_file").src = img_src[i];
+                document.getElementById("mangaID"+x).src = img_src[i];
             }
         </script>
     </section>
