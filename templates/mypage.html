@@ -52,17 +52,17 @@
             <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
             <figcaption class="about-caption">
                 <h2 class="about-title">{{ row["title"] }}</h2>
-                <h3 class="about-author">{{ row["author"] }}</h3>
-                <p class="about-description">
-                    あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ<br/>
-                    あらすじあらすじあらすじあらすじあらすじあらすじ
-                </p>
                 <div class="checkbox">
                     <button  class="add_button">
                         <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
                     </button>
                     <label for="checkbox1" class="mylist">マイリストに追加する</label>
                 </div>
+                <h3 class="about-author">{{ row["author"] }}</h3>
+                <p class="about-description">
+                    あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ<br/>
+                    あらすじあらすじあらすじあらすじあらすじあらすじ
+                </p>
 
                 <!-- JSでクリック時にボタンを変更する -->
                 <script>
