@@ -20,7 +20,10 @@ html { scroll-behavior: smooth;}
 /*
 header
 */
-
+.mypage_name {
+  color: #efefef;
+  
+}
 .header {
     display: flex;
     width: 100%;
