@@ -62,11 +62,9 @@ header
 .search_container ::-webkit-input-placeholder {
   color: black;
 }
-
 .nav{
 margin-left: auto;
 }
-
 .menu-item {
   list-style: none;
   display: inline-block;
