@@ -192,6 +192,10 @@ section
   margin-left: 160px;
   width: 75%;
 }
+.title_button{
+  display: flex;
+  justify-content:space-around;
+}
 .about_image{
   width: 600px;
   height: 400px;
