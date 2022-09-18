@@ -133,7 +133,8 @@ header
 /* 検索結果の見出し */
 .poster{
   text-align: center;
-  margin-top: 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 
@@ -145,8 +146,8 @@ section
   display: flex;
   background-color: #efefef;
   margin-bottom: 5em;
+  justify-content: center;
   width: 75%;
-  
 }
 /* .about-image{} */
 .about-caption{
