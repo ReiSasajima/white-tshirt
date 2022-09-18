@@ -150,6 +150,7 @@ section
 }
 .title_button{
   display: flex;
+  justify-content:space-around;
 }
 /* .about-image{} */
 .about-caption{
