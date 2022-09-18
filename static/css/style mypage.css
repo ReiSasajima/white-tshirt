@@ -7,9 +7,8 @@ body{
     font-family: 'Noto Sans JP',"Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
     font-size: 15px;
     line-height: 1.5;
-    color: #333;
-    background-color: black;            /* 背景色 */
-    background-image: url("../images/スクリーンショット\ 2022-09-12\ 21.38.31\ 1.png"); /* 画像 */
+    color: #333;        /* 背景色 */
+    background-image: url("./images/スクリーンショット\ 2022-09-12\ 21.38.31\ 1.png"); /* 画像 */
     background-size: cover;               /* 全画面 */
     background-attachment: fixed;         /* 固定 */
     background-position: center center;   /* 縦横中央 */
