@@ -165,11 +165,12 @@ area_topview
 .body_home{
   color: black;
 }
+/* 灰色の背景 */
 .area_home_about{
   background-image: url("../images/スクリーンショット\ 2022-09-12\ 21.38.31\ 1.png"); /* 画像 */
-    background-size: cover;               /* 全画面 */
-    background-attachment: fixed;         /* 固定 */
-    background-position: center center;   /* 縦横中央 */
+  background-size: cover;               /* 全画面 */
+  background-attachment: fixed;         /* 固定 */
+  background-position: center center;   /* 縦横中央 */
 }
 .container{
   margin-bottom: 300px;
@@ -178,7 +179,7 @@ area_topview
 .body_home > .body_home_about{
   display: flex;
 }
-.body_about_image{
+.body_home > .body_home_about > .body_about_image{
   width: 600px;
   height: 400px;
 }
