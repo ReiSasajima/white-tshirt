@@ -145,6 +145,8 @@ section
   display: flex;
   background-color: #efefef;
   margin-bottom: 5em;
+  width: 75%;
+  
 }
 /* .about-image{} */
 .about-caption{
