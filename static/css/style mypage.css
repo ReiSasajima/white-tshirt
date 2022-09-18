@@ -8,7 +8,7 @@ body{
     font-size: 15px;
     line-height: 1.5;
     color: #333;        /* 背景色 */
-    background-image: url("./images/スクリーンショット\ 2022-09-12\ 21.38.31\ 1.png"); /* 画像 */
+    background-image: url("../images/スクリーンショット\ 2022-09-12\ 21.38.31\ 1.png"); /* 画像 */
     background-size: cover;               /* 全画面 */
     background-attachment: fixed;         /* 固定 */
     background-position: center center;   /* 縦横中央 */
