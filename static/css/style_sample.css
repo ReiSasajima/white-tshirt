@@ -181,6 +181,17 @@ header
 .body_home > .body_home_about{
   display: flex;
 }
+
+/*
+section
+*/
+.about{
+  display: flex;
+  background-color: #efefef;
+  margin-bottom: 5em;
+  margin-left: 160px;
+  width: 75%;
+}
 .about_image{
   width: 600px;
   height: 400px;
