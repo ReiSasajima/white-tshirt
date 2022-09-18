@@ -56,18 +56,6 @@
                     あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ<br/>
                     あらすじあらすじあらすじあらすじあらすじあらすじ
                 </p>
-            </figcaption>
-        </figure>
-        <figure class="about">
-            <!-- <img src= "{{row.img}}" > -->
-            <img class="about-image" src="https://dummyimage.com/600x400/000/fff" alt="漫画の表紙">
-            <figcaption class="about-caption">
-                <h2 class="about-title">{{ row["title"] }}</h2>
-                <h3 class="about-author">{{ row["author"] }}</h3>
-                <p class="about-description">
-                    あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ<br/>
-                    あらすじあらすじあらすじあらすじあらすじあらすじ
-                </p>
                 <div class="checkbox">
                     <button  class="add_button">
                         <img id="image_file" src="../assets/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
@@ -93,78 +81,6 @@
                 </figcaption>
             </figcaption>
         </figure>
-        <figure class="about">
-            <!-- <img src= "{{row.img}}" > -->
-            <img class="about-image" src="https://dummyimage.com/600x400/000/fff" alt="漫画の表紙">
-            <figcaption class="about-caption">
-                <h2 class="about-title">{{ row["title"] }}</h2>
-                <h3 class="about-author">{{ row["author"] }}</h3>
-                <p class="about-description">
-                    あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ<br/>
-                    あらすじあらすじあらすじあらすじあらすじあらすじ
-                </p>
-                <div class="checkbox">
-                    <button  class="add_button">
-                        <img id="image_file" src="../assets/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
-                    </button>
-                    <label for="checkbox1" class="mylist">マイリストに追加する</label>
-                </div>
-
-                <!-- JSでクリック時にボタンを変更する -->
-                <script>
-                    var img_src = new Array("../assets/images/5APT0ioL996laER1663352236_1663352281.png","../assets/images/w9JWnjmBCTaducu1663352389_1663352425.png");
-                    var i = 0;
-
-                    function henkou() {
-
-                        if (i == 1) {
-                        i = 0;
-                        } else {
-                        i ++;
-                        }
-                        document.getElementById("image_file").src = img_src[i];
-                    }
-
-                </script>
-            </figcaption>
-        </figure>
-
-        <figure class="about">
-            <!-- <img src= "{{row.img}}" > -->
-            <img class="about-image" src="https://dummyimage.com/600x400/000/fff" alt="漫画の表紙">
-            <figcaption class="about-caption">
-                <h2 class="about-title">{{ row["title"] }}</h2>
-                <h3 class="about-author">{{ row["author"] }}</h3>
-                <p class="about-description">
-                    あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ<br/>
-                    あらすじあらすじあらすじあらすじあらすじあらすじ
-                </p>
-                <div class="checkbox">
-                    <button  class="add_button">
-                        <img id="image_file" src="../assets/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
-                    </button>
-                    <label for="checkbox1" class="mylist">マイリストに追加する</label>
-                </div>
-
-                <!-- JSでクリック時にボタンを変更する -->
-                <script>
-                    var img_src = new Array("../assets/images/5APT0ioL996laER1663352236_1663352281.png","../assets/images/w9JWnjmBCTaducu1663352389_1663352425.png");
-                    var i = 0;
-
-                    function henkou() {
-
-                        if (i == 1) {
-                        i = 0;
-                        } else {
-                        i ++;
-                        }
-                        document.getElementById("image_file").src = img_src[i];
-                    }
-
-                </script>
-            </figcaption>
-        </figure>
-
         {% endfor %}
     </section>
 
