@@ -152,7 +152,10 @@ section
   display: flex;
   justify-content:space-around;
 }
-/* .about-image{} */
+.about-image{
+  width:400px;
+  height:300px;
+}
 .about-caption{
   padding-left: 40px;
   padding-top: 20px;
