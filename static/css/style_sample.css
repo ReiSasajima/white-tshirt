@@ -171,6 +171,7 @@ area_topview
   background-size: cover;               /* 全画面 */
   background-attachment: fixed;         /* 固定 */
   background-position: center center;   /* 縦横中央 */
+  margin-bottom: -100px;
 }
 .container{
   margin-bottom: 300px;
@@ -196,7 +197,7 @@ area_topview
 
 
 /*
-section
+デフォルトで漫画を表示する部分
 */
 .poster{
   display: flex;
