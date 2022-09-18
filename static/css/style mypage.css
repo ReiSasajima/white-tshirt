@@ -22,7 +22,8 @@ header
 */
 .mypage_name {
   color: #efefef;
-  
+  margin-bottom: auto;
+
 }
 .header {
     display: flex;
