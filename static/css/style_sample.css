@@ -109,7 +109,9 @@ margin-left: auto;
   transform: scale(1, 1)
 }
 
-
+/*
+area_topview
+*/
 .area_top_view{
   background-color: black;            /* 背景色 */
   width: 100vw;
@@ -149,6 +151,9 @@ margin-left: auto;
   transform: translate(-50%, -50%)
 }
 
+/*
+このサイトについて
+*/
 .head_home{
   display: flex;
   justify-content: center;
@@ -166,7 +171,6 @@ margin-left: auto;
     background-attachment: fixed;         /* 固定 */
     background-position: center center;   /* 縦横中央 */
 }
-
 .container{
   margin-bottom: 300px;
   padding-top: 80px;
@@ -188,24 +192,6 @@ margin-left: auto;
 .about_author{}
 .about_description{
   padding-right: 20px;
-}
-
-/*
-チェックボックス
-*/
-.checkbox{
-  display: flex;
-  flex-direction: column;
-  margin-left: 40px;
-  margin-top: 60px;
-}
-.mylist{
-  margin-left: -45px;
-}
-button {
-  width: 30px;
-  height:30px;
-  border: none;
 }
 
 
@@ -239,4 +225,21 @@ section
 .about-author{}
 .about-description{
   padding-right: 20px;
+}
+/*
+チェックボックス
+*/
+.checkbox{
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  margin-top: 60px;
+}
+.mylist{
+  margin-left: -45px;
+}
+button {
+  width: 30px;
+  height:30px;
+  border: none;
 }
