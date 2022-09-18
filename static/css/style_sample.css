@@ -171,7 +171,7 @@ area_topview
   background-size: cover;               /* 全画面 */
   background-attachment: fixed;         /* 固定 */
   background-position: center center;   /* 縦横中央 */
-  margin-bottom: -100px;
+  margin-bottom: -75px;
 }
 .container{
   margin-bottom: 300px;
