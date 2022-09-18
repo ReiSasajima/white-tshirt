@@ -250,3 +250,7 @@ button {
   height:30px;
   border: none;
 }
+.service{
+  display:flex;
+  
+}
