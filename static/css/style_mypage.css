@@ -141,7 +141,6 @@ header
 /*
 section
 */
-/* .section{} */
 .about{
   color:black;
   display: flex;
@@ -170,9 +169,7 @@ section
 .about-description{
   padding-right: 20px;
 }
-/*
-チェックボックス
-*/
+/* チェックボックス */
 .checkbox{
   display: flex;
   flex-direction: column;
