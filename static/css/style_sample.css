@@ -198,6 +198,15 @@ area_topview
 /*
 section
 */
+.poster{
+  display: flex;
+  justify-content: center;
+  color: black;
+  text-decoration : underline;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  font-weight: bold;
+}
 .about{
   display: flex;
   background-color: #efefef;
