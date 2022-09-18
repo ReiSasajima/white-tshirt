@@ -125,11 +125,17 @@ header
     height: 80px;
 }
 
+
+.name{
+  text-align: center;
+}
+
 /* 検索結果の見出し */
 .poster{
   text-align: center;
   margin-top: 30px;
 }
+
 
 /*
 section
