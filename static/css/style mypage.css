@@ -146,7 +146,7 @@ section
   display: flex;
   background-color: #efefef;
   margin-bottom: 5em;
-  justify-content: center;
+  margin-left: 160px;
   width: 75%;
 }
 /* .about-image{} */
