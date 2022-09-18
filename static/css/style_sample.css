@@ -252,12 +252,13 @@ button {
 }
 /* サービス一覧を表示 */
 .service{
-  display:flex;
+  display:flex; /* 横並びに配置 */
 }
 .service_iciran{
   margin: 1em auto;
-  background: black; /* 背景色 */
-  border-left: double 6px #ffc06e; /* 左線の色 */
-  border-right: double 6px #ffc06e; /* 右線の色 */
+  background: #AAFFFF; /* 背景色 */
+  border-left: double 6px #0000FF; /* 左線の色 */
+  border-right: double 6px #0000FF; /* 右線の色 */
   width: 95%;
+  color:black;
 }
