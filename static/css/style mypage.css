@@ -143,6 +143,7 @@ section
 */
 /* .section{} */
 .about{
+  color:black;
   display: flex;
   background-color: #efefef;
   margin-bottom: 5em;
