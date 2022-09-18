@@ -141,7 +141,7 @@ def login():
         user_id = db.execute("SELECT id FROM users WHERE username = ?", username)[0]
         session["user_id"] = user_id["id"]
 
-        name = username + "さんこんにちは"
+        name = username
 
         return render_template("mypage.html", name=name)
 
