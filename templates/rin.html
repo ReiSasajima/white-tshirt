@@ -31,15 +31,7 @@
     <td>{{ row["author"] }}</td>
     <td>{{ row["summary"] }}</td>
     <img src= "{{row.img_url}}">
-    <form action="/sample" method="post">
-        <button>テスト</button>
-    </form>
-    <form action="/add_favorite" method="post">
-        <button>お気に入り</button>
-    </form>
-    <form action="/delete_favorite" method="post">
-        <button>お気に入り解除</button>
-    </form>
+    <!-- sessionの確認があればお気に入り登録を以下に記す-->
     {% endfor %}
 </body>
 </html>
