@@ -69,7 +69,6 @@
         <!-- デフォルトで漫画を表示する -->
         {% for row in database %}
         <figure class="about">
-            <!-- <img src= "{{row.img}}" > -->
             <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
             <figcaption class="about-caption">
                 <div class="title_button">
@@ -88,9 +87,8 @@
                 </p>
                 <div class="service">
                     <div class="service_iciran">サービス一覧</div>
-                    
-                </div>
 
+                </div>
 
                 <!-- JSでクリック時にボタンを変更する -->
                 <script>
@@ -98,7 +96,6 @@
                     var i = 0;
 
                     function henkou() {
-
                         if (i == 1) {
                         i = 0;
                         } else {
@@ -107,6 +104,7 @@
                         document.getElementById("image_file").src = img_src[i];
                     }
                 </script>
+
                 </figcaption>
             </figcaption>
         </figure>
