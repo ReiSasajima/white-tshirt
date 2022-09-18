@@ -75,7 +75,7 @@
                     <h2 class="about-title">{{ row["title"] }}</h2>
                     <div class="checkbox">
                         <button  class="add_button">
-                            <img id="{{ row.id }}" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
+                            <img id="{{ loop.index }}" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
                         </button>
                         <label for="checkbox1" class="mylist">マイリストに追加する</label>
                     </div>
@@ -89,7 +89,6 @@
                     <div class="service_iciran">サービス一覧</div>
 
                 </div>
-
                 <!-- JSでクリック時にボタンを変更する -->
                 <script>
                     var img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
@@ -101,7 +100,7 @@
                         } else {
                         i ++;
                         }
-                        document.getElementById("{{ row.id }}").src = img_src[i];
+                        document.getElementById("{{ loop.index }}").src = img_src[i];
                     }
                 </script>
 
