@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 # 各サービスのテーブル名を含むタプル(プログラム内で変更不可)ー－現在はリスト
 service = ["origin_magapoke", "origin_line", "origin_oukoku"]
+favorite_db = []
 
 # sessionの暗号化
 app.secret_key = 'abcdefghijklmn'
@@ -33,10 +34,10 @@ def index():
         # 作品が見つからなければNot foundを表示
         if book_db == []:
             poster = 'Not Found'
-            return render_template("sample.html", poster=poster)
+            return render_template("result.html", poster=poster)
         # 作品があれば表示
         book_list ="ヒットした本一覧"
-        # return render_template("sample.html", book_list=book_list, database=book_db)
+        # return render_template("result.html", book_list=book_list, database=book_db)
         # お気に入り登録の確認用
         return render_template("rin.html", book_list=book_list, database=book_db)
 
@@ -45,10 +46,13 @@ def mypage():
     # sessionを通してログインしているユーザーを確認
     usrsname = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]
     name = usrsname["username"] + "さんこんにちは"
-    # お気に入りされた本一覧を表示
+    # お気に入りされた本一覧を表示する
+    # ログインユーザのお気に入りの本のタイトルを獲得
+    favorite_db = db.execute(
+    "SELECT origin_magapoke.title, origin_magapoke.author, origin_magapoke.img_url FROM origin_magapoke INNER JOIN favorite ON origin_magapoke.title = favorite.title")
 
     if request.method == 'GET':
-        return render_template("mypage.html")
+        return render_template("mypage.html", favorite_db=favorite_db)
     elif request.method == 'POST':
         # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
@@ -58,10 +62,10 @@ def mypage():
         # 作品が見つからなければNot foundを表示
         if book_db == []:
             poster = 'Not Found'
-            return render_template("mypage.html", name=name, poster=poster)
+            return render_template("mypage.html", favorite_db=favorite_db, name=name, poster=poster)
         # 作品があれば表示
         book_list ="ヒットした本一覧"
-        return render_template("mypage.html", name=name, book_list=book_list, database=book_db)
+        return render_template("mypage.html",favorite_db=favorite_db, name=name, book_list=book_list, database=book_db)
 
 
 
@@ -171,6 +175,5 @@ def add_favorite(title):
         db.execute("DELETE FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
 
     return render_template("mypage.html", judege=judege)
-
 
 
