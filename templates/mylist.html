@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMICS FOR FREE | マイページ</title>
+    <meta name="description" content="sample text">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/sanitize.css">
+    <link rel="stylesheet" href="../static/css/style_mypage.css">
+</head>
+<body>
+    <!-- ヘッダー部分 -->
+    <header class="header">
+        <a class="title" >COMICS FOR FREE.</a>
+        <nav class="nav">
+            <ul class="menu-group">
+                <li class="mypage_name">{{ name }}さんのマイページ</li>
+                <li class="menu-item">
+                    <form action="/mypage" class="search_container" method="post">
+                        <input type="text" placeholder="タイトル/著者を入力" name="keyword">
+                        <input type="submit" value="&#xf002">
+                    </form>
+                </li>
+                <li class="menu-item"><a href="#" class="btn2">マイリスト</a></li>
+                <!-- マイリストのみを表示するページも欲しい -->
+                <li class="menu-item"><a href="/logout" class="btn2">ログアウト</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ヘッダー部分の余白 -->
+    <div class="margin"></div>
+
+
+    <!-- ヒットしなければ以下のコードを実行 -->
+    <h1 class="poster">{{ poster }}</h1>
+    <!-- ヒットすれば以下のコードを実行 -->
+    <h1 class="poster">{{ book_list }}</h1>
+
+    <section>
+        {% for row in favorite_db %}
+        <figure class="about">
+            <!-- <img src= "{{row.img}}" > -->
+            <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
+            <figcaption class="about-caption">
+                <div class="title_button">
+                    <h2 class="about-title">{{ row["title"] }}</h2>
+                    <div class="checkbox">
+                        <form action="add_favorite/{{ row['title'] }}" method="post">
+                        <button  class="add_button" >
+                            <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
+                        </button>
+                        <!-- <label for="checkbox1" class="mylist">マイリストに追加する</label> -->
+                        </form>
+                    </div>
+                </div>
+                <h3 class="about-author">{{ row["author"] }}</h3>
+                <p class="about-description">
+                    {{ row["summary"] }}
+                </p>
+                <div class="service">
+                    <div class="service_iciran">一覧</div>
+
+                </div>
+
+                <!-- JSでクリック時にボタンを変更する -->
+                <script>
+                    var img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
+                    var i = 0;
+
+                    function henkou() {
+
+                        if (i == 1) {
+                        i = 0;
+                        } else {
+                        i ++;
+                        }
+                        document.getElementById("image_file").src = img_src[i];
+                    }
+                </script>
+                </figcaption>
+            </figcaption>
+        </figure>
+        {% endfor %}
+    </section>
+
+</body>
+</html>
