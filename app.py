@@ -45,7 +45,7 @@ def index():
 def mypage():
     # sessionを通してログインしているユーザーを確認
     usrsname = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]
-    name = usrsname["username"] + "さんこんにちは"
+    name = usrsname["username"] 
     # お気に入りされた本一覧を表示する
     # ログインユーザのお気に入りの本のタイトルを獲得
     favorite_db = db.execute(
