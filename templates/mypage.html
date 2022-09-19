@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="../static/css/style_mypage.css">
 </head>
 <body>
-<<<<<<< HEAD
-
     <!-- ヘッダー部分 -->
     <header class="header">
         <a class="title" >COMICS FOR FREE.</a>
@@ -92,41 +90,5 @@
         {% endfor %}
     </section>
 
-=======
-  <!-- 各機能に飛ぶ-->
-  <nav>
-    <ul>
-      <li>
-        <a href="/logout">ログアウト</a>
-      </li>
-    </ul>
-  </nav>
-  <!-- 検索ボタン -->
-  <h1>{{ name }}</h1>
-  <h1>検索</h1>
-  <form action="/mypage" method="post">
-    <input type="text" name="keyword" value="タイトル名/著者名">
-    <input type="submit" value="検索">
-  </form>
-  <!-- お気に入りの本一覧表示 -->
-  <h2>お気に入り一覧</h2>
-  {% for row in favorite_db %}
-  <td>{{ row["title"] }}</td>
-  <td>{{ row["author"] }}</td>
-  <img src= "{{row.img_url}}">
-  {% endfor %}
-  <!-- ヒットしなければ以下のコードを実行 -->
-  <h2>{{ poster }}</h2>
-  <!-- ヒットすれば以下のコードを実行 -->
-  <h2>{{ book_list }}</h2>
-  {% for row in database %}
-  <td>{{ row["title"] }}</td>
-  <td>{{ row["author"] }}</td>
-  <img src= "{{row.img_url}}">
-  <form action="add_favorite/{{ row["title"] }}" method="post">
-    <button>お気に入り</button>
-  </form>
-  {% endfor %}
->>>>>>> 603a29874eac13308d2f97b2567f69be2a1d9bd3
 </body>
 </html>
