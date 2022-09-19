@@ -45,7 +45,7 @@ def index():
 def mypage():
     # sessionを通してログインしているユーザーを確認
     usrsname = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]
-    name = usrsname["username"] 
+    name = usrsname["username"]
     # お気に入りされた本一覧を表示する
     # ログインユーザのお気に入りの本のタイトルを獲得
     favorite_db = db.execute(
@@ -167,13 +167,13 @@ def add_favorite(title):
     if favorite_book == []:
         like = 1
         # ボタン判定用
-        judege = 1
+        judge = 1
         db.execute("INSERT INTO favorite(user_id, title, like) VALUES (?, ?, ?)", session["user_id"], title, like)
     else:
         #ボタン判定用
-        judege = 0
+        judge = 0
         db.execute("DELETE FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
 
-    return render_template("mypage.html", judege=judege)
+    return render_template("mypage.html", judge=judge)
 
 
