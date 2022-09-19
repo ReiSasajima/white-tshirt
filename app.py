@@ -143,7 +143,7 @@ def login():
             if not check_password_hash(user[0]["hash"], password):
                 poster2 = "パスワードが違います"
             return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
-            #return render_template("login.html", poster=poster)
+            # return render_template("login.html", poster=poster)
 
         # session更新
         user_id = db.execute("SELECT id FROM users WHERE username = ?", username)[0]
