@@ -17,8 +17,8 @@ body{
 
 html { scroll-behavior: smooth;}
 
-/* 
-header 
+/*
+header
 */
 
 .header {
@@ -29,7 +29,7 @@ header
     position: fixed;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   }
-  
+
   /*　
   検索窓　
   */
@@ -119,7 +119,7 @@ header
     -ms-transform: scale(1, 1);
     transform: scale(1, 1)
     }
-    
+
 .margin{
     width: 100%;
     height: 80px;
@@ -131,34 +131,42 @@ header
 }
 
 /*
-section 
+section
 */
 /* .section{} */
 .about{
   display: flex;
   background-color: #efefef;
-  margin-bottom: 15em;
+  margin-bottom: 5em;
+  margin-left: 160px;
+  width: 75%;
+  color: black;
 }
-/* .about-image{} */
+.title_button{
+  display: flex;
+  justify-content:space-around;
+}
+.about-image{
+  width:400px;
+  height:300px;
+}
 .about-caption{
   padding-left: 40px;
   padding-top: 20px;
 }
 .about-title{
   margin: 0 0 20px;
+  width:400px;
 }
 .about-author{}
 .about-description{
   padding-right: 20px;
 }
-/* 
-チェックボックス 
-*/
+/* チェックボックス */
 .checkbox{
   display: flex;
   flex-direction: column;
   margin-left: 40px;
-  margin-top: 60px;
 }
 .mylist{
   margin-left: -45px;
