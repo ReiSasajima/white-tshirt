@@ -138,12 +138,12 @@ def login():
         if user == [] or not check_password_hash(user[0]["hash"], password):
             poster = "ユーザー名またはパスワードが違います"
             # エラー確認用
-            #if user == []:
-            #    poster1 = "ユーザ名が違います"
-            #if not check_password_hash(user[0]["hash"], password):
-            #    poster2 = "パスワードが違います"
-            #return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
-            return render_template("login.html", poster=poster)
+            if user == []:
+                poster1 = "ユーザ名が違います"
+            if not check_password_hash(user[0]["hash"], password):
+                poster2 = "パスワードが違います"
+            return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
+            #return render_template("login.html", poster=poster)
 
         # session更新
         user_id = db.execute("SELECT id FROM users WHERE username = ?", username)[0]
