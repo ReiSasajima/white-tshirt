@@ -22,9 +22,9 @@ app.permanent_session_lifetime = timedelta(minutes=60)
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        # return render_template("sample.html")
+        return render_template("sample.html")
         # お気に入り登録用
-        return render_template("rin.html")
+        # return render_template("rin.html")
     elif request.method == 'POST':
         # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
@@ -37,9 +37,9 @@ def index():
             return render_template("result.html", poster=poster)
         # 作品があれば表示
         book_list ="ヒットした本一覧"
-        # return render_template("result.html", book_list=book_list, database=book_db)
+        return render_template("result.html", book_list=book_list, database=book_db)
         # お気に入り登録の確認用
-        return render_template("rin.html", book_list=book_list, database=book_db)
+        # return render_template("rin.html", book_list=book_list, database=book_db)
 
 @app.route("/mypage", methods=["GET", "POST"])
 def mypage():
