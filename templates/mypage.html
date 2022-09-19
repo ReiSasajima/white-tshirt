@@ -53,7 +53,6 @@
                 <div class="title_button">
                     <h2 class="about-title">{{ row["title"] }}</h2>
                     <div class="checkbox">
-                        {{ judge = 1 }}
                         <form action="add_favorite/{{ row['title'] }}" method="post">
                         <button  class="add_button" >
                             {% if judge == 0 %}
@@ -102,7 +101,6 @@
                 <div class="title_button">
                     <h2 class="about-title">{{ row["title"] }}</h2>
                     <div class="checkbox">
-                        {{ judge = 0 }}
                         <form action="add_favorite/{{ row['title'] }}" method="post">
                         <button  class="add_button" >
                             {% if judge == 0 %}
