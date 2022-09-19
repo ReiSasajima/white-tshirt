@@ -82,8 +82,7 @@
                 </div>
                 <h3 class="about-author">{{ row["author"] }}</h3>
                 <p class="about-description">
-                    あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ<br/>
-                    あらすじあらすじあらすじあらすじあらすじあらすじ
+                    {{ row["summary"] }}
                 </p>
                 <div class="service">
                     <div class="service_iciran">サービス一覧</div>
@@ -91,7 +90,7 @@
             </figcaption>
         </figure>
         {% endfor %}
-        
+
         <!-- JSでクリック時にボタンを変更する -->
         <script>
             let manga = "mangaID"
