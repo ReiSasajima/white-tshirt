@@ -9,10 +9,9 @@ db = SQL("sqlite:///manga.db")
 
 app = Flask(__name__)
 
-# サービスの数を宣言
-SERVICE_NUM = 3
-# 各サービスのテーブル名を含むタプル(プログラム内で変更不可)
-serviece = {"origin_magapoke", "origin_line", "origin_oukoku"}
+# 各サービスのテーブル名を含むタプル(プログラム内で変更不可)ー－現在はリスト
+service = ["origin_magapoke", "origin_line", "origin_oukoku"]
+favorite_db = []
 
 # sessionの暗号化
 app.secret_key = 'abcdefghijklmn'
@@ -23,7 +22,9 @@ app.permanent_session_lifetime = timedelta(minutes=60)
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        return render_template("sample.html")
+        # return render_template("sample.html")
+        # お気に入り登録用
+        return render_template("rin.html")
     elif request.method == 'POST':
         # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
@@ -33,31 +34,38 @@ def index():
         # 作品が見つからなければNot foundを表示
         if book_db == []:
             poster = 'Not Found'
-            return render_template("sample.html", poster=poster)
+            return render_template("result.html", poster=poster)
         # 作品があれば表示
         book_list ="ヒットした本一覧"
-        return render_template("sample.html", book_list=book_list, database=book_db)
+        # return render_template("result.html", book_list=book_list, database=book_db)
+        # お気に入り登録の確認用
+        return render_template("rin.html", book_list=book_list, database=book_db)
 
 @app.route("/mypage", methods=["GET", "POST"])
 def mypage():
     # sessionを通してログインしているユーザーを確認
     usrsname = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]
     name = usrsname["username"] + "さんこんにちは"
+    # お気に入りされた本一覧を表示する
+    # ログインユーザのお気に入りの本のタイトルを獲得
+    favorite_db = db.execute(
+    "SELECT origin_magapoke.title, origin_magapoke.author, origin_magapoke.img_url FROM origin_magapoke INNER JOIN favorite ON origin_magapoke.title = favorite.title")
+
     if request.method == 'GET':
-        return render_template("mypage.html")
+        return render_template("mypage.html", favorite_db=favorite_db)
     elif request.method == 'POST':
         # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
         # kyewordと一致する作品名、著者名、写真をデータベースより見つける(部分一致対応)
         book_db = db.execute(
-            "SELECT title, author, img_url FROM origin_magapoke WHERE title LIKE ? OR author LIKE ?", ('%'+keyword+'%',), ('%'+keyword+'%',))
+            "SELECT title, author, img_url, summary FROM origin_magapoke WHERE title LIKE ? OR author LIKE ?", ('%'+keyword+'%',), ('%'+keyword+'%',))
         # 作品が見つからなければNot foundを表示
         if book_db == []:
             poster = 'Not Found'
-            return render_template("mypage.html", name=name, poster=poster)
+            return render_template("mypage.html", favorite_db=favorite_db, name=name, poster=poster)
         # 作品があれば表示
         book_list ="ヒットした本一覧"
-        return render_template("mypage.html", name=name, book_list=book_list, database=book_db)
+        return render_template("mypage.html",favorite_db=favorite_db, name=name, book_list=book_list, database=book_db)
 
 
 
@@ -151,15 +159,21 @@ def logout():
     session.clear()
     return redirect("/")
 
-@app.route("/add_favorite", methods=["POST"])
+
+@app.route("/add_favorite/<title>", methods=["POST"])
 def add_favorite(title):
-    # favorite tableに追加
-    db.execute("INSERT INTO favorite(user_id, title, like) VALUES (?, ?, ?)", session["user_id"], title, 1)
+    favorite_book = db.execute("SELECT user_id, title FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
+    # まだお気に入りしていなければお気に入り登録 like = 1でお気に入り like=0で解除
+    if favorite_book == []:
+        like = 1
+        # ボタン判定用
+        judege = 1
+        db.execute("INSERT INTO favorite(user_id, title, like) VALUES (?, ?, ?)", session["user_id"], title, like)
+    else:
+        #ボタン判定用
+        judege = 0
+        db.execute("DELETE FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
 
-@app.route("/delete_favorite/<title>", methods=["POST"])
-def delete_favorite(title):
-    db.execute("DELETE favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
+    return render_template("mypage.html", judege=judege)
 
-@app.route("/sample", methods=["POST"])
-def sample():
-    return render_template("index.html")
+

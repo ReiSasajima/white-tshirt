@@ -18,10 +18,14 @@ app.secret_key = 'abcdefghijklmn'
 app.permanent_session_lifetime = timedelta(minutes=60)
 
 keyword = "犬"
+favorite_book = db.execute("SELECT title FROM favorite WHERE user_id = ? AND like = ?", 7, 1)[0]
+favorite_title = favorite_book
+print(type(favorite_title ))
+print(f"{favorite_title }")
 
-for i in service:
-            book_db = db.execute(
-            "SELECT title, author, service_name FROM ? WHERE title LIKE ? OR author LIKE ?",i , ('%'+keyword+'%',), ('%'+keyword+'%',))
+keyword = "犬"
+book_db = db.execute(
+            "SELECT title, author, img_url, summary FROM origin_magapoke WHERE title LIKE ? OR author LIKE ?", ('%'+keyword+'%',), ('%'+keyword+'%',))
+print(type(book_db))
+print(book_db)
 
-for i in book_db:
-    print(f"{i}")
