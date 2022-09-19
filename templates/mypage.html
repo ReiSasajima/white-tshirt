@@ -46,7 +46,12 @@
 
     <section>
         {% for row in database %}
-        
+            <td>{{ row["title"] }}</td>
+            <td>{{ row["author"] }}</td>
+            <img src= "{{row.img_url}}">
+            <form action="add_favorite/{{ row["title"] }}" method="post">
+                <button>お気に入り解除</button>
+            </form>
         {% endfor %}
         {% for row in database %}
         <figure class="about">
