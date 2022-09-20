@@ -1,40 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COMICS FOR FREE | マイページ</title>
-    <meta name="description" content="sample text">
+{% extends "layout.html" %}
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="../static/css/sanitize.css">
-    <link rel="stylesheet" href="../static/css/style_mypage.css">
-</head>
-<body>
-    <!-- ヘッダー部分 -->
-    <header class="header">
-        <a class="title" >COMICS FOR FREE.</a>
-        <nav class="nav">
-            <ul class="menu-group">
-                <li class="mypage_name">{{ name }}さんのマイページ</li>
-                <li class="menu-item">
-                    <form action="/mypage" class="search_container" method="post">
-                        <input type="text" placeholder="タイトル/著者を入力" name="keyword">
-                        <input type="submit" value="&#xf002">
-                    </form>
-                </li>
-                <li class="menu-item"><a href="#" class="btn2">マイリスト</a></li>
-                <!-- マイリストのみを表示するページも欲しい -->
-                <li class="menu-item"><a href="/logout" class="btn2">ログアウト</a></li>
-            </ul>
-        </nav>
-    </header>
-
+{% block title %}
+    マイリスト
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="../static/css/sanitize.css">
+<link rel="stylesheet" href="../static/css/style_mypage.css">
+{% endblock %}
+{% block main %}
     <!-- ヘッダー部分の余白 -->
     <div class="margin"></div>
 
@@ -67,7 +40,6 @@
                     </div>
                 </div>
                 <h3 class="about-author">{{ row["author"] }}</h3>
-                <p>これが{{ judge }}</p>
                 <p class="about-description">
                     {{ row["summary"] }}
                 </p>
@@ -102,6 +74,4 @@
         </figure>
         {% endfor %}
     </section>
-
-</body>
-</html>
+{% endblock %}
