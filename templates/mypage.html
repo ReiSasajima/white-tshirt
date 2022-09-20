@@ -28,7 +28,7 @@
                         <input type="submit" value="&#xf002">
                     </form>
                 </li>
-                <li class="menu-item"><a href="#" class="btn2">マイリスト</a></li>
+                <li class="menu-item"><a href="/my_list" class="btn2">マイリスト</a></li>
                 <!-- マイリストのみを表示するページも欲しい -->
                 <li class="menu-item"><a href="/logout" class="btn2">ログアウト</a></li>
             </ul>
@@ -56,12 +56,13 @@
                         <form action="add_favorite/{{ row['title'] }}" method="post">
                         <button  class="add_button" >
                             {% if judge == 0 %}
-                            <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
-                            {% else %}
                             <img id="image_file" src="../static/images/w9JWnjmBCTaducu1663352389_1663352425.png" width = "30" height="30" onClick="henkou()">
+                            {% else %}
+                            <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
                             {% endif %}
                         </button>
-                        <!-- <label for="checkbox1" class="mylist">マイリストに追加する</label> -->
+                        <br>
+                        <label for="checkbox1" class="mylist">マイリストに追加する</label>
                         </form>
                     </div>
                 </div>
@@ -74,7 +75,7 @@
 
                 </div>
 
-                <!-- JSでクリック時にボタンを変更する
+                <!-- JSでクリック時にボタンを変更する -->
                 <script>
                     var img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
                     var i = 0;
@@ -88,7 +89,7 @@
                         }
                         document.getElementById("image_file").src = img_src[i];
                     }
-                </script> -->
+                </script>
                 </figcaption>
             </figcaption>
         </figure>

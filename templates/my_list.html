@@ -55,9 +55,11 @@
                     <div class="checkbox">
                         <form action="add_favorite/{{ row['title'] }}" method="post">
                         <button  class="add_button" >
-                            <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
+                            <!-- チェックマークボタンがデフォルト -->
+                            <img id="image_file" src="../static/images/w9JWnjmBCTaducu1663352389_1663352425.png" width = "30" height="30" onClick="henkou()">
                         </button>
-                        <!-- <label for="checkbox1" class="mylist">マイリストに追加する</label> -->
+                        <br>
+                        <label for="checkbox1" class="mylist">マイリストから削除する</label>
                         </form>
                     </div>
                 </div>
@@ -66,14 +68,14 @@
                     {{ row["summary"] }}
                 </p>
                 <div class="service">
-                    <div class="service_iciran">一覧</div>
+                    <div class="service_iciran">サービス一覧</div>
 
                 </div>
 
-                <!-- JSでクリック時にボタンを変更する -->
+                <!-- JSでクリック時にボタンを変更する(＋マークに変更) -->
                 <script>
                     var img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
-                    var i = 0;
+                    var i = 1;
 
                     function henkou() {
 
