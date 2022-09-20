@@ -55,8 +55,11 @@
                     <div class="checkbox">
                         <form action="add_favorite/{{ row['title'] }}" method="post">
                         <button  class="add_button" >
-                            <!-- チェックマークボタンがデフォルト -->
-                            <img id="image_file" src="../static/images/w9JWnjmBCTaducu1663352389_1663352425.png" width = "30" height="30" onClick="henkou()">
+                            {% if judge == 0 %}
+                            <img id="image_file" src="../static/images/w9JWnjmBCTaducu1663352389_1663352425.png" width = "30" height="30" onClick="henkou({{ loop.index }})">
+                            {% else %}
+                            <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou({{ loop.index }})">
+                            {% endif %}
                         </button>
                         <br>
                         <label for="checkbox1" class="mylist">マイリストから削除する</label>
@@ -64,6 +67,7 @@
                     </div>
                 </div>
                 <h3 class="about-author">{{ row["author"] }}</h3>
+                <p>これが{{ judge }}</p>
                 <p class="about-description">
                     {{ row["summary"] }}
                 </p>
@@ -72,19 +76,25 @@
 
                 </div>
 
-                <!-- JSでクリック時にボタンを変更する(＋マークに変更) -->
+                <!-- JSでクリック時にボタンを変更する -->
                 <script>
-                    var img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
-                    var i = 1;
+                    let manga = "mangaID"
+                    let tmp = document.getElementsByClassName("image_file");
 
-                    function henkou() {
+                    for(let i=0;i<=tmp.length-1;i++){
+                        // tmp[i]にid属性"mangaID"+iを追加している
+                        tmp[i].setAttribute("id",manga+i);
+                    }
+                    let img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
+                    let i = 0;
 
+                    function henkou(x) {
                         if (i == 1) {
-                        i = 0;
+                            i = 0;
                         } else {
-                        i ++;
+                            i ++;
                         }
-                        document.getElementById("image_file").src = img_src[i];
+                        document.getElementById("mangaID"+(x-1)).src = img_src[i];
                     }
                 </script>
                 </figcaption>

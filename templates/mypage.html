@@ -56,9 +56,9 @@
                         <form action="add_favorite/{{ row['title'] }}" method="post">
                         <button  class="add_button" >
                             {% if judge == 0 %}
-                            <img id="image_file" src="../static/images/w9JWnjmBCTaducu1663352389_1663352425.png" width = "30" height="30" onClick="henkou()">
+                            <img id="image_file" src="../static/images/w9JWnjmBCTaducu1663352389_1663352425.png" width = "30" height="30" onClick="henkou({{ loop.index }})">
                             {% else %}
-                            <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
+                            <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou({{ loop.index }})">
                             {% endif %}
                         </button>
                         <br>
@@ -77,17 +77,23 @@
 
                 <!-- JSでクリック時にボタンを変更する -->
                 <script>
-                    var img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
-                    var i = 0;
+                    let manga = "mangaID"
+                    let tmp = document.getElementsByClassName("image_file");
 
-                    function henkou() {
+                    for(let i=0;i<=tmp.length-1;i++){
+                        // tmp[i]にid属性"mangaID"+iを追加している
+                        tmp[i].setAttribute("id",manga+i);
+                    }
+                    let img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
+                    let i = 0;
 
+                    function henkou(x) {
                         if (i == 1) {
-                        i = 0;
+                            i = 0;
                         } else {
-                        i ++;
+                            i ++;
                         }
-                        document.getElementById("image_file").src = img_src[i];
+                        document.getElementById("mangaID"+(x-1)).src = img_src[i];
                     }
                 </script>
                 </figcaption>
