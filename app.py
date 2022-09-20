@@ -22,9 +22,10 @@ app.permanent_session_lifetime = timedelta(minutes=60)
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        # return render_template("sample.html")
+        #default_book = db.execute("SELECT title, author, sumarry, img_url FROM origin_magapoke WHERE id ?", id)
+        return render_template("sample.html")
         # お気に入り登録用
-        return render_template("rin.html")
+        #return render_template("rin.html")
     elif request.method == 'POST':
         # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
@@ -37,19 +38,15 @@ def index():
             return render_template("result.html", poster=poster)
         # 作品があれば表示
         book_list ="ヒットした本一覧"
-        # return render_template("result.html", book_list=book_list, database=book_db)
+        return render_template("result.html", book_list=book_list, database=book_db)
         # お気に入り登録の確認用
-        return render_template("rin.html", book_list=book_list, database=book_db)
+        #return render_template("rin.html", book_list=book_list, database=book_db)
 
 @app.route("/mypage", methods=["GET", "POST"])
 def mypage():
     # sessionを通してログインしているユーザーを確認
     usrsname = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]
     name = usrsname["username"] + "さんこんにちは"
-    # お気に入りされた本一覧を表示する
-    # ログインユーザのお気に入りの本のタイトルを獲得
-    favorite_db = db.execute(
-    "SELECT origin_magapoke.title, origin_magapoke.author, origin_magapoke.img_url FROM origin_magapoke INNER JOIN favorite ON origin_magapoke.title = favorite.title")
 
     if request.method == 'GET':
         return render_template("mypage.html", favorite_db=favorite_db)
@@ -66,6 +63,17 @@ def mypage():
         # 作品があれば表示
         book_list ="ヒットした本一覧"
         return render_template("mypage.html",favorite_db=favorite_db, name=name, book_list=book_list, database=book_db)
+
+@app.route("/my_list", methods=["GET", "POST"])
+def my_list():
+    #ログインユーザのお気に入りの本一覧を獲得
+    favorite_db = db.execute(
+    "SELECT origin_magapoke.title, origin_magapoke.author, origin_magapoke.img_url FROM origin_magapoke INNER JOIN favorite ON origin_magapoke.title = favorite.title")
+
+    if request.method == 'GET':
+        return render_template("my_list.html", favorite_db=favorite_db)
+    elif request.method == 'POST':
+        return render_template("my_list.html", favorite_db=favorite_db)
 
 
 
@@ -138,12 +146,12 @@ def login():
         if user == [] or not check_password_hash(user[0]["hash"], password):
             poster = "ユーザー名またはパスワードが違います"
             # エラー確認用
-            if user == []:
-                poster1 = "ユーザ名が違います"
-            if not check_password_hash(user[0]["hash"], password):
-                poster2 = "パスワードが違います"
-            return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
-            #return render_template("login.html", poster=poster)
+            #if user == []:
+            #    poster1 = "ユーザ名が違います"
+            #if not check_password_hash(user[0]["hash"], password):
+            #    poster2 = "パスワードが違います"
+            #return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
+            return render_template("login.html", poster=poster)
 
         # session更新
         user_id = db.execute("SELECT id FROM users WHERE username = ?", username)[0]
@@ -162,6 +170,8 @@ def logout():
 
 @app.route("/add_favorite/<title>", methods=["POST"])
 def add_favorite(title):
+    if session["user_id"] == None:
+        return render_template("register.html")
     favorite_book = db.execute("SELECT user_id, title FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
     # まだお気に入りしていなければお気に入り登録 like = 1でお気に入り like=0で解除
     if favorite_book == []:
