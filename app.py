@@ -22,16 +22,9 @@ app.permanent_session_lifetime = timedelta(minutes=60)
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-<<<<<<< HEAD
         return render_template("sample.html")
         # お気に入り登録用
         # return render_template("rin.html")
-=======
-        #default_book = db.execute("SELECT title, author, sumarry, img_url FROM origin_magapoke WHERE id ?", id)
-        return render_template("sample.html")
-        # お気に入り登録用
-        #return render_template("rin.html")
->>>>>>> 8f4e817b5c9a059efbd30a2f30040bd706f1429b
     elif request.method == 'POST':
         # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
@@ -46,25 +39,17 @@ def index():
         book_list ="ヒットした本一覧"
         return render_template("result.html", book_list=book_list, database=book_db)
         # お気に入り登録の確認用
-<<<<<<< HEAD
         # return render_template("rin.html", book_list=book_list, database=book_db)
-=======
-        #return render_template("rin.html", book_list=book_list, database=book_db)
->>>>>>> 8f4e817b5c9a059efbd30a2f30040bd706f1429b
 
 @app.route("/mypage", methods=["GET", "POST"])
 def mypage():
     # sessionを通してログインしているユーザーを確認
     usrsname = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]
-<<<<<<< HEAD
     name = usrsname["username"]
     # お気に入りされた本一覧を表示する
     # ログインユーザのお気に入りの本のタイトルを獲得
     favorite_db = db.execute(
     "SELECT origin_magapoke.title, origin_magapoke.author, origin_magapoke.img_url FROM origin_magapoke INNER JOIN favorite ON origin_magapoke.title = favorite.title")
-=======
-    name = usrsname["username"] + "さんこんにちは"
->>>>>>> 8f4e817b5c9a059efbd30a2f30040bd706f1429b
 
     if request.method == 'GET':
         return render_template("mypage.html", favorite_db=favorite_db)
@@ -163,21 +148,12 @@ def login():
 
         if user == [] or not check_password_hash(user[0]["hash"], password):
             poster = "ユーザー名またはパスワードが違います"
-<<<<<<< HEAD
-            # # エラー確認用
-            # if user == []:
-            #     poster1 = "ユーザ名が違います"
-            # if not check_password_hash(user[0]["hash"], password):
-            #     poster2 = "パスワードが違います"
-            # return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
-=======
             # エラー確認用
             #if user == []:
             #    poster1 = "ユーザ名が違います"
             #if not check_password_hash(user[0]["hash"], password):
             #    poster2 = "パスワードが違います"
             #return render_template("login.html", poster=poster, poster1=poster1, poster2=poster2)
->>>>>>> 8f4e817b5c9a059efbd30a2f30040bd706f1429b
             return render_template("login.html", poster=poster)
 
         # session更新
