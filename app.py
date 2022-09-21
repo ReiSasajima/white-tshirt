@@ -173,7 +173,7 @@ def logout():
 @app.route("/add_favorite/<title>", methods=["POST"])
 def add_favorite(title):
     if not session["user_id"]:
-    #  return render_template("register.html")
+        return render_template("register.html")
     favorite_book = db.execute("SELECT user_id, title FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
     # まだお気に入りしていなければお気に入り登録 like = 1でお気に入り like=0で解除
     if favorite_book == []:
