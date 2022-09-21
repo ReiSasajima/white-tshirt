@@ -25,7 +25,7 @@ form h1 {
 
 
 
-input {
+.register-form input {
     background:none;
     display:block;
     margin:20px auto;
@@ -39,6 +39,21 @@ input {
     text-align:center;
     cursor:pointer;
 }
+.register-submit input {
+    background:none;
+    display:block;
+    margin:20px auto;
+    border: 2px solid #f0f8ff;
+    padding:15px 10px;
+    width:200px;
+    outline:none;
+    color:white;
+    border-radius:25px;
+    transition: all 0.25s;
+    text-align:center;
+    cursor:pointer;
+}
+
 
 .register-form input:hover {
 
