@@ -22,6 +22,15 @@
         <input type="text" name="keyword" value="タイトル名/著者名">
         <input type="submit" value="検索">
     </form>
+    <!-- デフォルト表示-->
+    <h2>デフォルト表示</h2>
+    {% for row in index_book %}
+    <td>{{ row["title"] }}</td>
+    <td>{{ row["author"] }}</td>
+    <td>{{ row["summary"] }}</td>
+    <img src= "{{row.img_url}}">
+    {% endfor %}
+
     <!-- ヒットしなければ以下のコードを実行 -->
     <h2>{{ poster }}</h2>
     <!-- ヒットすれば以下のコードを実行 -->
@@ -31,6 +40,9 @@
     <td>{{ row["author"] }}</td>
     <td>{{ row["summary"] }}</td>
     <img src= "{{row.img_url}}">
+    <form action="add_favorite/{{ row["title"] }}" method="post">
+        <button>お気に入り</button>
+    </form>
     <!-- sessionの確認があればお気に入り登録を以下に記す-->
     {% endfor %}
 </body>
