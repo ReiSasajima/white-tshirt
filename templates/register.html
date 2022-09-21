@@ -5,16 +5,19 @@
 {% endblock %}
 {% block css %}
 <link rel="stylesheet" href="../static/css/sanitize.css">
+<link rel="stylesheet" href="../static/css/style_result.css">
 <link rel="stylesheet" href="../static/css/register.css">
-<link rel="stylesheet" href="../static/css/style.css">
+
 
 {% endblock %}
 {% block main %}
-<h2>{{ poster }}</h2>
-    <h2>{{ poster1 }}</h2>
-    <h2>{{ poster2 }}</h2>
-    <h2>{{ poster3 }}</h2>
-    <h2>{{ poster4 }}</h2>
+    <!-- ヘッダー部分の余白 -->
+    <div class="margin"></div>
+
+    <!-- ヒットしなければ以下のコードを実行 -->
+    <h1 class="poster">{{ poster }}</h1>
+    <!-- ヒットすれば以下のコードを実行 -->
+    <h1 class="poster">{{ book_list }}</h1>
 
     <form action="/register" method="post" autocomplete="off">
       <div class="register-header">
