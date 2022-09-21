@@ -179,13 +179,13 @@ def add_favorite(title):
     if favorite_book == []:
         like = 1
         # ボタン判定用
-        judege = 1
         db.execute("INSERT INTO favorite(user_id, title, like) VALUES (?, ?, ?)", session["user_id"], title, like)
+        db.execute("UPDATE origin_magapoke SET like = 1 WHERE title = ?", title)
     else:
         #ボタン判定用
-        judege = 0
         db.execute("DELETE FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
+        db.execute("UPDATE origin_magapoke SET like = 0 WHERE title = ?", title)
 
-    return render_template("mypage.html", judege=judege)
+    return render_template("mypage.html")
 
 
