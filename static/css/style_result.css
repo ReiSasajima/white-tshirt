@@ -7,27 +7,29 @@ body{
     font-family: 'Noto Sans JP',"Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
     font-size: 15px;
     line-height: 1.5;
-    color: #efefef;
-    margin: 0;
+    color: #333;
+    background-color: black;            /* 背景色 */
+    background-image: url("../images/スクリーンショット\ 2022-09-12\ 21.38.31\ 1.png"); /* 画像 */
+    background-size: cover;               /* 全画面 */
+    background-attachment: fixed;         /* 固定 */
+    background-position: center center;   /* 縦横中央 */
 }
 
+html { scroll-behavior: smooth;}
 
-
-/* 
-header 
+/*
+header
 */
 
 .header {
-  display: flex;
-  width: 100%;
-  height: 80px;
-  position:absolute;
-  z-index: 9999;
-  top: 0px;
-  left: 0px;
-  margin: 0;
+    display: flex;
+    width: 100%;
+    height: 80px;
+    background-color: black;
+    position: fixed;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
   }
-  
+
   /*　
   検索窓　
   */
@@ -68,10 +70,12 @@ header
     color: black;
   }
 
-  .nav{
-  margin-left: auto;
+  .title {
+    margin-right: auto;
+    color: #efefef;
+    text-decoration:none;
+    font-size: 50px;
   }
-
   .menu-item {
     list-style: none;
     display: inline-block;
@@ -115,125 +119,74 @@ header
     -ms-transform: scale(1, 1);
     transform: scale(1, 1)
     }
-    
 
-.area_top_view{
-  background-color: black;            /* 背景色 */
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-}
-.area_top_view > .view{
-  z-index: 9999;
-  top: 0px;
-  left: 0px;
-  text-align: center;
-  text-decoration : underline;
-  margin-top: -60px;
-  width: 100%;
-  font-size: 100px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-.area_top_view > .image{
-  margin-top: -15px;
-  margin-bottom: -15px;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.search_container{
-  text-align: center;
-  width: 500px;
-  height: 30px;
-  margin-top: 25px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%) 
+.margin{
+    width: 100%;
+    height: 80px;
 }
 
-.head_home{
+/* 検索結果の見出し */
+.poster{
+  text-align: center;
+}
+
+/*
+漫画一覧を表示
+*/
+.about{
   display: flex;
-  justify-content: center;
-  color: black;
-  text-decoration : underline;
-  margin-top: 60px;
-  font-weight: bold;
-}
-.body_home{
+  background-color: #efefef;
+  margin-bottom: 5em;
+  margin-left: 160px;
+  width: 75%;
   color: black;
 }
-.area_home_about{
-  background-image: url("../images/スクリーンショット\ 2022-09-12\ 21.38.31\ 1.png"); /* 画像 */
-    background-size: cover;               /* 全画面 */
-    background-attachment: fixed;         /* 固定 */
-    background-position: center center;   /* 縦横中央 */   
-}
-
-.container{
-  margin-bottom: 300px;
-  padding-top: 80px;
-}
-.body_home > .body_home_about{
+.title_button{
   display: flex;
+  justify-content:space-around;
 }
-.about_image{
-  width: 600px;
-  height: 400px;
+.about-image{
+  width:400px;
+  height:300px;
 }
-.about_text{
+.about-caption{
   padding-left: 40px;
   padding-top: 20px;
 }
 .about-title{
   margin: 0 0 20px;
+  width:400px;
 }
 .about-author{}
 .about-description{
   padding-right: 20px;
 }
-
-/* 
-チェックボックス 
-*/
+/* チェックボックス */
 .checkbox{
   display: flex;
   flex-direction: column;
   margin-left: 40px;
-  margin-top: 60px;
 }
 .mylist{
   margin-left: -45px;
+  margin-top: 50px;
 }
 button {
   width: 30px;
   height:30px;
   border: none;
 }
-
-/*
-section 
-*/
-/* .section{} */
-.about{
-  display: flex;
-  background-color: #efefef;
-  margin-bottom: 15em;
+/* サービス一覧を表示 */
+.service{
+  display:flex;
+  margin-bottom:2em; /* サービスの下に空白を作っておく */
 }
-/* .about-image{} */
-.about-caption{
-  padding-left: 40px;
-  padding-top: 20px;
-  color: black;
-}
-.about-title{
-  margin: 0 0 20px;
-}
-.about-author{}
-.about-description{
-  padding-right: 20px;
+.service_iciran{
+  margin: 1em auto 0 0;
+  background: white; /* 背景色 */
+  border-left: double 6px black; /* 左線の色 */
+  border-right: double 6px black; /* 右線の色 */
+  text-align: center;
+  width: 110px;
+  color:black;
 }

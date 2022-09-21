@@ -13,7 +13,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" href="../static/css/sanitize.css">
-    <link rel="stylesheet" href="../static/css/style2.css">
+    <link rel="stylesheet" href="../static/css/style_sample.css">
 </head>
 <body>
 
@@ -46,16 +46,16 @@
     <section class="area_home_about" id="area-1">
         <div class="container">
             <div class="head_home">
-                <h2 class="ttl">このサイトについて</h2>
+                <h1 class="ttl">このサイトについて</h1>
             </div>
             <div class="body_home">
                 <figure class="body_home_about">
-                    <img src="../static/images/s-tsuchiya--NUgOnopsvI-unsplash.jpg" class="about_image">
-                    <figcaption class="about_text">
-                        <h2 class="about-title">COMICS FOR FREE.とは</h2>
-                        <p class="about-description">
+                    <img src="../static/images/s-tsuchiya--NUgOnopsvI-unsplash.jpg" class="body_about_image">
+                    <figcaption class="body_about_text">
+                        <h2 class="body_about_title">COMICS FOR FREE.とは</h2>
+                        <p class="body_about_description">
                             さまざまな漫画サイトの無料で読める漫画を検索できるサイトです。<br>
-                        例えば、こんな漫画が揃っています！あとで詳しい説明書きを書く
+                        あとで詳しい説明書きを書く
                         </p>
                     </figcaption>
                 </figure>
@@ -63,43 +63,56 @@
         </div>
         <br>
         <br>
+
+        <h1 class="poster">おすすめの漫画一覧</h1>
+
+        <!-- デフォルトで漫画を表示する -->
         {% for row in database %}
         <figure class="about">
             <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
             <figcaption class="about-caption">
-                <h2 class="about-title">{{ row["title"] }}</h2>
+                <div class="title_button">
+                    <h2 class="about-title">{{ row["title"] }}</h2>
+                    <div class="checkbox">
+                        <button  class="add_button">
+                            <img class="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou({{ loop.index }})">
+                        </button>
+                        <label for="checkbox1" class="mylist">マイリストに追加する</label>
+                    </div>
+                </div>
                 <h3 class="about-author">{{ row["author"] }}</h3>
                 <p class="about-description">
-                    あらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじあらすじ<br/>
-                    あらすじあらすじあらすじあらすじあらすじあらすじ
+                    {{ row["summary"] }}
                 </p>
-                <div class="checkbox">
-                    <button  class="add_button">
-                        <img id="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou()">
-                    </button>
-                    <label for="checkbox1" class="mylist">マイリストに追加する</label>
+                <div class="service">
+                    <div class="service_iciran">サービス一覧</div>
                 </div>
+            </figcaption>
+        </figure>
+        {% endfor %}
 
-                <!-- JSでクリック時にボタンを変更する -->
-                <script>
-                    var img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
-                    var i = 0;
+        <!-- JSでクリック時にボタンを変更する -->
+        <script>
+            let manga = "mangaID"
+            let tmp = document.getElementsByClassName("image_file");
 
-                    function henkou() {
+            for(let i=0;i<=tmp.length-1;i++){
+                // tmp[i]にid属性"mangaID"+iを追加している
+                tmp[i].setAttribute("id",manga+i);
+            }
+            let img_src = new Array("../static/images/5APT0ioL996laER1663352236_1663352281.png","../static/images/w9JWnjmBCTaducu1663352389_1663352425.png");
+            let i = 0;
 
-                        if (i == 1) {
-                        i = 0;
-                        } else {
-                        i ++;
-                        }
-                        document.getElementById("image_file").src = img_src[i];
-                    }
-                </script>
+            function henkou(x) {
+                if (i == 1) {
+                    i = 0;
+                } else {
+                    i ++;
+                }
+                document.getElementById("mangaID"+(x-1)).src = img_src[i];
+            }
+        </script>
 
-                </figcaption>
-            </figure>
-
-            {% endfor %}
     </section>
 
     </main>

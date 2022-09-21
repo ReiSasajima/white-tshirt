@@ -1,0 +1,199 @@
+@charset "UTF-8";
+
+/*
+Base style
+*/
+body{
+    font-family: 'Noto Sans JP',"Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #333;        /* 背景色 */
+    background-image: url("../images/スクリーンショット\ 2022-09-12\ 21.38.31\ 1.png"); /* 画像 */
+    background-size: cover;               /* 全画面 */
+    background-attachment: fixed;         /* 固定 */
+    background-position: center center;   /* 縦横中央 */
+    overflow: auto;
+}
+
+html { scroll-behavior: smooth;}
+
+/*
+header
+*/
+.mypage_name {
+  color: #efefef;
+  margin-bottom: auto;
+  margin-left: 300px;
+}
+.header {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: black;
+    position: fixed;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+  }
+
+/*　
+検索窓　
+*/
+.search_container{
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  height: 2.2em;
+  width: 250px;
+  overflow: hidden;
+  background: whitesmoke;
+  top: 10px;
+}
+.search_container input[type="text"]{
+  border: none;
+  height: 2.0em;
+  background: whitesmoke;
+}
+.search_container input[type="text"]:focus {
+  outline: 0;
+}
+.search_container input[type="submit"]{
+  cursor: pointer;
+  font-family: FontAwesome;
+  font-size: 1.3em;
+  border: none;
+  background: none;
+  color: black;
+  position: absolute;
+  height: 2.5em;
+  right: 8px;
+  outline : none;
+  top: -10px;
+}
+.search_container ::-webkit-input-placeholder {
+  color: black;
+}
+
+.title {
+  margin-right: auto;
+  color: #efefef;
+  text-decoration:none;
+  font-size: 50px;
+}
+.menu-item {
+  list-style: none;
+  display: inline-block;
+  padding: 10px;
+  margin-bottom: auto;
+}
+.btn1{
+    color: black;
+}
+.btn2{
+  color: #efefef;
+  text-transform: uppercase;
+  text-align: center;
+  position: relative;
+  text-decoration: none;
+  display:inline-block;
+  }
+  .btn2::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0px;
+  width: 100%;
+  height: 2px;
+  background: white;
+  display: block;
+  -webkit-transform-origin: right top;
+  -ms-transform-origin: right top;
+  transform-origin: right top;
+  -webkit-transform: scale(0, 1);
+  -ms-transform: scale(0, 1);
+  transform: scale(0, 1);
+  -webkit-transition: transform 0.4s cubic-bezier(1, 0, 0, 1);
+  transition: transform 0.4s cubic-bezier(1, 0, 0, 1)
+  }
+  .btn2:hover::before {
+  -webkit-transform-origin: left top;
+  -ms-transform-origin: left top;
+  transform-origin: left top;
+  -webkit-transform: scale(1, 1);
+  -ms-transform: scale(1, 1);
+  transform: scale(1, 1)
+  }
+
+.margin{
+    width: 100%;
+    height: 80px;
+}
+
+
+/* 検索結果の見出し */
+.poster{
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+
+/*
+section
+*/
+.about{
+  color:black;
+  display: flex;
+  background-color: #efefef;
+  margin-bottom: 5em;
+  margin-left: 160px;
+  width: 75%;
+}
+.title_button{
+  display: flex;
+  justify-content:space-around;
+}
+.about-image{
+  width:400px;
+  height:300px;
+}
+.about-caption{
+  padding-left: 40px;
+  padding-top: 20px;
+}
+.about-title{
+  margin: 0 0 20px;
+  width:400px;
+}
+.about-author{}
+.about-description{
+  padding-right: 20px;
+}
+/* チェックボックス */
+.checkbox{
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+}
+.mylist{
+  margin-left: -45px;
+}
+button {
+  width: 30px;
+  height:30px;
+  border: none;
+}
+/* サービス一覧を表示 */
+.service{
+  display:flex;
+  margin-bottom:2em; /* サービスの下に空白を作っておく */
+}
+.service_iciran{
+  margin: 1em auto 0 0;
+  background: white; /* 背景色 */
+  border-left: double 6px black; /* 左線の色 */
+  border-right: double 6px black; /* 右線の色 */
+  text-align: center;
+  width: 110px;
+  color:black;
+}

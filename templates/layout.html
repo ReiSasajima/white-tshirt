@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COMICS FOR FREE | {% block title %}{% endblock %}</title>
+    <meta name="description" content="sample text">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    {% block css %}
+    {% endblock %}
+</head>
+<body>
+
+    <!-- ヘッダー部分 -->
+    <header class="header">
+        {% if session["user_id"] %}
+        <a class="title" >COMICS FOR FREE.</a>
+        {% else %}
+        <a class="title" href="/">COMICS FOR FREE.</a>
+        {% endif %}
+        <nav class="nav">
+            <ul class="menu-group">
+                {% if session["user_id"] %}
+                <li class="mypage_name">{{ name }}さんのマイページ</li>
+                <li class="menu-item">
+                    <form action="/mypage" class="search_container" method="post">
+                        <input type="text" placeholder="タイトル/著者を入力" name="keyword">
+                        <input type="submit" value="&#xf002">
+                    </form>
+                </li>
+                {% else %}
+                <li class="menu-item">
+                    <form action="/" class="search_container" method="post">
+                        <input type="text" placeholder="タイトル/著者を入力" name="keyword">
+                        <input type="submit" value="&#xf002">
+                    </form>
+                </li>
+                {% endif %}
+                {% if session["user_id"] %}
+                <li class="menu-item"><a href="/my_list" class="btn2">マイリスト</a></li>
+                <!-- マイリストのみを表示するページも欲しい -->
+                <li class="menu-item"><a href="/logout" class="btn2">ログアウト</a></li>
+                {% else %}
+                <li class="menu-item"><a href="/register" class="btn2">会員登録</a></li>
+                <li class="menu-item"><a href="/login" class="btn2">ログイン</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    {% block main %}
+    {% endblock %}
+
+</body>
+</html>
