@@ -21,11 +21,13 @@ app.permanent_session_lifetime = timedelta(minutes=60)
 # 初期ページ
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    # デフォルトの漫画表示　現在は10件
+    index_book = db.execute("SELECT title, author, img_url, summary FROM origin_magapoke ORDER BY RANDOM() LIMIT 10")
+
     if request.method == 'GET':
-        #default_book = db.execute("SELECT title, author, sumarry, img_url FROM origin_magapoke WHERE id ?", id)
         return render_template("sample.html")
         # お気に入り登録用
-        #return render_template("rin.html")
+        #return render_template("rin.html", index_book=index_book)
     elif request.method == 'POST':
         # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
@@ -170,8 +172,8 @@ def logout():
 
 @app.route("/add_favorite/<title>", methods=["POST"])
 def add_favorite(title):
-    if session["user_id"] == None:
-        return render_template("register.html")
+    #if session["user_id"] == None:
+    #  return render_template("register.html")
     favorite_book = db.execute("SELECT user_id, title FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
     # まだお気に入りしていなければお気に入り登録 like = 1でお気に入り like=0で解除
     if favorite_book == []:
