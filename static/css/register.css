@@ -67,3 +67,7 @@ form h1 {
     background-color:#ff69b4;
     border: 2px solid #ff69b4;
 }
+
+.register-submit a {
+    color:white;
+}
