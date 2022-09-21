@@ -25,7 +25,7 @@ def index():
     index_book = db.execute("SELECT title, author, img_url, summary FROM origin_magapoke ORDER BY RANDOM() LIMIT 10")
 
     if request.method == 'GET':
-        return render_template("sample.html")
+        return render_template("sample.html",index_book=index_book)
         # お気に入り登録用
         #return render_template("rin.html", index_book=index_book)
     elif request.method == 'POST':
@@ -172,7 +172,7 @@ def logout():
 
 @app.route("/add_favorite/<title>", methods=["POST"])
 def add_favorite(title):
-    #if session["user_id"] == None:
+    if not session["user_id"]:
     #  return render_template("register.html")
     favorite_book = db.execute("SELECT user_id, title FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
     # まだお気に入りしていなければお気に入り登録 like = 1でお気に入り like=0で解除
