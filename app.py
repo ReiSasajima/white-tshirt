@@ -69,14 +69,17 @@ def mypage():
 
 @app.route("/my_list", methods=["GET", "POST"])
 def my_list():
+    # sessionを通してログインしているユーザーを確認
+    usrsname = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]
+    name = usrsname["username"]
     #ログインユーザのお気に入りの本一覧を獲得
     favorite_db = db.execute(
     "SELECT origin_magapoke.title, origin_magapoke.author, origin_magapoke.img_url FROM origin_magapoke INNER JOIN favorite ON origin_magapoke.title = favorite.title")
 
     if request.method == 'GET':
-        return render_template("my_list.html", favorite_db=favorite_db)
+        return render_template("my_list.html", favorite_db=favorite_db, name=name)
     elif request.method == 'POST':
-        return render_template("my_list.html", favorite_db=favorite_db)
+        return render_template("my_list.html", favorite_db=favorite_db, name= name)
 
 
 
