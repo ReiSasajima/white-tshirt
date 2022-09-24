@@ -73,9 +73,9 @@ def mypage():
 def detail(title):
     # 渡すべきもの本のタイトル、著者、あらすじ、画像、アイコンとか
     book_detail = db.exexute("SELECT title, author, img_url, summary FROM origin_magapoke WHERE title = ?",title)
-    if request.method = "GET":
+    if request.method == "GET":
         return render_template("detail.html", book_detail=book_detail)
-    elif request.method = "POST":
+    elif request.method == "POST":
         return render_template("detail.html", book_detail=book_detail)
 
 @app.route("/my_list", methods=["GET", "POST"])
