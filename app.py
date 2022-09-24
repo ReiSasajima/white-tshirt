@@ -54,7 +54,7 @@ def mypage():
     "SELECT origin_magapoke.title, origin_magapoke.author, origin_magapoke.img_url FROM origin_magapoke INNER JOIN favorite ON origin_magapoke.title = favorite.title")
 
     if request.method == 'GET':
-        return render_template("mypage.html", favorite_db=favorite_db)
+        return render_template("mypage.html", favorite_db=favorite_db, name=name)
     elif request.method == 'POST':
         # ユーザーの入力 = "keyword"を取得
         keyword = request.form["keyword"]
