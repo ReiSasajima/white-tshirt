@@ -21,3 +21,5 @@ titles = db.execute(
 # 全テーブルから重複しないようにタイトル、著者、あらすじ、写真を選択
 book_db = db.execute(
     "SELECT title, author, img_url, summary FROM origin_magapoke WHERE title ?", titles)
+
+
