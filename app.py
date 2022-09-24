@@ -69,6 +69,15 @@ def mypage():
         book_list ="ヒットした本一覧"
         return render_template("mypage.html",favorite_db=favorite_db, name=name, book_list=book_list, database=book_db)
 
+@app.route("/detail/<title>", methods=["GET", "POST"])
+def detail(title):
+    # 渡すべきもの本のタイトル、著者、あらすじ、画像、アイコンとか
+    book_detail = db.exexute("SELECT title, author, img_url, summary FROM origin_magapoke WHERE title = ?",title)
+    if request.method == "GET":
+        return render_template("detail.html", book_detail=book_detail)
+    elif request.method == "POST":
+        return render_template("detail.html", book_detail=book_detail)
+
 @app.route("/my_list", methods=["GET", "POST"])
 def my_list():
     # sessionを通してログインしているユーザーを確認
@@ -82,9 +91,6 @@ def my_list():
         return render_template("my_list.html", favorite_db=favorite_db, name=name)
     elif request.method == 'POST':
         return render_template("my_list.html", favorite_db=favorite_db, name= name)
-
-
-
 
 
 @app.route("/register", methods=["GET", "POST"])
