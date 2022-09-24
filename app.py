@@ -84,9 +84,6 @@ def my_list():
         return render_template("my_list.html", favorite_db=favorite_db, name= name)
 
 
-
-
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
