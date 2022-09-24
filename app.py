@@ -21,8 +21,10 @@ app.permanent_session_lifetime = timedelta(minutes=60)
 # 初期ページ
 @app.route("/", methods=['GET', 'POST'])
 def index():
+    # デフォルトで作品を表示
+    index_book = db.execute("SELECT title, author, img_url, summary FROM origin_magapoke ORDER BY RANDOM() LIMIT 10")
     if request.method == 'GET':
-        return render_template("sample.html")
+        return render_template("sample.html", index_book=index_book)
         # お気に入り登録用
         # return render_template("rin.html")
     elif request.method == 'POST':
@@ -124,7 +126,7 @@ def register():
         session["user_id"] = user_id["id"]
 
         poster = "登録成功"
-        return render_template("sample.html", poster=poster)
+        return render_template("mypage.html", poster=poster)
 
 
 @app.route("/login", methods=["GET", "POST"])
