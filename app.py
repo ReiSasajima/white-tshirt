@@ -69,6 +69,13 @@ def mypage():
         book_list ="ヒットした本一覧"
         return render_template("mypage.html",favorite_db=favorite_db, name=name, book_list=book_list, database=book_db)
 
+@app.route("/detail", methods=["GET", "POST"])
+def detail():
+    if request.method = "GET":
+        return render_template("test_detail.html")
+    elif request.method = "POST":
+        return render_template("test_detail.html")
+
 @app.route("/my_list", methods=["GET", "POST"])
 def my_list():
     # sessionを通してログインしているユーザーを確認
