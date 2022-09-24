@@ -72,7 +72,9 @@ def mypage():
 @app.route("/detail/<title>", methods=["GET", "POST"])
 def detail(title):
     # 渡すべきもの本のタイトル、著者、あらすじ、画像、アイコンとか
-    book_detail = db.exexcute("SELECT title, author, img_url, summary FROM origin_magapoke WHERE title = ?",title)
+
+    book_detail = db.execute("SELECT title, author, img_url, summary FROM origin_magapoke WHERE title = ?",title)
+
     if request.method == "GET":
         return render_template("detail.html", book_detail=book_detail)
     elif request.method == "POST":
