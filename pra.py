@@ -6,7 +6,6 @@ db = SQL("sqlite:///manga.db")
 
 # 各サービスのテーブル名を含むタプル(プログラム内で変更不可)
 service = ["origin_magapoke", "origin_line", "origin_oukoku"]
-NUM = len(service)
 
 keyword = "犬"
 
