@@ -126,7 +126,7 @@ def register():
         session["user_id"] = user_id["id"]
 
         poster = "登録成功"
-        return render_template("sample.html", poster=poster)
+        return render_template("mypage.html", poster=poster)
 
 
 @app.route("/login", methods=["GET", "POST"])
