@@ -93,7 +93,7 @@ def my_list():
 
 
 @app.route("/register", methods=["GET", "POST"])
-def register():
+def register(title):
     if request.method == "GET":
         return render_template("register.html")
     elif request.method == 'POST':
