@@ -71,6 +71,7 @@ def mypage():
 
 @app.route("/detail", methods=["GET", "POST"])
 def detail():
+    # 渡すべきもの本のタイトル、著者、あらすじ、画像、アイコンとか
     if request.method = "GET":
         return render_template("test_detail.html")
     elif request.method = "POST":
