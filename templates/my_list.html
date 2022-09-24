@@ -12,7 +12,6 @@
     <ul>
       <li>
         <a href="/logout">ログアウト</a>
-        <a href="/my_list">マイリスト</a>
       </li>
     </ul>
   </nav>
@@ -23,16 +22,14 @@
     <input type="text" name="keyword" value="タイトル名/著者名">
     <input type="submit" value="検索">
   </form>
-  <!-- ヒットしなければ以下のコードを実行 -->
-  <h2>{{ poster }}</h2>
-  <!-- ヒットすれば以下のコードを実行 -->
-  <h2>{{ book_list }}</h2>
-  {% for row in database %}
+  <!-- お気に入りの本一覧表示 -->
+  <h2>お気に入り一覧</h2>
+  {% for row in favorite_db %}
   <td>{{ row["title"] }}</td>
   <td>{{ row["author"] }}</td>
   <img src= "{{row.img_url}}">
   <form action="add_favorite/{{ row["title"] }}" method="post">
-    <button>お気に入り</button>
+    <button>お気に入り解除</button>
   </form>
   {% endfor %}
 </body>

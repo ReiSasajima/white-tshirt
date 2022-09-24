@@ -187,5 +187,3 @@ def add_favorite(title):
         db.execute("UPDATE origin_magapoke SET like = 0 WHERE title = ?", title)
 
     return render_template("mypage.html")
-
-
