@@ -12,5 +12,42 @@
 
 {% endblock %}
 {% block main %}
+    <!-- ヘッダー部分の余白 -->
+    <div class="margin"></div>
 
+    <!-- ヒットしなければ以下のコードを実行 -->
+    <h1 class="poster">{{ poster }}</h1>
+    <!-- ヒットすれば以下のコードを実行 -->
+    <h1 class="poster">{{ book_list }}</h1>
+
+    <section>
+        {% for row in detail_book %}
+        <figure class="about">
+            <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
+            <figcaption class="about-caption">
+                <div class="title_button">
+                    <h2 class="about-title">{{ row["title"] }}</h2>
+                    <!-- ログイン前はボタンを消しておく -->
+                    <!-- <div class="checkbox">
+                        <form action="add_favorite/{{ row['title'] }}" method="post">
+                        <button  class="add_button">
+                            <img class="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou({{ loop.index }})">
+                        </button>
+                        <br>
+                        <label for="checkbox1" class="mylist">マイリストに追加する</label>
+                        </form>
+                    </div> -->
+                </div>
+                <h3 class="about-author">{{ row["author"] }}</h3>
+                <p class="about-description">
+                    {{ row["summary"] }}
+                </p>
+                <div class="service">
+                    <div class="service_iciran">サービス一覧</div>
+                </div>
+            </figcaption>
+        </figure>
+        {% endfor %}
+
+    </section>
 {% endblock %}
