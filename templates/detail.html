@@ -4,7 +4,7 @@
     詳細ページ
 {% endblock %}
 {% block css %}
-<link rel="stylesheet" href="../static/css/sanitize.css">
+<!-- <link rel="stylesheet" href="../static/css/sanitize.css"> -->
 <link rel="stylesheet" href="../static/css/detail.css">
 <!-- <link rel="stylesheet" href="../static/css/register.css"> -->
 <script src="../static/detail.js"></script>
@@ -29,46 +29,69 @@
     </div>
     <!-- ページのメイン -->
     <figcaption class="about-caption">
+        <!-- タイトル -->
         <h1 class="about-title">{{ row["title"] }}</h1>
+        <!-- 追加ボタン -->
         <form action="/add_favorite">
             <input type="text" value="{{ row["title"] }}" style="display: none;">
             <input type="submit" class="submit" src="">
         </form>
         <!-- 作者 -->
         <h3 class="about-author">{{ row["author"] }}</h3>
-        <!-- あらすじ -->
-        <p class="about-description">{{ row["summary"] }}</p>
         <!-- サービス一覧 -->
         <div class="service">
             <ul>
                 {% if available_services[5] == 1 %}
                     <a href="#"><li class="icon icon-magapoke">マガポケ</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">マガポケ</li>
                 {% endif %}
                 {% if available_services[4] == 1 %}
                     <a href="#"><li class="icon icon-line">LINE</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">LINE</li>
                 {% endif %}
                 {% if available_services[6] == 1 %}
                     <a href="#"><li class="icon icon-oukoku">まんが王国</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">まんが王国</li>
                 {% endif %}
                 {% if available_services[3] == 1 %}
                     <a href="#"><li class="icon icon-jumpplus">Jump+</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">Jump+</li>
                 {% endif %}
                 {% if available_services[0] == 1 %}
                     <a href="#"><li class="icon icon-booklive">BookLive</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">BookLive</li>
                 {% endif %}
                 {% if available_services[2] == 1 %}
                     <a href="#"><li class="icon icon-ebookjapan">ebook japan</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">ebook japan</li>
                 {% endif %}
                 {% if available_services[8] == 1 %}
                     <a href="#"><li class="icon icon-ynjn">ヤンジャン</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">ヤンジャン</li>
                 {% endif %}
                 {% if available_services[1] == 1 %}
                     <a href="#"><li class="icon icon-cmoa">コミック<br>シーモア</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">コミック<br>シーモア</li>
                 {% endif %}
                 {% if available_services[7] == 1 %}
                     <a href="#"><li class="icon icon-piccoma">ピッコマ</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">ピッコマ</li>
                 {% endif %}
             </ul>
+        </div>
+        <!-- あらすじ -->
+        <div class="description-content">
+            <h3 class="description-title">あらすじ</h3>
+            <p class="description-text">{{ row["summary"] }}</p>
         </div>
     </figcaption>
 </figure>

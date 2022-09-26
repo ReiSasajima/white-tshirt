@@ -1,5 +1,3 @@
-@charset "UTF-8";
-
 /*
 Base style
 */
@@ -16,25 +14,26 @@ body{
 }
 
 html { scroll-behavior: smooth;}
-
+/* ヘッダー固定用の空白 */
 .margin{
-    width: 100%;
-    height: 80px;
+  width: 100%;
+  height: 80px;
 }
 
 /* 検索結果の見出し */
 .poster{
   text-align: center;
 }
+/* タイトル */
+h1{
+  text-align: center;
+}
 /* 詳細のメイン */
 .about{
   /* display: flex; */
   background-color: #efefef;
-  /* margin-bottom: 5em;
-  margin-left: 160px; */
   width: 85%;
   color: black;
-  margin: auto;
   text-align: center;
   padding: 1em;
 }
@@ -49,27 +48,18 @@ html { scroll-behavior: smooth;}
   padding-left: 40px;
   padding-top: 20px;
 }
-.about-title{
-  margin: 0 0 20px;
-  width:400px;
-  text-align: center;
-}
 /* 作者 */
 .about-author{
   text-align: center;
 }
 /* あらすじ */
-.about-description{
-  text-align: center;
-  display: inline-block;
-  width: 85%;
+.description-content{
+  width: 60%;
+  background-color: #00B900;
+  margin-left: auto;
+  margin-right: auto;
 }
-/* チェックボックス */
-.checkbox{
-  display: flex;
-  flex-direction: column;
-  margin-left: 40px;
-}
+
 .mylist{
   margin-left: -45px;
   margin-top: 50px;
@@ -132,4 +122,8 @@ li{
 }
 .icon-piccoma{
   background-color: #F9C107;
+}
+.icon-invalid{
+  background-color: #cdcccc;
+  color: white;
 }

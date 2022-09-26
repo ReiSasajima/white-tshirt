@@ -39,7 +39,7 @@ section
   display: flex;
   background-color: #efefef;
   margin-bottom: 5em;
-  margin-left: 160px;
+  /* margin-left: 160px; */
   width: 75%;
 }
 .title_button{
@@ -58,7 +58,7 @@ section
   margin: 0 0 20px;
   width:400px;
 }
-.about-author{}
+/* .about-author{} */
 .about-description{
   padding-right: 20px;
 }
@@ -96,7 +96,7 @@ button {
   width: 100px;
   height: 40px;
   margin: 0px;
-  background-color: #494647	;
+  background-color: black;
   border: solid 1px #494647	;
   border-radius: 4px;
   color: #fff;
@@ -108,5 +108,5 @@ button {
 }
 /* マウスオーバー */
 .detail_button:hover {
-  background-color: black;
+  background-color: #494647;
 }
