@@ -71,14 +71,24 @@ def mypage():
 
 @app.route("/detail/<title>", methods=["GET", "POST"])
 def detail(title):
-    # 渡すべきもの本のタイトル、著者、あらすじ、画像、アイコンとか
+    # アイコン表示用、nameとservicesの番号は対応している
+    service_name = ["origin_booklive", "origin_cmoa", "origin_ebookjapan", "origin_jumpplus", "origin_line", "origin_magapoke", "origin_oukoku", "origin_piccoma", "origin_ynjn"]
+    available_services = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    num = len(available_services = [0, 0, 0, 0, 0, 0, 0, 0, 0])
 
-    book_detail = db.execute("SELECT title, author, img_url, summary FROM origin_magapoke WHERE title = ?",title)
+    for i in range(0, num):
+    judge = db.execute("SELECT service_name FROM ? WHERE title = ?", service_name[i], title)
+    # 作品名が各テーブルに存在すれば1に変更 urlを格納するかも
+    if judge != []:
+        available_services[i] = 1
+
+    # 詳細の本のタイトル、著者、画像、あらすじ
+    book_detail = db.execute("SELECT title, author, img_url, summary FROM origin_magapoke WHERE title = ?", title)
 
     if request.method == "GET":
-        return render_template("detail.html", book_detail=book_detail)
+        return render_template("detail.html", book_detail=book_detail, judge=judge)
     elif request.method == "POST":
-        return render_template("detail.html", book_detail=book_detail)
+        return render_template("detail.html", book_detail=book_detail, judge=judge)
 
 @app.route("/my_list", methods=["GET", "POST"])
 def my_list():
