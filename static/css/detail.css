@@ -62,7 +62,6 @@ html { scroll-behavior: smooth;}
 .about-description{
   text-align: center;
   display: inline-block;
-  background-color: #00B900;
   width: 85%;
 }
 /* チェックボックス */
@@ -130,4 +129,7 @@ li{
 }
 .icon-cmoa{
   background-color: #F58C2F;
+}
+.icon-piccoma{
+  background-color: #F9C107;
 }

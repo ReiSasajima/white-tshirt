@@ -41,14 +41,33 @@
         <!-- サービス一覧 -->
         <div class="service">
             <ul>
-                <a href="#"><li class="icon icon-magapoke">マガポケ</li></a>
-                <a href="#"><li class="icon icon-line">LINE</li></a>
-                <a href="#"><li class="icon icon-oukoku">まんが王国</li></a>
-                <a href="#"><li class="icon icon-jumpplus">Jump+</li></a>
-                <a href="#"><li class="icon icon-booklive">BookLive</li></a>
-                <a href="#"><li class="icon icon-ebookjapan">ebook japan</li></a>
-                <a href="#"><li class="icon icon-ynjn">ヤンジャン</li></a>
-                <a href="#"><li class="icon icon-cmoa">コミック<br>シーモア</li></a>
+                {% if available_services[5] == 1 %}
+                    <a href="#"><li class="icon icon-magapoke">マガポケ</li></a>
+                {% endif %}
+                {% if available_services[4] == 1 %}
+                    <a href="#"><li class="icon icon-line">LINE</li></a>
+                {% endif %}
+                {% if available_services[6] == 1 %}
+                    <a href="#"><li class="icon icon-oukoku">まんが王国</li></a>
+                {% endif %}
+                {% if available_services[3] == 1 %}
+                    <a href="#"><li class="icon icon-jumpplus">Jump+</li></a>
+                {% endif %}
+                {% if available_services[0] == 1 %}
+                    <a href="#"><li class="icon icon-booklive">BookLive</li></a>
+                {% endif %}
+                {% if available_services[2] == 1 %}
+                    <a href="#"><li class="icon icon-ebookjapan">ebook japan</li></a>
+                {% endif %}
+                {% if available_services[8] == 1 %}
+                    <a href="#"><li class="icon icon-ynjn">ヤンジャン</li></a>
+                {% endif %}
+                {% if available_services[1] == 1 %}
+                    <a href="#"><li class="icon icon-cmoa">コミック<br>シーモア</li></a>
+                {% endif %}
+                {% if available_services[7] == 1 %}
+                    <a href="#"><li class="icon icon-piccoma">ピッコマ</li></a>
+                {% endif %}
             </ul>
         </div>
     </figcaption>

@@ -126,9 +126,9 @@ def detail(title):
     book_detail = db.execute("SELECT title, author, img_url, summary FROM parent WHERE title = ? GROUP BY title", title)
 
     if request.method == "GET":
-        return render_template("detail.html", book_detail=book_detail, judge=judge)
+        return render_template("detail.html", book_detail=book_detail, judge=judge, available_services=available_services)
     elif request.method == "POST":
-        return render_template("detail.html", book_detail=book_detail, judge=judge)
+        return render_template("detail.html", book_detail=book_detail, judge=judge, available_services=available_services)
 
 @app.route("/my_list", methods=["GET", "POST"])
 def my_list():
