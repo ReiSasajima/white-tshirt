@@ -77,10 +77,12 @@ def detail(title):
     num = len(available_services = [0, 0, 0, 0, 0, 0, 0, 0, 0])
 
     for i in range(0, num):
-    judge = db.execute("SELECT service_name FROM ? WHERE title = ?", service_name[i], title)
+        judge = db.execute("SELECT service_name FROM ? WHERE title = ?", service_name[i], title)
+        # 作品名が各テーブルに存在すれば1に変更 urlを格納するかも
+        if judge != []:
+            available_services[i] = 1
     # 作品名が各テーブルに存在すれば1に変更 urlを格納するかも
-    if judge != []:
-        available_services[i] = 1
+
 
     # 詳細の本のタイトル、著者、画像、あらすじ
     book_detail = db.execute("SELECT title, author, img_url, summary FROM origin_magapoke WHERE title = ?", title)
