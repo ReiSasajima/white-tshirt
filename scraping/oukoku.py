@@ -5,10 +5,12 @@ import os, signal
 import time
 import sqlite3
 
-def scraping():
+def oukokuScraping():
   # データベースの接続
   conn = sqlite3.connect('../manga.db')
   cur = conn.cursor()
+
+  # cur.execute("CREATE TABLE IF NOT EXISTS origin_oukoku('id'INTEGER NOT NULL,'title' TEXT NOT NULL UNIQUE, 'author' TEXT, 'img_url' TEXT, ")
 
   # option addargumentでブラウザ非表示でselenium実行
   options = Options()
@@ -23,10 +25,13 @@ def scraping():
   # まんが王国無料漫画113ページ分の切り替え
   for j in range(1, 113+1):
     driver.get(f'https://comic.k-manga.jp/search/jikkuri?search_option%5Bsort%5D=popular&page={j}')
+    driver.implicitly_wait(10)
     for i in range(1, 51):
       if driver.find_elements_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]'):
+        print("page:", j, "list:", i)
         # タイトル
-        title = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/h2').text
+        if driver.find_elements_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/h2'):
+          title = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/h2').text
         print("タイトル:", title)
         # 表紙
         ele = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a/img')
@@ -51,27 +56,31 @@ def scraping():
         
         # 備考欄をまとめる
         note = (note1 + note2 + note3)
-        print(note)
+        print("備考欄", note)
         # 詳細ページへ
         detail = driver.find_element_by_xpath(f'//*[@id="contents"]/section/div[2]/section[1]/div/ul/li[{i}]/a')
         driver.execute_script('arguments[0].click();', detail)
+        driver.implicitly_wait(10)
 
         # 詳細URLの取得
         cur_url = driver.current_url
-        print(cur_url)
+        print("URL:", cur_url)
         # 作者
         author = driver.find_element_by_xpath('//*[@id="contents"]/div[2]/section[1]/div[1]/div[2]/dl/dd[1]/a').text
         print("作者:", author)
         # あらすじ
         summary = driver.find_element_by_xpath('//*[@id="contents"]/div[2]/section[1]/div[6]/p').text
         print("あらすじ:", summary)
+        # サービス名
         service_name = 'manga-oukoku'
-
+        print("サービス名:", service_name)
+        #is_freeに1
         is_free = 1
-        print("is_free?", is_free)
+        print("無料ですか?", is_free)
 
         cur.execute("INSERT INTO origin_oukoku(title, author, img_url, note, summary, is_free, service_name, cur_url) VALUES(?, ?, ?, ?, ?, ?, ?, ?);", (title, author, img_url, note, summary, is_free, service_name, cur_url))
         conn.commit()
+        print()
 
         # 前のページに戻る
         driver.back()
@@ -79,6 +88,5 @@ def scraping():
       else:
         print()
         break
-    print()
-    time.sleep(1)
+    driver.implicitly_wait(10)
   time.sleep(1)
