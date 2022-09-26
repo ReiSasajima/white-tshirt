@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="../static/css/sanitize.css">
     <link rel="stylesheet" href="../static/css/style_sample.css">
+    <script src="https://kit.fontawesome.com/eea364082e.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -85,7 +86,9 @@
                     {{ row["summary"] }}
                 </p>
                 <div class="service">
-                    <div class="service_iciran">サービス一覧</div>
+                    <!-- <div class="service_iciran">サービス一覧</div> -->
+                    <a href='/detail/{{ row["title"] }}'>詳細へ</a>
+                    <i class="fa-solid fa-check"></i>
                 </div>
             </figcaption>
         </figure>
