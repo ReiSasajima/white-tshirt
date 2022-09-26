@@ -197,3 +197,23 @@ button {
   width: 110px;
   color:black;
 }
+
+.detail_button {
+  display:block;
+  width: 100px;
+  height: 40px;
+  margin: 0px;
+  background-color: #494647	;
+  border: solid 1px #494647	;
+  border-radius: 4px;
+  color: #fff;
+  font-size:12px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+/* マウスオーバー */
+.detail_button:hover {
+  background-color: black;
+}
