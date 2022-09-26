@@ -5,7 +5,7 @@ import os, signal
 import time
 import sqlite3
 
-def ynjn():
+def ynjnScraping():
   # データベースの接続
   conn = sqlite3.connect('../manga.db')
   cur = conn.cursor()
@@ -23,6 +23,7 @@ def ynjn():
   driver.get('https://ynjn.jp/')
 # 毎週変わりそうな予感
   detailBtn = driver.find_element_by_xpath('//*[@id="layout"]/div/section[5]/div/div/div[2]/button')
+  
   
   driver.execute_script('arguments[0].click();', detailBtn)
 
@@ -61,4 +62,6 @@ def ynjn():
     conn.commit()
     driver.back()
 
-    time.sleep(1)
+    driver.implicitly_wait(10)
+
+# def ynjnRefresh():
