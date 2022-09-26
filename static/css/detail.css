@@ -55,9 +55,9 @@ h1{
 /* あらすじ */
 .description-content{
   width: 60%;
-  background-color: #00B900;
   margin-left: auto;
   margin-right: auto;
+  text-align: left;
 }
 
 .mylist{
