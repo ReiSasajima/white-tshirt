@@ -71,7 +71,7 @@ def mypage():
     # お気に入りされた本一覧を表示する
     # ログインユーザのお気に入りの本のタイトルを獲得
     favorite_db = db.execute(
-    "SELECT parent.title, parent.author, parent.img_url FROM parent INNER JOIN favorite ON parent.title = favorite.title GROUP BY title")
+    "SELECT parent.title, parent.author, parent.img_url FROM parent INNER JOIN favorite ON parent.title = favorite.title GROUP BY parent.title")
 
     if request.method == 'GET':
         return render_template("mypage.html", favorite_db=favorite_db, name=name)
@@ -114,7 +114,7 @@ def detail(title):
     # アイコン表示用、nameとservicesの番号は対応している
     service_name = ["origin_booklive", "origin_cmoa", "origin_ebookjapan", "origin_jumpplus", "origin_line", "origin_magapoke", "origin_oukoku", "origin_piccoma", "origin_ynjn"]
     available_services = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-    num = len(available_services = [0, 0, 0, 0, 0, 0, 0, 0, 0])
+    num = len(available_services)
 
     for i in range(0, num):
         judge = db.execute("SELECT service_name FROM ? WHERE title = ?", service_name[i], title)
@@ -126,9 +126,9 @@ def detail(title):
     book_detail = db.execute("SELECT title, author, img_url, summary FROM parent WHERE title = ? GROUP BY title", title)
 
     if request.method == "GET":
-        return render_template("detail.html", book_detail=book_detail, judge=judge)
+        return render_template("detail.html", book_detail=book_detail, judge=judge, available_services=available_services)
     elif request.method == "POST":
-        return render_template("detail.html", book_detail=book_detail, judge=judge)
+        return render_template("detail.html", book_detail=book_detail, judge=judge, available_services=available_services)
 
 @app.route("/my_list", methods=["GET", "POST"])
 def my_list():
