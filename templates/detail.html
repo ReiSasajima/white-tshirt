@@ -5,7 +5,7 @@
 {% endblock %}
 {% block css %}
 <link rel="stylesheet" href="../static/css/sanitize.css">
-<link rel="stylesheet" href="../static/css/style_result.css">
+<link rel="stylesheet" href="../static/css/detail.css">
 <link rel="stylesheet" href="../static/css/register.css">
 <script src="../static/detail.js"></script>
 <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
@@ -23,7 +23,9 @@
     <section>
         {% for row in book_detail %}
         <figure class="about">
-            <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
+            <div class="img">
+                <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
+            </div>
             <figcaption class="about-caption">
                 <div class="title_button">
                     <h2 class="about-title">{{ row["title"] }}</h2>
