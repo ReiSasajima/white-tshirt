@@ -40,9 +40,9 @@
                     {{ row["summary"] }}
                 </p>
                 <div class="service">
-                    <div class="service_iciran">サービス一覧</div>
+                    <!-- <div class="service_iciran">サービス一覧</div> -->
+                    <a href='/detail/{{ row["title"] }}'>詳細へ</a>
                 </div>
-                <a href='/detail/{{ row["title"] }}'>詳細へ</a>
             </figcaption>
         </figure>
         {% endfor %}
