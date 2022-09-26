@@ -39,7 +39,8 @@ section
   display: flex;
   background-color: #efefef;
   margin-bottom: 5em;
-  /* margin-left: 160px; */
+  margin-left: auto;
+  margin-right: auto;
   width: 75%;
 }
 .title_button{

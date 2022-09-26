@@ -31,13 +31,10 @@
     <figcaption class="about-caption">
         <!-- タイトル -->
         <h1 class="about-title">{{ row["title"] }}</h1>
-        <!-- 追加ボタン -->
-        <form action="/add_favorite">
-            <input type="text" value="{{ row["title"] }}" style="display: none;">
-            <input type="submit" class="submit" src="">
-        </form>
+        
         <!-- 作者 -->
         <h3 class="about-author">{{ row["author"] }}</h3>
+        
         <!-- サービス一覧 -->
         <div class="service">
             <ul>
@@ -88,6 +85,11 @@
                 {% endif %}
             </ul>
         </div>
+        <!-- 追加ボタン -->
+        <form action="/add_favorite">
+            <input type="text" value="{{ row["title"] }}" style="display: none;">
+            <input type="submit" class="submit" src="">
+        </form>
         <!-- あらすじ -->
         <div class="description-content">
             <h3 class="description-title">あらすじ</h3>
