@@ -104,8 +104,22 @@
 </section>
 {% endblock %}
 <script>
-    function btntoggle(){
-        list = document.getElementsByClassName('mylist-title');
-        list.innerHTML = 'まいまい';
-    }
+    let jqxhr;
+    $('.submit').on('click', function(){
+        event.preventDefault();
+        if (jqxhr) {
+            return;
+        }
+        jqxhr = $.ajax({
+            url: '/add_favorite',
+            type: 'post',
+            data: $(this).parent('form').serialize(),
+            success: function(response) {
+                console.log(response);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+    });
 </script>
