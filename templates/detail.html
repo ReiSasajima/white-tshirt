@@ -89,12 +89,12 @@
         {% if like != [] %}
         <form action="/add_favorite" method="post">
             <input type="text" value="{{ row["title"] }}" name='title' style="display: none;">
-            <input type="submit" value="&#xf00c; マイリストから削除" class="fa-solid fa-check delete-default">
+            <input type="submit" value="&#xf00c; マイリスト削除" class="fa-solid fa-check delete-default">
         </form>
         {% else %}
         <form action="/add_favorite" method="post">
             <input type="text" value="{{ row["title"] }}" name='title' style="display: none;">
-            <input type="submit" value="&#x2b; マイリストに追加" class="fa-solid fa-plus add-default">
+            <input type="submit" value="&#x2b; マイリスト追加" class="fa-solid fa-plus add-default">
         </form>
         {% endif%}
         <!-- あらすじ -->
@@ -121,6 +121,20 @@
                         console.log(error);
                     }
                 });
+                const tex = 'マイリスト追加'
+                const nowDel = 'マイリスト削除'
+                const alreadyDel = '削除しました'
+                let btn = $('.add-default, .delete-default').val();
+                if(btn.indexOf(tex) > -1){
+                    $('.add-default, .delete-default').val('マイリスト追加しました');
+
+                }else if(btn.indexOf(nowDel) > -1){
+                    $('.add-default, .delete-default').val('マイリスト削除しました');
+                }else if(btn.indexOf(alreadyDel) > -1){
+                    $('.add-default, .delete-default').val('マイリスト追加しました');
+
+                }
+                
             });
         </script>
     </figcaption>
