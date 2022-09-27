@@ -97,29 +97,6 @@
         </div>
     </figcaption>
 </figure>
-<script type="text/script">
-    
-</script>
 {% endfor %}
 </section>
 {% endblock %}
-<script>
-    let jqxhr;
-    $('.submit').on('click', function(){
-        event.preventDefault();
-        if (jqxhr) {
-            return;
-        }
-        jqxhr = $.ajax({
-            url: '/add_favorite',
-            type: 'post',
-            data: $(this).parent('form').serialize(),
-            success: function(response) {
-                console.log(response);
-            },
-            error: function(error) {
-                console.log(error);
-            }
-        });
-    });
-</script>
