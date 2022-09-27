@@ -138,7 +138,7 @@ def my_list():
     name = usrsname["username"]
     #ログインユーザのお気に入りの本一覧を獲得
     favorite_db = db.execute(
-    "SELECT parent.title, parent.author, parent.img_url FROM parent INNER JOIN favorite ON parent.title = favorite.title GROUP BY title")
+    "SELECT parent.title, parent.author, parent.img_url FROM parent INNER JOIN favorite ON parent.title = favorite.title GROUP BY parent.title")
 
     if request.method == 'GET':
         return render_template("my_list.html", favorite_db=favorite_db, name=name)
@@ -235,10 +235,12 @@ def logout():
     return redirect("/")
 
 
-@app.route("/add_favorite/<title>", methods=["POST"])
-def add_favorite(title):
+@app.route("/add_favorite", methods=["POST"])
+def add_favorite():
+    title = request.form.get('title')
     if session["user_id"] == None:
         return render_template("register.html")
+    
     favorite_book = db.execute("SELECT user_id, title FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
     # まだお気に入りしていなければお気に入り登録 like = 1でお気に入り like=0で解除
     if favorite_book == []:
@@ -251,6 +253,6 @@ def add_favorite(title):
         judge = 0
         db.execute("DELETE FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
 
-    return render_template("mypage.html", judge=judge)
+    return redirect("/my_list")
 
 
