@@ -7,7 +7,7 @@
 <!-- <link rel="stylesheet" href="../static/css/sanitize.css"> -->
 <link rel="stylesheet" href="../static/css/detail.css">
 <!-- <link rel="stylesheet" href="../static/css/register.css"> -->
-<script src="../static/detail.js"></script>
+
 <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
 
 {% endblock %}
@@ -86,9 +86,9 @@
             </ul>
         </div>
         <!-- 追加ボタン -->
-        <form action="/add_favorite">
+        <form action="/add_favorit">
             <input type="text" value="{{ row["title"] }}" style="display: none;">
-            <input type="submit" class="submit" src="">
+            <input type="submit" value="&#x2b; マイリストに追加" class="fa-solid fa-plus submit">
         </form>
         <!-- あらすじ -->
         <div class="description-content">
@@ -97,6 +97,15 @@
         </div>
     </figcaption>
 </figure>
+<script type="text/script">
+    
+</script>
 {% endfor %}
 </section>
 {% endblock %}
+<script>
+    function btntoggle(){
+        list = document.getElementsByClassName('mylist-title');
+        list.innerHTML = 'まいまい';
+    }
+</script>
