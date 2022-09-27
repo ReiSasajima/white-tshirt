@@ -113,14 +113,14 @@ def mypage():
 def detail(title):
     # アイコン表示用、nameとservicesの番号は対応している
     service_name = ["origin_booklive", "origin_cmoa", "origin_ebookjapan", "origin_jumpplus", "origin_line", "origin_magapoke", "origin_oukoku", "origin_piccoma", "origin_ynjn"]
-    available_services = ["https://booklive.jp/index/no-charge/", "https://www.cmoa.jp/title/24", "https://ebookjapan.yahoo.c", "https://shonenjumpplus.com/", "https://manga.line.me/produ", "https://pocket.shonenmagazi", "https://comic.k-manga.jp/title", "https://piccoma.com/web/prod", "https://ynjn.jp/title/1123"]
+    available_services = [0, 0, 0, 0, 0, 0, 0, 0, 0]
     num = len(available_services)
 
     for i in range(0, num):
-        judge = db.execute("SELECT service_name FROM ? WHERE title = ?", service_name[i], title)
-        # 作品名が各テーブルに存在すれば1に変更 urlを格納するかも
-        if judge == []:
-            available_services[i] = 0
+        judge = db.execute("SELECT cur_url FROM ? WHERE title = ?", service_name[i], title)
+        # 作品名が各テーブルに存在すればurlを格納する
+        if judge != []:
+            available_services[i] = judge["cur_url"]
 
     # 詳細の本のタイトル、著者、画像、あらすじ
     book_detail = db.execute("SELECT title, author, img_url, summary FROM parent WHERE title = ? GROUP BY title", title)
