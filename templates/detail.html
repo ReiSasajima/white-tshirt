@@ -37,50 +37,49 @@
         
         <!-- サービス一覧 -->
         <div class="service">
-            <p>{{ available_services }}</p>
             <ul>
-                {% if available_services[5] != 0 %}
-                    <a href="{{available_services[5]}}"><li class="icon icon-magapoke">マガポケ</li></a>
+                {% if available_services[5] != '' %}
+                    <a href={{available_services[5]}} target="_blank"><li class="icon icon-magapoke">マガポケ</li></a>
                 {% else %}
                     <li class="icon icon-invalid">マガポケ</li>
                 {% endif %}
-                {% if available_services[4] != 0 %}
-                    <a href="{{available_services[4]}}"><li class="icon icon-line">LINE</li></a>
+                {% if available_services[4] != '' %}
+                    <a href={{available_services[4]}} target="_blank"><li class="icon icon-line">LINE</li></a>
                 {% else %}
                     <li class="icon icon-invalid">LINE</li>
                 {% endif %}
-                {% if available_services[6] != 0 %}
-                    <a href="{{available_services[6]}}"><li class="icon icon-oukoku">まんが王国</li></a>
+                {% if available_services[6] != '' %}
+                    <a href={{available_services[6]}} target="_blank"><li class="icon icon-oukoku">まんが王国</li></a>
                 {% else %}
                     <li class="icon icon-invalid">まんが王国</li>
                 {% endif %}
-                {% if available_services[3] != 0 %}
-                    <a href="{{available_services[3]}}"><li class="icon icon-jumpplus">Jump+</li></a>
+                {% if available_services[3] != '' %}
+                    <a href={{available_services[3]}} target="_blank"><li class="icon icon-jumpplus">Jump+</li></a>
                 {% else %}
                     <li class="icon icon-invalid">Jump+</li>
                 {% endif %}
-                {% if available_services[0] != 0 %}
-                    <a href="{{available_services[0]}}"><li class="icon icon-booklive">BookLive</li></a>
+                {% if available_services[0] != '' %}
+                    <a href={{available_services[0]}} target="_blank"><li class="icon icon-booklive">BookLive</li></a>
                 {% else %}
                     <li class="icon icon-invalid">BookLive</li>
                 {% endif %}
-                {% if available_services[2] != 0 %}
-                    <a href="{{available_services[2]}}"><li class="icon icon-ebookjapan">ebook japan</li></a>
+                {% if available_services[2] != '' %}
+                    <a href={{available_services[2]}} target="_blank"><li class="icon icon-ebookjapan">ebook japan</li></a>
                 {% else %}
                     <li class="icon icon-invalid">ebook japan</li>
                 {% endif %}
-                {% if available_services[8] != 0 %}
-                    <a href="{{available_services[8]}}" target="_blank"><li class="icon icon-ynjn">ヤンジャン</li></a>
+                {% if available_services[8] != '' %}
+                    <a href={{available_services[8]}} target="_blank"><li class="icon icon-ynjn">ヤンジャン</li></a>
                 {% else %}
                     <li class="icon icon-invalid">ヤンジャン</li>
                 {% endif %}
-                {% if available_services[1] != 0 %}
-                    <a href="{{available_services[1]}}"><li class="icon icon-cmoa">コミック<br>シーモア</li></a>
+                {% if available_services[1] != '' %}
+                    <a href={{available_services[1]}} target="_blank"><li class="icon icon-cmoa">コミック<br>シーモア</li></a>
                 {% else %}
                     <li class="icon icon-invalid">コミック<br>シーモア</li>
                 {% endif %}
-                {% if available_services[7] != 0 %}
-                    <a href="{{available_services[7]}}"><li class="icon icon-piccoma">ピッコマ</li></a>
+                {% if available_services[7] != '' %}
+                    <a href={{available_services[7]}} target="_blank"><li class="icon icon-piccoma">ピッコマ</li></a>
                 {% else %}
                     <li class="icon icon-invalid">ピッコマ</li>
                 {% endif %}
