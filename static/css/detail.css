@@ -128,7 +128,7 @@ li{
   color: white;
 }
 
-.add-default{
+.add-default, .delete-default{
   background-color: black;
   color: white;
   width: 15em;

@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, session
+from flask import Flask, redirect, render_template, request, session, Response
 from datetime import timedelta
 from werkzeug.security import check_password_hash, generate_password_hash
 # cs50のライブラリでSQLを操作している。
@@ -254,6 +254,9 @@ def add_favorite():
         judge = 0
         db.execute("DELETE FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
 
-    return redirect("/my_list")
+    # return redirect("/my_list")
+    response = Response()
+    response.status_code = 200
+    return response
 
 

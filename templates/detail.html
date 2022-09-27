@@ -89,7 +89,7 @@
         {% if like != [] %}
         <form action="/add_favorite" method="post">
             <input type="text" value="{{ row["title"] }}" name='title' style="display: none;">
-            <input type="submit" value="&#xf00c; マイリストから削除" class="fa-solid fa-check delete=default">
+            <input type="submit" value="&#xf00c; マイリストから削除" class="fa-solid fa-check delete-default">
         </form>
         {% else %}
         <form action="/add_favorite" method="post">
@@ -105,7 +105,7 @@
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <script>
             let jqxhr;
-            $('.add-default').on('click', function(){
+            $('.add-default, .delete-default').on('click', function(){
                 event.preventDefault();
                 if (jqxhr) {
                     return;
