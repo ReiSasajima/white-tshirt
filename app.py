@@ -120,10 +120,10 @@ def detail(title):
         judge = db.execute("SELECT cur_url FROM ? WHERE title = ?", service_name[i], title)
         # 作品名が各テーブルに存在すればurlを格納する
         if judge != []:
-            available_services[i] = judge["cur_url"]
+            available_services[i] = judge
 
     # 詳細の本のタイトル、著者、画像、あらすじ
-    book_detail = db.execute("SELECT title, author, img_url, summary FROM parent WHERE title = ? GROUP BY title", title)
+    book_detail = db.execute("SELECT title, author, img_url, summary FROM parent WHERE title = ? GROUP BY parent.title", title)
 
     if request.method == "GET":
         return render_template("detail.html", book_detail=book_detail, available_services=available_services)
