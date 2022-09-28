@@ -265,3 +265,23 @@ button {
   width: 110px;
   color:black;
 }
+
+.detail_button {
+  display:block;
+  width: 100px;
+  height: 40px;
+  margin: 0px;
+  background-color: black	;
+  border: solid 1px black	;
+  border-radius: 4px;
+  color: #fff;
+  font-size:12px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+/* マウスオーバー */
+.detail_button:hover {
+  background-color: #494647;
+}

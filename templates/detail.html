@@ -4,50 +4,99 @@
     詳細ページ
 {% endblock %}
 {% block css %}
-<link rel="stylesheet" href="../static/css/sanitize.css">
-<link rel="stylesheet" href="../static/css/style_result.css">
-<link rel="stylesheet" href="../static/css/register.css">
+<!-- <link rel="stylesheet" href="../static/css/sanitize.css"> -->
+<link rel="stylesheet" href="../static/css/detail.css">
+<!-- <link rel="stylesheet" href="../static/css/register.css"> -->
 <script src="../static/detail.js"></script>
 <!-- <link rel="stylesheet" href="../static/css/style.css"> -->
 
 {% endblock %}
 {% block main %}
-    <!-- ヘッダー部分の余白 -->
-    <div class="margin"></div>
+<!-- ヘッダー部分の余白 -->
+<div class="margin"></div>
 
-    <!-- ヒットしなければ以下のコードを実行 -->
-    <h1 class="poster">{{ poster }}</h1>
-    <!-- ヒットすれば以下のコードを実行 -->
-    <h1 class="poster">{{ book_list }}</h1>
+<!-- ヒットしなければ以下のコードを実行 -->
+<h1 class="poster">{{ poster }}</h1>
+<!-- ヒットすれば以下のコードを実行 -->
+<h1 class="poster">{{ book_list }}</h1>
 
-    <section>
-        {% for row in book_detail %}
-        <figure class="about">
-            <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
-            <figcaption class="about-caption">
-                <div class="title_button">
-                    <h2 class="about-title">{{ row["title"] }}</h2>
-                    <!-- ログイン前はボタンを消しておく -->
-                    <!-- <div class="checkbox">
-                        <form action="add_favorite/{{ row['title'] }}" method="post">
-                        <button  class="add_button">
-                            <img class="image_file" src="../static/images/5APT0ioL996laER1663352236_1663352281.png" width = "30" height="30" onClick="henkou({{ loop.index }})">
-                        </button>
-                        <br>
-                        <label for="checkbox1" class="mylist">マイリストに追加する</label>
-                        </form>
-                    </div> -->
-                </div>
-                <h3 class="about-author">{{ row["author"] }}</h3>
-                <p class="about-description">
-                    {{ row["summary"] }}
-                </p>
-                <div class="service">
-                    <div class="service_iciran">サービス一覧</div>
-                </div>
-            </figcaption>
-        </figure>
-        {% endfor %}
-
-    </section>
+<section>
+{% for row in book_detail %}
+<figure class="about">
+    <!-- 表紙 -->
+    <div class="img">
+        <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
+    </div>
+    <!-- ページのメイン -->
+    <figcaption class="about-caption">
+        <!-- タイトル -->
+        <h1 class="about-title">{{ row["title"] }}</h1>
+        
+        <!-- 作者 -->
+        <h3 class="about-author">{{ row["author"] }}</h3>
+        
+        <!-- サービス一覧 -->
+        <div class="service">
+            <ul>
+                {% if available_services[5] == 1 %}
+                    <a href="#"><li class="icon icon-magapoke">マガポケ</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">マガポケ</li>
+                {% endif %}
+                {% if available_services[4] == 1 %}
+                    <a href="#"><li class="icon icon-line">LINE</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">LINE</li>
+                {% endif %}
+                {% if available_services[6] == 1 %}
+                    <a href="#"><li class="icon icon-oukoku">まんが王国</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">まんが王国</li>
+                {% endif %}
+                {% if available_services[3] == 1 %}
+                    <a href="#"><li class="icon icon-jumpplus">Jump+</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">Jump+</li>
+                {% endif %}
+                {% if available_services[0] == 1 %}
+                    <a href="#"><li class="icon icon-booklive">BookLive</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">BookLive</li>
+                {% endif %}
+                {% if available_services[2] == 1 %}
+                    <a href="#"><li class="icon icon-ebookjapan">ebook japan</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">ebook japan</li>
+                {% endif %}
+                {% if available_services[8] == 1 %}
+                    <a href="#"><li class="icon icon-ynjn">ヤンジャン</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">ヤンジャン</li>
+                {% endif %}
+                {% if available_services[1] == 1 %}
+                    <a href="#"><li class="icon icon-cmoa">コミック<br>シーモア</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">コミック<br>シーモア</li>
+                {% endif %}
+                {% if available_services[7] == 1 %}
+                    <a href="#"><li class="icon icon-piccoma">ピッコマ</li></a>
+                {% else %}
+                    <li class="icon icon-invalid">ピッコマ</li>
+                {% endif %}
+            </ul>
+        </div>
+        <!-- 追加ボタン -->
+        <form action="/add_favorite">
+            <input type="text" value="{{ row["title"] }}" style="display: none;">
+            <input type="submit" class="submit" src="">
+        </form>
+        <!-- あらすじ -->
+        <div class="description-content">
+            <h3 class="description-title">あらすじ</h3>
+            <p class="description-text">{{ row["summary"] }}</p>
+        </div>
+    </figcaption>
+</figure>
+{% endfor %}
+</section>
 {% endblock %}

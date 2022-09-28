@@ -1,0 +1,129 @@
+/*
+Base style
+*/
+body{
+    font-family: 'Noto Sans JP',"Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #333;
+    background-color: black;            /* 背景色 */
+    background-image: url("../images/スクリーンショット\ 2022-09-12\ 21.38.31\ 1.png"); /* 画像 */
+    background-size: cover;               /* 全画面 */
+    background-attachment: fixed;         /* 固定 */
+    background-position: center center;   /* 縦横中央 */
+}
+
+html { scroll-behavior: smooth;}
+/* ヘッダー固定用の空白 */
+.margin{
+  width: 100%;
+  height: 80px;
+}
+
+/* 検索結果の見出し */
+.poster{
+  text-align: center;
+}
+/* タイトル */
+h1{
+  text-align: center;
+}
+/* 詳細のメイン */
+.about{
+  /* display: flex; */
+  background-color: #efefef;
+  width: 85%;
+  color: black;
+  text-align: center;
+  padding: 1em;
+}
+.img {
+  text-align: center;
+}
+.about-image{
+  width:400px;
+  height:300px;
+}
+.about-caption{
+  padding-left: 40px;
+  padding-top: 20px;
+}
+/* 作者 */
+.about-author{
+  text-align: center;
+}
+/* あらすじ */
+.description-content{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+}
+
+.mylist{
+  margin-left: -45px;
+  margin-top: 50px;
+}
+
+/* サービス一覧を表示 */
+.service{
+  display:flex;
+  margin-bottom:2em;
+}
+ul{
+  display: flex;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+ul a{
+  text-decoration: none;
+  color: white;
+}
+li{
+  list-style-type: none;
+  font-weight: bold;
+}
+.icon{
+  width: 7em;
+  height: 3em;
+  margin: 0.2em;
+  border-radius: 7px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.icon-magapoke{
+  background-color: #0D2F89;
+}
+.icon-line{
+  background-color: #00B900;
+}
+.icon-oukoku{
+  background-color: #F47C20;
+}
+.icon-jumpplus{
+  background-color: #E53935;
+}
+.icon-booklive{
+  background-color: #F35A07;
+}
+.icon-ebookjapan{
+  background-color: #F2485F;
+}
+.icon-ynjn{
+  background-color: #2162C6;
+}
+.icon-cmoa{
+  background-color: #F58C2F;
+}
+.icon-piccoma{
+  background-color: #F9C107;
+}
+.icon-invalid{
+  background-color: #cdcccc;
+  color: white;
+}

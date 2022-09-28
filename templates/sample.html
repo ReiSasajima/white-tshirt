@@ -11,10 +11,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+    <script src="../static/about-service.js"></script>
     <link rel="stylesheet" href="../static/css/sanitize.css">
     <link rel="stylesheet" href="../static/css/style_sample.css">
-    <script src="https://kit.fontawesome.com/eea364082e.js" crossorigin="anonymous"></script>
+    <script src="../static/sample.js" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -86,9 +86,7 @@
                     {{ row["summary"] }}
                 </p>
                 <div class="service">
-                    <!-- <div class="service_iciran">サービス一覧</div> -->
-                    <a href='/detail/{{ row["title"] }}'>詳細へ</a>
-                    <i class="fa-solid fa-check"></i>
+                    <a href='/detail/{{ row["title"] }}' class="detail_button">詳細はこちら</a>
                 </div>
             </figcaption>
         </figure>
