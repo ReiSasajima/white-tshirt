@@ -125,8 +125,10 @@ def detail(title):
 
     # 詳細の本のタイトル、著者、画像、あらすじ
     book_detail = db.execute("SELECT title, author, img_url, summary FROM parent WHERE title = ? GROUP BY parent.title", title)
-    like = db.execute("SELECT user_id, title FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
-
+    try:
+        like = db.execute("SELECT user_id, title FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
+    except KeyError:
+        like = 1
     if request.method == "GET":
         return render_template("detail.html", book_detail=book_detail, available_services=available_services, like=like)
     elif request.method == "POST":

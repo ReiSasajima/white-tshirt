@@ -86,17 +86,22 @@
             </ul>
         </div>
         <!-- 追加ボタン -->
-        {% if like != [] %}
-        <form action="/add_favorite" method="post">
-            <input type="text" value="{{ row["title"] }}" name='title' style="display: none;">
-            <input type="submit" value="&#xf00c; マイリスト削除" class="fa-solid fa-check delete-default">
-        </form>
+        {%if session["user_id"]%}
+            {% if like != [] %}
+            <form action="/add_favorite" method="post">
+                <input type="text" value="{{ row["title"] }}" name='title' style="display: none;">
+                <input type="submit" value="&#xf00c; マイリスト削除" class="fa-solid fa-check delete-default">
+            </form>
+            {% else %}
+            <form action="/add_favorite" method="post">
+                <input type="text" value="{{ row["title"] }}" name='title' style="display: none;">
+                <input type="submit" value="&#x2b; マイリスト追加" class="fa-solid fa-plus add-default">
+            </form>
+            {% endif%}
         {% else %}
-        <form action="/add_favorite" method="post">
-            <input type="text" value="{{ row["title"] }}" name='title' style="display: none;">
-            <input type="submit" value="&#x2b; マイリスト追加" class="fa-solid fa-plus add-default">
-        </form>
+            <p>まいりすと</p>
         {% endif%}
+
         <!-- あらすじ -->
         <div class="description-content">
             <h3 class="description-title">あらすじ</h3>
