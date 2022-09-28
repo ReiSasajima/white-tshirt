@@ -86,15 +86,57 @@
             </ul>
         </div>
         <!-- 追加ボタン -->
+        {% if like != [] %}
         <form action="/add_favorite" method="post">
             <input type="text" value="{{ row["title"] }}" name='title' style="display: none;">
-            <input type="submit" value="&#x2b; マイリストに追加" class="fa-solid fa-plus submit">
+            <input type="submit" value="&#xf00c; マイリスト削除" class="fa-solid fa-check delete-default">
         </form>
+        {% else %}
+        <form action="/add_favorite" method="post">
+            <input type="text" value="{{ row["title"] }}" name='title' style="display: none;">
+            <input type="submit" value="&#x2b; マイリスト追加" class="fa-solid fa-plus add-default">
+        </form>
+        {% endif%}
         <!-- あらすじ -->
         <div class="description-content">
             <h3 class="description-title">あらすじ</h3>
             <p class="description-text">{{ row["summary"] }}</p>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+        <script>
+            let jqxhr;
+            $('.add-default, .delete-default').on('click', function(){
+                event.preventDefault();
+                if (jqxhr) {
+                    return;
+                }
+                jqxhr = $.ajax({
+                    url: '/add_favorite',
+                    type: 'post',
+                    data: $(this).parent('form').serialize(),
+                    success: function(response) {
+                        console.log(response);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+                const tex = 'マイリスト追加'
+                const nowDel = 'マイリスト削除'
+                const alreadyDel = '削除しました'
+                let btn = $('.add-default, .delete-default').val();
+                if(btn.indexOf(tex) > -1){
+                    $('.add-default, .delete-default').val('マイリスト追加しました');
+
+                }else if(btn.indexOf(nowDel) > -1){
+                    $('.add-default, .delete-default').val('マイリスト削除しました');
+                }else if(btn.indexOf(alreadyDel) > -1){
+                    $('.add-default, .delete-default').val('マイリスト追加しました');
+
+                }
+                
+            });
+        </script>
     </figcaption>
 </figure>
 {% endfor %}

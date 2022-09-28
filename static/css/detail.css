@@ -128,7 +128,7 @@ li{
   color: white;
 }
 
-.submit{
+.add-default, .delete-default{
   background-color: black;
   color: white;
   width: 15em;

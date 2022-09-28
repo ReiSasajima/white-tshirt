@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, session
+from flask import Flask, redirect, render_template, request, session, Response
 from datetime import timedelta
 from werkzeug.security import check_password_hash, generate_password_hash
 # cs50のライブラリでSQLを操作している。
@@ -125,11 +125,12 @@ def detail(title):
 
     # 詳細の本のタイトル、著者、画像、あらすじ
     book_detail = db.execute("SELECT title, author, img_url, summary FROM parent WHERE title = ? GROUP BY parent.title", title)
+    like = db.execute("SELECT user_id, title FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
 
     if request.method == "GET":
-        return render_template("detail.html", book_detail=book_detail, available_services=available_services)
+        return render_template("detail.html", book_detail=book_detail, available_services=available_services, like=like)
     elif request.method == "POST":
-        return render_template("detail.html", book_detail=book_detail, available_services=available_services)
+        return render_template("detail.html", book_detail=book_detail, available_services=available_services, like=like)
 
 @app.route("/my_list", methods=["GET", "POST"])
 def my_list():
@@ -253,6 +254,9 @@ def add_favorite():
         judge = 0
         db.execute("DELETE FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
 
-    return redirect("/my_list")
+    # return redirect("/my_list")
+    response = Response()
+    response.status_code = 200
+    return response
 
 
