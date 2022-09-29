@@ -99,7 +99,9 @@
             </form>
             {% endif%}
         {% else %}
-            <p>まいりすと</p>
+        <form action="/login" method="get">
+            <input type="submit" value="&#x2b; マイリスト追加" class="fa-solid fa-plus guest-default">
+        </form>
         {% endif%}
 
         <!-- あらすじ -->

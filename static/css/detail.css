@@ -95,6 +95,7 @@ li{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .2)
 }
 .icon-magapoke{
   background-color: #0D2F89;
@@ -140,8 +141,21 @@ li{
   font-size: x-large;
   font-weight: 800;
   cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .2)
 }
 #icon-title{
   margin-left: auto;
   margin-right: auto;
+}
+.guest-default{
+  background-color: rgb(205, 205, 205);
+  width: 15em;
+  height: 3em;
+  border-radius: 30px;
+  border: none;
+  font-size: x-large;
+  color: white;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .2)
 }
