@@ -26,9 +26,28 @@
   display: flex;
   justify-content:space-around;
 }
-.about-image{
-  width:400px;
-  height:300px;
+/* 表紙のcss */
+.images {
+  position: relative;
+  display: flex;
+  width:240px;
+  height:240px;
+}
+.images > .blur {
+  filter: blur(5px);
+  width: 240px;
+  height: 240px;
+  object-fit: cover; 
+  border: 3px solid rgba(0, 0, 0, 0.1);
+}
+.images > .upper{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width:150px;
 }
 .about-caption{
   padding-left: 40px;
