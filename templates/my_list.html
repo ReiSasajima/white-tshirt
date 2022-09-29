@@ -20,7 +20,10 @@
     <section>
         {% for row in favorite_db %}
         <figure class="about">
-            <img class="about-image" src="{{row.img_url}}" alt="漫画の表紙">
+            <div class="images">
+                <img class="blur" src="{{row.img_url}}" alt="漫画の表紙">
+                <img class="upper" src="{{row.img_url}}" alt="漫画の表紙">
+            </div>
             <figcaption class="about-caption">
                 <div class="title_button">
                     <h2 class="about-title">{{ row["title"] }}</h2>
