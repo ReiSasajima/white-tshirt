@@ -111,6 +111,7 @@ def mypage():
 
 @app.route("/detail/<title>", methods=["GET", "POST"])
 def detail(title):
+    
     # アイコン表示用、nameとservicesの番号は対応している
     service_name = ["origin_booklive", "origin_cmoa", "origin_ebookjapan", "origin_jumpplus", "origin_line", "origin_magapoke", "origin_oukoku", "origin_piccoma", "origin_ynjn"]
     available_services = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
@@ -126,13 +127,20 @@ def detail(title):
     # 詳細の本のタイトル、著者、画像、あらすじ
     book_detail = db.execute("SELECT title, author, img_url, summary FROM parent WHERE title = ? GROUP BY parent.title", title)
     try:
+        # sessionを通してログインしているユーザーを確認
+        usrsname = db.execute("SELECT username FROM users WHERE id = ?", session["user_id"])[0]
+        name = usrsname["username"]
+    except KeyError:
+        #sessionなければ仮でnameに'guest'を導入
+        name = 'guest'
+    try:
         like = db.execute("SELECT user_id, title FROM favorite WHERE user_id = ? AND title = ?", session["user_id"], title)
     except KeyError:
         like = 1
     if request.method == "GET":
-        return render_template("detail.html", book_detail=book_detail, available_services=available_services, like=like)
+        return render_template("detail.html", book_detail=book_detail, available_services=available_services, like=like, name=name)
     elif request.method == "POST":
-        return render_template("detail.html", book_detail=book_detail, available_services=available_services, like=like)
+        return render_template("detail.html", book_detail=book_detail, available_services=available_services, like=like, name=name)
 
 @app.route("/my_list", methods=["GET", "POST"])
 def my_list():
