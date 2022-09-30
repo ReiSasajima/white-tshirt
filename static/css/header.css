@@ -10,7 +10,6 @@ body{
     color: #efefef;
     margin: 0;
 }
-
 /*
 header
 */
@@ -27,6 +26,8 @@ header
   color: #efefef;
   margin-bottom: auto;
   margin-left: 300px;
+  /* マルマルさんマイページの点を消す */
+  list-style: none;
 }
 
 /* 検索窓　 */
@@ -82,6 +83,17 @@ margin-left: auto;
   padding: 10px;
   margin-bottom: 20px;
 }
+.guest-menu-item{
+  list-style: none;
+  display: inline-block;
+  padding: 10px;
+  margin-bottom: 5px;
+  margin-top: 30px;
+  vertical-align: middle;
+}
+/* .guest-menu-item > input[type="text"]{
+  margin-bottom: 2px;
+} */
 .btn1{
     color: black;
 }
