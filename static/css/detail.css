@@ -37,7 +37,7 @@ h1{
   margin-left: auto;
   margin-right: auto;
   /* margin: 02 auto; */
-  padding: 2em;
+  padding: 1em;
 }
 
 /* 表紙のcss */
@@ -45,16 +45,15 @@ h1{
   position: relative;
   margin: 0 auto;
   display: flex;
-  width:400px;
-  height:400px;
-  border-radius: 15px;
+  width:500px;
+  height:500px;
   overflow: hidden;
 }
 .img > .blur {
   filter: blur(5px);
-  width: 405px;
-  height: 405px;
-  object-fit: cover;
+  width: 505px;
+  height: 505px;
+  object-fit: cover; 
   border: 3px solid rgba(0, 0, 0, 0.1);
 }
 .img > .upper{
@@ -92,7 +91,7 @@ h1{
   display:flex;
   margin-bottom:2em;
 }
-/* ul{
+.service > ul{
   display: flex;
   margin-top: 0;
   margin-bottom: 0;
@@ -103,10 +102,10 @@ ul a{
   text-decoration: none;
   color: white;
 }
-li{
+.service > li{
   list-style-type: none;
-  font-weight: bold;
-} */
+  font-weight: bolder;
+}
 .icon{
   width: 7em;
   height: 3em;
