@@ -33,6 +33,9 @@
   width:240px;
   height:240px;
   overflow: hidden;
+  /* marginで画像をlistの上下中央に配置 */
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .images > .blur {
   filter: blur(5px);
