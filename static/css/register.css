@@ -17,7 +17,6 @@ form h1 {
     padding: 10px 0;
     margin:10px 0;
 }
-
 .register-form input {
     background: #EBEBEB;
     display:block;
@@ -48,21 +47,13 @@ form h1 {
     text-align:center;
     cursor:pointer;
 }
-
-
 .register-form input:hover {
-
     opacity: 0.6;
-
 }
-
-
-
 .register-submit input:hover {
     background-color:white;
     color: #2E80DE;
 }
-
 .register-submit a {
     color:white;
 }
