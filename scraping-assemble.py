@@ -1,6 +1,14 @@
-#scrapingフォルダから各々のサイト用のスクレイピングモジュールをインポート
-from scraping import booklive, oukoku, cmoa, jumpplus, line, magapoke, piccoma, scraping, ynjn 
-from crontab import CronTab
+#scrapingフォルダから各々のサイト用のスクレイピングモジュールをインポート 
+from scraping.ynjn import ynjnRefresh
+from scraping.booklive import bookliveRefresh
+from scraping.oukoku import oukokuScraping, oukokuRefresh
+from scraping.cmoa import cmoaScraping, cmoaRefresh
+from scraping.jumpplus import jumpplusScraping, jumpplusRefresh
+from scraping.line import lineScraping, lineRefresh
+from scraping.scraping import magapokeScraping, magapokeRefresh
+from scraping.piccoma import piccomaScraping, piccomaRefresh
+from scraping.ebookjapan import ebookjapanScraping, ebookjapanRefresh
+
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
@@ -8,42 +16,27 @@ import os, signal
 import time
 import sqlite3
 
-# インスタンスの生成
-cron = CronTab()
-# ジョブを生成してコマンドを設定する
-job = cron.new(command='python3 ./scraping-assemble.py')
+# job = cron.new(command='python3 ./scraping-assemble.py')
 # 毎週日曜、午前2時にCRONセット
-job.setall('0 2 * * 7')
-# データベースの接続
-conn = sqlite3.connect('manga.db')
-cur = conn.cursor()
+#左から分(0~59)・時(0~23)・日(1~31)・月(1~12)・曜日(0~7)
+# job.setall('0 2 * * 7')
 
+# magapokeRefresh() #マガポケのスクレイピング関数
+# cur.execute("DELETE FROM sqlite_sequence WHERE name = 'origin_magapoke' ")
 
-# option addargumentでブラウザ非表示でselenium実行
-options = Options()
-options.add_argument('--headless')
+#ebookjapanのスクレイピング
+ebookjapanRefresh()
 
-# chromeoption=optionsでブラウザ非表示を適用
-driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
-# driver = webdriver.Chrome(ChromeDriverManager().install())
-driver.implicitly_wait(10)
-
-def main():
-  ynjn() #やんじゃんのスクレイピング関数
-  cur.execute("VACUUM;")
-  oukoku() #まんが王国のスクレイピング関数
-  cur.execute("VACUUM;")
-  jumpplus() #ジャンププラスのスクレイピング関数
-  cur.execute("VACUUM;")
-  cmoa() #コミックシーモアのスクレイピング関数
-  cur.execute("VACUUM;")
-  piccoma() #ピッコマのスクレイピング関数
-  cur.execute("VACUUM;")
-  booklive() #bookliveのスクレイピング関数
-  cur.execute("VACUUM;")
-  line() #liveマンガのスクレイピング関数
-  cur.execute("VACUUM;")
-  # magapoke() #マガポケのスクレイピング関数
-  # cur.execute("VACUUM;")
-  scraping() #マガポケのスクレイピング関数
-  cur.execute("VACUUM;")
+# ynjnrefresh() #やんじゃんのスクレイピング関数
+ynjnrefresh()
+# oukokuRefresh() #まんが王国のスクレイピング関数
+oukokuRefresh()
+# jumpplusRefresh() #ジャンププラスのスクレイピング関数
+jumpplusRefresh()
+cmoaRefresh() #コミックシーモアのスクレイピング関数
+# piccomaRefresh() #ピッコマのスクレイピング関数
+piccomaRefresh()
+# bookliveRefresh() #bookliveのスクレイピング関数
+bookliveRefresh()
+# lineRefresh() #liveマンガのスクレイピング関数
+lineRefresh()
