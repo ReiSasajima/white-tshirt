@@ -149,7 +149,7 @@ def my_list():
     name = usrsname["username"]
     #ログインユーザのお気に入りの本一覧を獲得
     favorite_db = db.execute(
-    "SELECT parent.title, parent.author, parent.img_url FROM parent INNER JOIN favorite ON parent.title = favorite.title GROUP BY parent.title")
+    "SELECT parent.title, parent.author, parent.img_url, parent.summary FROM parent INNER JOIN favorite ON parent.title = favorite.title GROUP BY parent.title")
 
     if request.method == 'GET':
         return render_template("my_list.html", favorite_db=favorite_db, name=name)
