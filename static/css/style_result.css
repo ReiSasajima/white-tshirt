@@ -18,7 +18,9 @@
   display: flex;
   background-color: #efefef;
   margin-bottom: 5em;
-  margin-left: 160px;
+  /* リストを左右中央に配置 */
+  margin-right: auto;
+  margin-left: auto;
   width: 75%;
   color: black;
 }
