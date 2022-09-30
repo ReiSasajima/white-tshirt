@@ -98,8 +98,8 @@ button {
   width: 100px;
   height: 40px;
   margin: 0px;
-  background-color: #494647	;
-  border: solid 1px #494647	;
+  background-color: black	;
+  border: solid 1px black	;
   border-radius: 4px;
   color: #fff;
   font-size:12px;
@@ -110,5 +110,6 @@ button {
 }
 /* マウスオーバー */
 .detail_button:hover {
-  background-color: black;
+  background-color: #494647;
+  border: solid 1px #494647;
 }
