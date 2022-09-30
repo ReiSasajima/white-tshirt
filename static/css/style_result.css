@@ -23,6 +23,8 @@
   margin-left: auto;
   width: 75%;
   color: black;
+  border-radius: 5px;
+  border: solid 0.1px #747474;
 }
 .title_button{
   display: flex;
@@ -38,6 +40,7 @@
   /* marginで画像をlistの上下中央に配置 */
   margin-top: auto;
   margin-bottom: auto;
+  margin-left: 1em;
 }
 .images > .blur {
   filter: blur(5px);
@@ -78,11 +81,11 @@
   margin-left: -45px;
   margin-top: 50px;
 }
-button {
+/* button {
   width: 30px;
   height:30px;
   border: none;
-}
+} */
 /* サービス一覧を表示 */
 .service{
   display:flex;
