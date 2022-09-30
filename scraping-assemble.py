@@ -21,14 +21,12 @@ import sqlite3
 #左から分(0~59)・時(0~23)・日(1~31)・月(1~12)・曜日(0~7)
 # job.setall('0 2 * * 7')
 
-# magapokeRefresh() #マガポケのスクレイピング関数
+magapokeRefresh() #マガポケのスクレイピング関数
 # cur.execute("DELETE FROM sqlite_sequence WHERE name = 'origin_magapoke' ")
 
-#ebookjapanのスクレイピング
 ebookjapanRefresh()
-
 # ynjnrefresh() #やんじゃんのスクレイピング関数
-ynjnrefresh()
+ynjnRefresh()
 # oukokuRefresh() #まんが王国のスクレイピング関数
 oukokuRefresh()
 # jumpplusRefresh() #ジャンププラスのスクレイピング関数
