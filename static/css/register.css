@@ -58,8 +58,10 @@ form h1 {
     color:white;
 }
 @media screen and (max-width: 425px){
+    .form-wrapper{
+        margin-top: 100px;
+    }
     form{
-        margin-top: 90px;
         width:280px;
     }
     .register-form input{
