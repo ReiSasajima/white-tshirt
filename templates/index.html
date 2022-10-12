@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../static/css/index.css">
+  <title>Document</title>
+</head>
+<body>
+  <header>
+    <div class="header-title">
+      <a href="#">Tadable.</a>
+    </div>
+    <div class="header-navbar">
+      <!-- <a href="#">サイトについて</a> -->
+      <a href="#">会員登録</a>
+      <a href="#">ログイン</a>
+    </div>
+  </header>
+  <div class="search">
+    <div class="search-section">
+      <h1>Tadable.</h1>
+      <form action="">
+        <input type="text" placeholder="作品・著者">
+        <input type="submit" value="&#xf002">
+      </form>
+    </div>
+  </div>
+  <div class="about">
+    <h2>Tadableとは</h2>
+    <div class="about-section">
+      <img src="../static/images/s-tsuchiya--NUgOnopsvI-unsplash.jpg" alt="">
+      <p>さまざまな漫画サイトの無料で読める漫画を検索できるサイトです。<br>①漫画サイトの横断的な検索ができない<br>②他サービスで無料と気づかずにお金を払ってしまった<br>③海賊版サイトの横行<br>これらの問題提起から始まったプロジェクトです。<br><br>無料に特化することで国内外問わず一人でも多くの方が漫画に触れる機会を作り、<br>日本文化の象徴である漫画の発信に少しでも寄与できたらと考えています。</p>
+    </div>
+  </div>
+  <div class="content">
+    <h2>あなたにオススメ</h2>
+    {% for row in index_book %}
+    <div class="content-list">
+      <img src="{{row.img_url}}" alt="">
+      <div class="content-list-text">
+        <h2>{{ row["title"] }}</h2>
+        <h3>{{ row["author"] }}</h3>
+        <p>{{ row["summary"] }}</p>
+        <a href='/detail/{{ row["title"] }}'>読みたい</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
