@@ -1,17 +1,7 @@
-@charset "UTF-8";
-
-/*
-Base style
-*/
 body{
     font-family: 'Noto Sans JP',"Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
-    font-size: 15px;
-    line-height: 1.5;
     margin: 0;
 }
-/*
-header
-*/
 .header {
   display: flex;
   width: 100%;
@@ -31,7 +21,8 @@ header
 .mypage_name {
   color: #efefef;
   margin-bottom: auto;
-  margin-left: 300px;
+  margin-right: 5px;
+  text-align: right;
   /* マルマルさんマイページの点を消す */
   list-style: none;
 }
@@ -41,18 +32,18 @@ header
   position: relative;
   box-sizing: border-box;
   display: block;
-  padding: 3px 10px;
+  padding: 0px 10px;
   border-radius: 20px;
   height: 2.2em;
   width: 250px;
   overflow: hidden;
   background: whitesmoke;
-  top: 10px;
 }
 .search_container input[type="text"]{
   border: none;
   height: 2.0em;
   background: whitesmoke;
+  padding: 0%;
 }
 .search_container input[type="text"]:focus {
   outline: 0;
@@ -73,7 +64,6 @@ header
 .search_container ::-webkit-input-placeholder {
   color: black;
 }
-
 .title {
   margin-right: auto;
   color: #efefef;
@@ -83,11 +73,15 @@ header
 .nav{
 margin-left: auto;
 }
+.menu-group{
+  margin-top: auto;
+  margin-bottom: auto;
+}
 .menu-item {
   list-style: none;
   display: inline-block;
   padding: 10px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 .guest-menu-item{
   list-style: none;
@@ -97,9 +91,6 @@ margin-left: auto;
   margin-top: 30px;
   vertical-align: middle;
 }
-/* .guest-menu-item > input[type="text"]{
-  margin-bottom: 2px;
-} */
 .btn1{
     color: black;
 }
@@ -136,4 +127,39 @@ margin-left: auto;
   -webkit-transform: scale(1, 1);
   -ms-transform: scale(1, 1);
   transform: scale(1, 1)
+}
+@media screen and (max-width: 768px) {
+  .title{
+    font-size: 40px;
+  }
+  .search_container{
+    width: 200px;
+  }
+  .menu-group{
+    padding: 0%;
+  }
+  .menu-item{
+    font-size: 10px;
+  }
+  .guest-menu-item{
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 510px){
+  .title {
+    font-size: 25px;
+  }
+}
+@media screen and (max-width: 425px){
+  .title {
+    font-size: 20px;
+  }
+  .search_container {
+    width: 130px;
+  }
+  .menu-item{
+    font-size: 10px;
+    font-weight: 400;
+  }
+  
 }
