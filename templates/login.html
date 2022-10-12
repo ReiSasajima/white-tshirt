@@ -11,19 +11,20 @@
 
 {% endblock %}
 {% block main %}
-<form action="/login" method="post" autocomplete="off">
-  <div class="register-header">
-    <h1>ログイン</h1>
-  </div>
-  <div class="register-form">
-    <input type="text" name="username" placeholder="ユーザー名">
-    <input type="password" name="password" placeholder="パスワード">
-  </div>
-  
-  <div class="register-submit">
-    <input id="submit" type="submit" value="ログイン">
-    <a href="/register">会員登録はコチラ</a>
-  </div>
+<div class="form-wrapper">
+  <form action="/login" method="post" autocomplete="off">
+    <div class="register-header">
+      <h1>ログイン</h1>
+    </div>
+    <div class="register-form">
+      <input type="text" name="username" placeholder="ユーザー名">
+      <input type="password" name="password" placeholder="パスワード">
+    </div>
 
-</form>
+    <div class="register-submit">
+      <input id="submit" type="submit" value="ログイン">
+      <a href="/register">会員登録はコチラ</a>
+    </div>
+  </form>
+</div>
 {% endblock %}
