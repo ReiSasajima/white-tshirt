@@ -74,8 +74,10 @@ form>input[type='text']:focus{
   outline: none;
 }
 form>input[type='submit']{
+  -webkit-appearance: none;
   font-family: FontAwesome;
   border: solid 2px black;
+  background-color: #EFEFEF;
   height: 40px;
   width: 40px;
   margin-left: 3px;
