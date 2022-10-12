@@ -24,7 +24,7 @@ def index():
     # デフォルトで作品を表示
     index_book = db.execute("SELECT title, author, img_url, summary FROM parent ORDER BY RANDOM() LIMIT 10")
     if request.method == 'GET':
-        return render_template("sample.html", index_book=index_book)
+        return render_template("index.html", index_book=index_book)
         # お気に入り登録用
         # return render_template("rin.html")
     elif request.method == 'POST':

@@ -1,0 +1,238 @@
+body{
+  font-family: 'Noto Sans JP', "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+  margin: 0%;
+}
+header{
+  background-color: #262626;
+  height: 60px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  top: 0%;
+  width: 100%;
+  box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
+}
+.header-title{
+  display: flex;
+  margin-left: 15px;
+  font-size: 30px;
+}
+.header-title > a{
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+}
+.header-navbar{
+  display: flex;
+  margin-left: 10px;
+  font-size: 20px;
+}
+.header-navbar > a{
+  color: white;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  text-decoration: none;
+}
+.search{
+  height:35vh;
+  background-image: url('../images/lincoln-yoon-4T0T3LGrCyA-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  align-items: center;
+  display: flex;
+  margin-top: 60px;
+}
+.search-section{
+  width: 80%;
+  height: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.search-section > h1{
+  font-size: 60px;
+  color: white;
+  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 0%;
+}
+.search-section > form{
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+form >input[type='text']{
+  background-color: white;
+  width: 100%;
+  font-size: xx-large;
+  border-radius: 5px;
+  border: solid 2px black;
+}
+form>input[type='text']:focus{
+  outline: none;
+}
+form>input[type='submit']{
+  font-family: FontAwesome;
+  border: solid 2px black;
+  height: 40px;
+  width: 40px;
+  margin-left: 3px;
+  border-radius: 5px;
+}
+.about{
+  width: 100%;
+  height: max-content;
+}
+.about > h2{
+  text-align: center;
+}
+.about-section{
+  width: 70%;
+  height: max-content;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  margin-bottom: 5px;
+}
+.about-section > img{
+  display: block;
+  width: 380px;
+  overflow: hidden;
+}
+.about-section > p{
+  width: 500px;
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 10px;
+}
+.content {
+  height: max-content;
+  background-color: #262626;
+  padding-top: 5px;
+}
+.content > h2 {
+  text-align: center;
+  color: white;
+}
+.content-list {
+  width: 80%;
+  border-radius: 5px;
+  height: max-content;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  display: flex;
+}
+.content-list > img{
+  display: block;
+  margin: auto;
+}
+.content-list-text{
+  margin-left: 1%;
+  margin-right: auto;
+  width: 70%;
+}
+.content-list-text > h2{
+  width: 80%;
+  margin-left: 1%;
+  margin-bottom: 0%;
+}
+.content-list-text > h3{
+  width: 80%;
+  margin-left: 1%;
+  margin-top: 0%;
+}
+.content-list-text > p{
+  width: 80%;
+  margin-left: 1%;
+  margin-bottom: 0%;
+}
+.content-list-text > a{
+  display: inline-block;
+  background-color: #262626;
+  text-decoration: none;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  font-size: large;
+  width: max-content;
+  height: max-content;
+}
+
+/* タブレット時のレスポンシブ */
+@media screen and (max-width: 768px) {
+  .header-navbar > a{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 15px;
+  }
+  .about-section{
+    width: 90%;
+    display: block;
+  }
+  .about-section > img{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    height: auto;
+  }
+  .about-section > p{
+    width: 70%;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .content-list{
+    width: 95%;
+  }
+}
+
+/* スマホ時のレスポンシブ */
+@media screen and (max-width: 425px) {
+  .header-title > a{
+    font-size: 20px;
+  }
+  .header-navbar > a{
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 10px;
+  }
+  .search-section > form{
+    width: 100%;
+  }
+  .about-section {
+    width: 90%;
+  }
+  .about-section > p{
+    width: 95%;
+  }
+  .content-list > img{
+    width: 80px;
+  }
+  .content-list-text > h2{
+    font-size: 15px;
+    width: 95%;
+    margin-top: 3px;
+  }
+  .content-list-text > h3{
+    font-size: 10px;
+    margin-bottom: 0%;
+  }
+  .content-list-text > p{
+    font-size: 5px;
+    margin-top: 0%;
+    width: 95%;
+  }
+  
+}
