@@ -4,11 +4,7 @@
     詳細ページ
 {% endblock %}
 {% block css %}
-<!-- <link rel="stylesheet" href="../static/css/sanitize.css"> -->
 <link rel="stylesheet" href="../static/css/detail.css">
-<!-- <link rel="stylesheet" href="../static/css/register.css"> -->
-<!-- <link rel="stylesheet" href="../static/css/style.css"> -->
-
 {% endblock %}
 {% block main %}
 ヘッダー部分の余白
@@ -22,19 +18,17 @@
 <section>
 {% for row in book_detail %}
 <figure class="about">
-    <!-- 表紙 -->
-    <div class="img">
-        <img class="blur" src="{{row.img_url}}" alt="漫画の表紙">
-        <img class="upper" src="{{row.img_url}}" alt="漫画の表紙">
-    </div>
+<!-- 表紙 -->
+<div class="img">
+    <img class="blur" src="{{row.img_url}}" alt="漫画の表紙">
+    <img class="upper" src="{{row.img_url}}" alt="漫画の表紙">
+</div>
     <!-- ページのメイン -->
     <figcaption class="about-caption">
         <!-- タイトル -->
         <h1 class="about-title">{{ row["title"] }}</h1>
-        
         <!-- 作者 -->
         <h3 class="about-author">{{ row["author"] }}</h3>
-        
         <!-- サービス一覧 -->
         <div class="service">
             <ul>
