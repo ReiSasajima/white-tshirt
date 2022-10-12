@@ -1,12 +1,7 @@
-/*
-Base style
-*/
 body{
     font-family: 'Noto Sans JP',"Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
     /* font-size: 15px; */
     /* line-height: 1.5; */
-    color: #333;
-    background-color: black;            /* 背景色 */
     background-image: url("../images/スクリーンショット\ 2022-09-12\ 21.38.31\ 1.png"); /* 画像 */
     background-size: cover;               /* 全画面 */
     background-attachment: fixed;         /* 固定 */
@@ -14,44 +9,39 @@ body{
 }
 
 html { scroll-behavior: smooth;}
-/* ヘッダー固定用の空白 */
-.margin{
-  width: 100%;
-  height: 80px;
-}
+
 /* タイトル */
-h1{
+/* h1{
   text-align: center;
-}
+} */
 /* 詳細のメイン */
 .about{
-  /* display: flex; */
   background-color: #efefef;
-  width: 85%;
+  width: 95%;
   border-radius: 15px;
-  color: black;
   text-align: center;
   /* 上の余白 */
   margin-top: 100px;
   /* 左右中央配置 */
   margin-left: auto;
   margin-right: auto;
-  /* margin: 02 auto; */
-  padding: 1em;
+  padding-top: 10px;
 }
 
 /* 表紙のcss */
 .img {
+  /* background-color: #00B900; */
+  border-radius: 20px;
   position: relative;
-  margin: 0 auto;
+  margin: 5px auto;
   display: flex;
-  width:500px;
+  width:80%;
   height:500px;
   overflow: hidden;
 }
 .img > .blur {
-  filter: blur(5px);
-  width: 505px;
+  filter: blur(20px);
+  width: 100%;
   height: 505px;
   object-fit: cover; 
   border: 3px solid rgba(0, 0, 0, 0.1);
@@ -66,8 +56,12 @@ h1{
   width:310px;
 }
 .about-caption{
-  padding-left: 40px;
   padding-top: 20px;
+}
+.about-caption > h1{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 /* 作者 */
 .about-author{
@@ -75,28 +69,26 @@ h1{
 }
 /* あらすじ */
 .description-content{
-  width: 60%;
+  width: 70%;
   margin-left: auto;
   margin-right: auto;
   text-align: left;
 }
-
-.mylist{
-  margin-left: -45px;
-  margin-top: 50px;
-}
-
 /* サービス一覧を表示 */
 .service{
+  /* background-color: #0D2F89; */
+  width: 95%;
   display:flex;
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom:2em;
 }
 .service > ul{
   display: flex;
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-left: auto;
-  margin-right: auto;
+  flex-wrap: wrap;
+  padding: 0%;
+  margin: 0% auto;
+  width: 80%;
 }
 ul a{
   text-decoration: none;
@@ -179,4 +171,45 @@ ul a{
   font-weight: 800;
   cursor: pointer;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .2)
+}
+@media screen and (max-width: 768px){
+  .description-content {
+      width: 80%;
+  }
+  .service{
+    width: 80%;
+  }
+  .service > ul{
+    width: 90%;
+  }
+  .icon {
+    width: 6rem;
+    padding: 1px;
+    margin: 5px;
+  }
+}
+@media screen and (max-width: 425px){
+  .about-caption{
+    width: 95%;
+  }
+  .about-caption > h1{
+    text-align: center;
+  }
+  .img{
+    width: 80%;
+    height: 150px;
+    border-radius: 10px;
+    /* background-color: #00B900; */
+  }
+  .img > .upper{
+    width: 110px;
+    height: 110px;
+  }
+  .service ul{
+    width: 95%;
+  }
+  .icon {
+    width: 4rem;
+    font-size: 10px;
+  }
 }
