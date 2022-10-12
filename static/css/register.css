@@ -1,6 +1,6 @@
 form {
     text-align:center;
-    width:30%;
+    width:600px;
     padding: 40px 10px;
     position: absolute;
     top: 50%;
@@ -56,4 +56,12 @@ form h1 {
 }
 .register-submit a {
     color:white;
+}
+@media screen and (max-width: 425px){
+    form{
+        width:280px;
+    }
+    .register-form input{
+        width: 70%;
+    }
 }
