@@ -209,7 +209,8 @@ form>input[type='submit']{
   .header-navbar > a{
     margin-left: 1rem;
     margin-right: 1rem;
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 600;
   }
   .search-section > form{
     width: 100%;
