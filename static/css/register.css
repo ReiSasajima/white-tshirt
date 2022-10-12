@@ -59,6 +59,7 @@ form h1 {
 }
 @media screen and (max-width: 425px){
     form{
+        margin-top: 90px;
         width:280px;
     }
     .register-form input{
