@@ -18,6 +18,7 @@ html { scroll-behavior: smooth;}
 .about{
   background-color: #efefef;
   width: 95%;
+  height: max-content;
   border-radius: 15px;
   text-align: center;
   /* 上の余白 */
@@ -212,4 +213,7 @@ ul a{
     width: 4rem;
     font-size: 10px;
   }
+    .add-default, .delete-default, .guest-default{
+      width: 10em;
+    }
 }
